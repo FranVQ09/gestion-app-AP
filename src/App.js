@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import LoginPage from './pages/LoginPage';
+import Menu from './pages/Menu';
+import Asignacion from "./pages/gestion-colaboradores/Asignacion"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+/* Imports de paginas de colaboradores */
+import GestionColaboradores from "./pages/gestion-colaboradores/GestionColaboradores"
+import RegistrarColaborador from "./pages/gestion-colaboradores/RegistrarColaborador";
+import ModificarColaborador from "./pages/gestion-colaboradores/ModificarColaborador"
+
+/* Imports de paginas de proyectos */
+import GestionProyectos from "./pages/gestion-proyectos/GestionProyectos";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/menu" element={<Menu />} />
+
+          {/* Rutas de Colaboradores */}
+          <Route path="/gestionColaboradores" element={<GestionColaboradores />} />
+          <Route path="/registrarColaborador" element={<RegistrarColaborador />} />
+          <Route path="/modificarColaborador" element={<ModificarColaborador />} />
+          <Route path="/asignacion" element={<Asignacion />} />
+
+          {/* Rutas de Proyectos */}
+          <Route path="/gestionProyectos" element={<GestionProyectos />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
