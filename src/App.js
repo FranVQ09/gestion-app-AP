@@ -11,6 +11,8 @@ import ModificarColaborador from "./pages/gestion-colaboradores/ModificarColabor
 /* Imports de paginas de proyectos */
 import GestionProyectos from "./pages/gestion-proyectos/GestionProyectos";
 import CrearProyecto from "./pages/gestion-proyectos/CrearProyecto";
+import ConsultarProyectos from './pages/gestion-proyectos/ConsultarProyectos';
+
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
           {/* Rutas de Proyectos */}
           <Route path="/gestionProyectos" element={<GestionProyectos />} />
           <Route path="/crearProyecto" element={<CrearProyecto />} />
+          <Route path="/consultarProyecto" element={<ConsultarProyectos />} />
 
         </Routes>
       </Router>
