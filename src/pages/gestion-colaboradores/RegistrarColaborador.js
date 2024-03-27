@@ -35,7 +35,6 @@ function RegistrarColaborador() {
 
     setTimeout(() => {
       setMensaje('');
-
     }, 3000)
   }
 
