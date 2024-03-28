@@ -12,6 +12,33 @@ function Reuniones() {
     const [ colaboradores, setColaboradores ] = useState('');
     const [ mensaje, setMensaje ] = useState('');
 
+    const nodemailer = require('nodemailer');
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'joseguba1604@gmail.com',
+            pass: 'CowardlySpice16'
+        }
+    });
+
+    const enviarCorreo = (destinatario, asunto, contenido) => {
+        const mailOptions = {
+            from: 'joseguba1604@gmail.com',
+            to: destinatario,
+            subject: asunto,   
+            text: contenido
+        };
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error al enviar el correo', error);
+        } else {
+            console.log('Correo enviado correctamente', info.response);
+        }
+    });
+
     const reunionesCollection = collection(db, 'reuniones');
 
     const storeReuniones = async (e) => {
@@ -54,6 +81,9 @@ function Reuniones() {
                 <input type="text" value={colaboradores} onChange={(e) => setColaboradores(e.target.value)} placeholder="Colaboradores (separados por comas)" required />
                 <div>
                     <button type='submit'>Crear Reunión</button>
+                </div>
+                <div>
+                    <button type='submit'>Enviar Correo</button>
                 </div>
             </form>
             <div>{mensaje}</div>

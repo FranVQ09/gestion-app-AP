@@ -15,6 +15,10 @@ import ConsultarProyectos from './pages/gestion-proyectos/ConsultarProyectos';
 import ModificarProyecto from './pages/gestion-proyectos/ModificarProyecto';
 import Reuniones from './pages/gestion-proyectos/Reuniones';
 
+/* Import de evaluaciones*/
+import InformeGeneral from './pages/Evaluaciones/InformeGeneral';
+import BurndownChart from './pages/Evaluaciones/BurndownChart';
+
 function App() {
   return (
     <div className="App">
