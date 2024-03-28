@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Importar los estilos de react-datepicker
 import db from '../../fisebaseConfig/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
@@ -77,7 +76,7 @@ function CrearProyecto() {
                 tareas: tareas,
                 estadoProyecto: estadoProyecto,
                 descripcion: descripcion,
-                fechaInicio: fechaInicio, // Cambiado a fechaInicio
+                fechaInicio: fechaInicio,
                 historial: historial
             });
             alert('Proyecto registrado correctamente');
@@ -88,12 +87,11 @@ function CrearProyecto() {
             setTareas([]);
             setEstadoProyecto('');
             setDescripcion('');
-            setFechaInicio(null); // Cambiado a null
+            setFechaInicio(''); 
             setHistorial('');
 
 
             console.log('Proyecto registrado correctamente');
-            // Resto del código...
 
         } catch (error) {
             console.error('Error al registrar el proyecto:', error);
@@ -116,7 +114,7 @@ function CrearProyecto() {
                         <option value="Finalizado">Finalizado</option>
                     </select>
                     <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="Descripción" required/>
-                    <DatePicker selected={fechaInicio} onChange={(date) => setFechaInicio(date)} placeholderText="Fecha de Inicio" required /> {/* Cambiado a DatePicker */}
+                    <input type="text" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} placeholder="Fecha de Inicio" required/>
                     <input type="text" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Historial" required/>
                 </div>
                 <div>
@@ -133,8 +131,8 @@ function CrearProyecto() {
                     
                             <input type="text" value={tarea.responsable} onChange={(e) => actualizarTarea(index, 'responsable', e.target.value)} placeholder="Responsable" required />
                             <input type="number" value={tarea.storypoints} onChange={(e) => actualizarTarea(index, 'storypoints', e.target.value)} placeholder="Story Points" required />
-                            <DatePicker selected={tarea.fechaInicio} onChange={(date) => actualizarTarea(index, 'fechaInicio', date)} placeholderText="Fecha de Inicio" required /> {/* Cambiado a DatePicker */}
-                            <DatePicker selected={tarea.fechaFin} onChange={(date) => actualizarTarea(index, 'fechaFin', date)} placeholderText="Fecha de Fin" required /> {/* Cambiado a DatePicker */}
+                            <input type="text" value={tarea.fechaInicio} onChange={(e) => actualizarTarea(index, 'fechaInicio', e.target.value)} placeholder="Fecha de Inicio" required />
+                            <input type="text" value={tarea.fechaFin} onChange={(e) => actualizarTarea(index, 'fechaFin', e.target.value)} placeholder="Fecha de Fin" required />
                         </div>
                     ))}
                     <button type="button" onClick={agregarTarea}>Agregar Tarea</button>

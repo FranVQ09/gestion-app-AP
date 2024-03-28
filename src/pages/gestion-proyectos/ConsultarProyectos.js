@@ -19,16 +19,12 @@ function ConsultarProyectos() {
           recursos: data.recursos,
           presupuesto: data.presupuesto,
           colaboradores: data.colaboradores,
-          tareas: data.tareas.map(tarea => ({
-            ...tarea,
-            fechaInicio: tarea.fechaInicio ? tarea.fechaInicio.toDate() : null,
-            fechaFin: tarea.fechaFin ? tarea.fechaFin.toDate() : null,
-          })),
+          tareas: data.tareas,
           estadoProyecto: data.estadoProyecto,
           descripcion: data.descripcion,
           historial: data.historial,
-          fechaInicio: data.fechaInicio ? data.fechaInicio.toDate() : null,
-          fechaFin: data.fechaFin ? data.fechaFin.toDate() : null,
+          fechaInicio: data.fechaInicio,
+          fechaFin: data.fechaFin,
         };
         items.push(proyectoItem);
       });
@@ -49,8 +45,8 @@ function ConsultarProyectos() {
           <p>Presupuesto: {item.presupuesto}</p>
           <p>Colaboradores: {item.colaboradores.join(', ')}</p>
           <p>Estado: {item.estadoProyecto}</p>
-          <p>Fecha de inicio: {item.fechaInicio ? item.fechaInicio.toLocaleString() : 'No disponible'}</p>
-          <p>Fecha de fin: {item.fechaFin ? item.fechaFin.toLocaleString() : 'No disponible'}</p>
+          <p>Fecha de inicio: {item.fechaInicio || 'No disponible'}</p>
+          <p>Fecha de fin: {item.fechaFin || 'No disponible'}</p>
           <p>Historial: {item.historial}</p>
           <h4>Tareas:</h4>
           <ul>
@@ -59,8 +55,8 @@ function ConsultarProyectos() {
                 <h5>{tarea.nombreTarea}</h5>
                 <p>{tarea.descripcion}</p>
                 <p>Estado: {tarea.estado}</p>
-                <p>Fecha de inicio: {tarea.fechaInicio ? tarea.fechaInicio.toLocaleString() : 'No disponible'}</p>
-                <p>Fecha de fin: {tarea.fechaFin ? tarea.fechaFin.toLocaleString() : 'No disponible'}</p>
+                <p>Fecha de inicio: {tarea.fechaInicio || 'No disponible'}</p>
+                <p>Fecha de fin: {tarea.fechaFin || 'No disponible'}</p>
                 <p>Responsable: {tarea.responsable}</p>
                 <p>Storypoints: {tarea.storypoints}</p>
               </div>

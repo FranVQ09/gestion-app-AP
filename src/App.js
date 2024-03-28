@@ -12,7 +12,8 @@ import ModificarColaborador from "./pages/gestion-colaboradores/ModificarColabor
 import GestionProyectos from "./pages/gestion-proyectos/GestionProyectos";
 import CrearProyecto from "./pages/gestion-proyectos/CrearProyecto";
 import ConsultarProyectos from './pages/gestion-proyectos/ConsultarProyectos';
-
+import ModificarProyecto from './pages/gestion-proyectos/ModificarProyecto';
+import Reuniones from './pages/gestion-proyectos/Reuniones';
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
           <Route path="/gestionProyectos" element={<GestionProyectos />} />
           <Route path="/crearProyecto" element={<CrearProyecto />} />
           <Route path="/consultarProyecto" element={<ConsultarProyectos />} />
+          <Route path="/modificarProyecto" element={<ModificarProyecto />} />
+          <Route path="/reuniones" element={<Reuniones />} />
 
         </Routes>
       </Router>
