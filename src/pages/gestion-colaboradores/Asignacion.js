@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import db from '../../fisebaseConfig/firebaseConfig';
-import { collection, query, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 
 function Asignacion() {
   const [colaboradores, setColaboradores] = useState([]);
   const [proyectos, setProyectos] = useState([]);
-  const [selectedProyecto, setSelectedProyecto] = useState('');
+  const [cambios, setCambios] = useState([]);
 
   useEffect(() => {
     const fetchColaboradores = async () => {
@@ -20,7 +20,7 @@ function Asignacion() {
     };
 
     const fetchProyectos = async () => {
-      const proyectosCollection = collection(db, 'proyecto'); 
+      const proyectosCollection = collection(db, 'proyecto');
       const proyectosSnapshot = await getDocs(proyectosCollection);
       const proyectosData = proyectosSnapshot.docs.map(doc => ({
         id: doc.id,
@@ -33,13 +33,39 @@ function Asignacion() {
     fetchProyectos();
   }, []);
 
-  const handleDeleteColaborador = async (colaboradorId) => {
-   
-    console.log(`Eliminar colaborador con ID: ${colaboradorId}`);
+  const handleChange = (colaboradorId, proyectoId) => {
+    const index = cambios.findIndex(cambio => cambio.colaboradorId === colaboradorId);
+    if (index === -1) {
+      setCambios([...cambios, { colaboradorId, proyectoId }]);
+    } else {
+      setCambios(cambios.map(cambio => cambio.colaboradorId === colaboradorId ? { ...cambio, proyectoId } : cambio));
+    }
   };
 
-  const handleReasignarColaborador = async (colaboradorId, proyectoId) => {
-    console.log(`Reasignar colaborador con ID: ${colaboradorId} al proyecto con ID: ${proyectoId}`);
+  const guardarCambios = async () => {
+    try {
+      for (const cambio of cambios) {
+        const colaboradorRef = doc(db, 'colaboradores', cambio.colaboradorId);
+        const proyectoSeleccionado = proyectos.find(proyecto => proyecto.id === cambio.proyectoId);
+        let estadoColaborador = "Trabajando en un proyecto";
+
+        if (cambio.proyectoId === "eliminar") {
+          estadoColaborador = "Libre";
+        }
+
+        await updateDoc(colaboradorRef, {
+          proyecto: cambio.proyectoId === "eliminar" ? "" : proyectoSeleccionado.nombreProyecto,
+          estado: estadoColaborador
+        });
+        console.log(`Colaborador ${cambio.colaboradorId} actualizado en la base de datos`);
+      }
+
+      setCambios([]);
+      alert("Cambios guardados correctamente");
+    } catch (error) {
+      console.error("Error al guardar los cambios:", error);
+      alert("Error al guardar los cambios. Consulta la consola para más detalles.");
+    }
   };
 
   return (
@@ -50,7 +76,7 @@ function Asignacion() {
           <tr>
             <th>Colaborador</th>
             <th>Proyecto</th>
-            <th>Reasignar</th>
+            <th>Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -58,25 +84,25 @@ function Asignacion() {
             <tr key={colaborador.id}>
               <td>{colaborador.nombre}</td>
               <td>
-                {colaborador.proyecto ? colaborador.proyecto : 'Sin asignar'}
+                {colaborador.proyecto ? colaborador.proyecto : "Sin asignar"}
               </td>
               <td>
-                <button onClick={() => handleDeleteColaborador(colaborador.id)}>Eliminar</button>
-                <select onChange={(e) => handleReasignarColaborador(colaborador.id, e.target.value)}>
-                  <option value="">Selecciona un proyecto</option>
-                  {proyectos.length === 0 ? (
-                    <option value="" disabled>Cargando proyectos...</option>
-                  ) : (
-                    proyectos.map(proyecto => (
-                      <option key={proyecto.id} value={proyecto.id}>{proyecto.nombreProyecto}</option>
-                    ))
-                  )}
+                <select
+                  value={cambios.find(cambio => cambio.colaboradorId === colaborador.id)?.proyectoId || ""}
+                  onChange={(e) => handleChange(colaborador.id, e.target.value)}>
+                  <option value="">Seleccionar proyecto</option>
+                  <option value="eliminar">Eliminar del Proyecto</option>
+                  {proyectos.map(proyecto => (
+                    <option key={proyecto.id} value={proyecto.id}>{proyecto.nombreProyecto}</option>
+                  ))}
                 </select>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      <button onClick={guardarCambios}>Guardar Cambios</button>
 
       <Link to="/gestionColaboradores">
         <button>Salir</button>
