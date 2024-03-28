@@ -36,6 +36,10 @@ function App() {
           <Route path="/modificarProyecto" element={<ModificarProyecto />} />
           <Route path="/reuniones" element={<Reuniones />} />
 
+          {/* Rutas de Evaluaciones */}
+          <Route path="/informeGeneral" element={<InformeGeneral />} />
+          <Route path="/burndownChart" element={<BurndownChart />} />
+
         </Routes>
       </Router>
     </div>

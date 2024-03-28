@@ -22,6 +22,12 @@ function RegistrarColaborador() {
     //Función que se encarga de registrar el colaborador en la base de datos
     e.preventDefault();
 
+    // Validar el correo electronico
+    if(!correo.endsWith('@estudiantec.cr')) {
+      setMensaje('El correo electronico debe ser de la forma: usuario@estudiantec.cr');
+      return; // No continuar con el registro 
+    }
+
     //Se añade el colaborador a la base de datos
     await addDoc(colaboradoresCollection, { nombre: nombre, cedula: cedula, correo: correo, departamento: departamento, telefono: telefono, estado: estado, proyecto: proyecto });
     alert('Colaborador registrado correctamente');
