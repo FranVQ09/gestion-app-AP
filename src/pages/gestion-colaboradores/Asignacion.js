@@ -46,20 +46,43 @@ function Asignacion() {
     try {
       for (const cambio of cambios) {
         const colaboradorRef = doc(db, 'colaboradores', cambio.colaboradorId);
-        const proyectoSeleccionado = proyectos.find(proyecto => proyecto.id === cambio.proyectoId);
         let estadoColaborador = "Trabajando en un proyecto";
-
+  
         if (cambio.proyectoId === "eliminar") {
           estadoColaborador = "Libre";
         }
-
+  
+        // Obtener el nombre del proyecto si el proyectoId es válido
+        const nombreProyecto = cambio.proyectoId !== "eliminar" ? proyectos.find(proyecto => proyecto.id === cambio.proyectoId)?.nombreProyecto || '' : '';
+  
+        // Actualizar el documento del colaborador
         await updateDoc(colaboradorRef, {
-          proyecto: cambio.proyectoId === "eliminar" ? "" : proyectoSeleccionado.nombreProyecto,
+          proyecto: nombreProyecto,
           estado: estadoColaborador
         });
+  
+        // Actualizar la colección de "proyecto"
+        if (cambio.proyectoId !== "eliminar") {
+          const proyectoRef = doc(db, 'proyecto', cambio.proyectoId);
+          let proyectoSeleccionado = proyectos.find(proyecto => proyecto.id === cambio.proyectoId);
+          let colaboradoresActualizados = proyectoSeleccionado.colaboradores || [];
+    
+          if (!colaboradoresActualizados.includes(cambio.colaboradorId)) {
+            colaboradoresActualizados.push(cambio.colaboradorId);
+          }
+    
+          // Actualizar el documento del proyecto con la lista actualizada de colaboradores
+          await updateDoc(proyectoRef, {
+            colaboradores: colaboradoresActualizados
+          });
+        } else {
+          const proyectoRef = doc(db, 'proyecto', cambio.proyectoId);
+          await updateDoc(proyectoRef, {colaboradores: []});
+        }
+  
         console.log(`Colaborador ${cambio.colaboradorId} actualizado en la base de datos`);
       }
-
+  
       setCambios([]);
       alert("Cambios guardados correctamente");
     } catch (error) {
