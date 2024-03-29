@@ -1,137 +1,123 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { collection, getDocs, updateDoc, doc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import db from '../../fisebaseConfig/firebaseConfig';
-import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 
-function Asignacion() {
+function ColaboradoresTabla() {
   const [colaboradores, setColaboradores] = useState([]);
   const [proyectos, setProyectos] = useState([]);
-  const [cambios, setCambios] = useState([]);
+  const [proyectosSeleccionados, setProyectosSeleccionados] = useState({});
 
   useEffect(() => {
-    const fetchColaboradores = async () => {
-      const colaboradoresCollection = collection(db, 'colaboradores');
-      const colaboradoresSnapshot = await getDocs(colaboradoresCollection);
+    const obtenerColaboradores = async () => {
+      const colaboradoresSnapshot = await getDocs(collection(db, 'colaboradores'));
       const colaboradoresData = colaboradoresSnapshot.docs.map(doc => ({
         id: doc.id,
-        ...doc.data()
+        nombre: doc.data().nombre,
+        proyecto: doc.data().proyecto || 'Sin asignar'
       }));
       setColaboradores(colaboradoresData);
     };
 
-    const fetchProyectos = async () => {
-      const proyectosCollection = collection(db, 'proyecto');
-      const proyectosSnapshot = await getDocs(proyectosCollection);
+    const obtenerProyectos = async () => {
+      const proyectosSnapshot = await getDocs(collection(db, 'proyecto'));
       const proyectosData = proyectosSnapshot.docs.map(doc => ({
         id: doc.id,
-        ...doc.data()
+        nombreProyecto: doc.data().nombreProyecto,
+        colaboradores: doc.data().colaboradores || []
       }));
       setProyectos(proyectosData);
     };
 
-    fetchColaboradores();
-    fetchProyectos();
+    obtenerColaboradores();
+    obtenerProyectos();
   }, []);
 
-  const handleChange = (colaboradorId, proyectoId) => {
-    const index = cambios.findIndex(cambio => cambio.colaboradorId === colaboradorId);
-    if (index === -1) {
-      setCambios([...cambios, { colaboradorId, proyectoId }]);
-    } else {
-      setCambios(cambios.map(cambio => cambio.colaboradorId === colaboradorId ? { ...cambio, proyectoId } : cambio));
+  const handleAsignarProyecto = async (colaboradorId, colaboradorNombre) => {
+    const proyectoSeleccionado = proyectosSeleccionados[colaboradorId];
+    try {
+      if (proyectoSeleccionado === 'Eliminar') {
+        await eliminarColaboradorDeProyecto(colaboradorNombre);
+      } else {
+        // Actualiza el campo proyecto del colaborador
+        await updateDoc(doc(db, 'colaboradores', colaboradorId), { proyecto: proyectoSeleccionado });
+
+        // Actualiza la lista de colaboradores en el proyecto
+        const proyectoActualizado = proyectos.find(proyecto => proyecto.nombreProyecto === proyectoSeleccionado);
+        if (proyectoActualizado) {
+          const colaboradoresActualizados = arrayUnion(colaboradorNombre);
+          await updateDoc(doc(db, 'proyecto', proyectoActualizado.id), { colaboradores: colaboradoresActualizados });
+        }
+      }
+    } catch (error) {
+      console.error('Error al asignar proyecto:', error);
     }
   };
 
-  const guardarCambios = async () => {
+  const eliminarColaboradorDeProyecto = async (colaboradorNombre) => {
     try {
-      for (const cambio of cambios) {
-        const colaboradorRef = doc(db, 'colaboradores', cambio.colaboradorId);
-        let estadoColaborador = "Trabajando en un proyecto";
-  
-        if (cambio.proyectoId === "eliminar") {
-          estadoColaborador = "Libre";
+      // Elimina al colaborador del array de colaboradores en todos los proyectos
+      for (const proyecto of proyectos) {
+        if (proyecto.colaboradores.includes(colaboradorNombre)) {
+          const colaboradoresActualizados = arrayRemove(colaboradorNombre);
+          await updateDoc(doc(db, 'proyecto', proyecto.id), { colaboradores: colaboradoresActualizados });
         }
-  
-        // Obtener el nombre del proyecto si el proyectoId es válido
-        const nombreProyecto = cambio.proyectoId !== "eliminar" ? proyectos.find(proyecto => proyecto.id === cambio.proyectoId)?.nombreProyecto || '' : '';
-  
-        // Actualizar el documento del colaborador
-        await updateDoc(colaboradorRef, {
-          proyecto: nombreProyecto,
-          estado: estadoColaborador
-        });
-  
-        // Actualizar la colección de "proyecto"
-        if (cambio.proyectoId !== "eliminar") {
-          const proyectoRef = doc(db, 'proyecto', cambio.proyectoId);
-          let proyectoSeleccionado = proyectos.find(proyecto => proyecto.id === cambio.proyectoId);
-          let colaboradoresActualizados = proyectoSeleccionado.colaboradores || [];
-    
-          if (!colaboradoresActualizados.includes(cambio.colaboradorId)) {
-            colaboradoresActualizados.push(cambio.colaboradorId);
-          }
-    
-          // Actualizar el documento del proyecto con la lista actualizada de colaboradores
-          await updateDoc(proyectoRef, {
-            colaboradores: colaboradoresActualizados
-          });
-        } else {
-          const proyectoRef = doc(db, 'proyecto', cambio.proyectoId);
-          await updateDoc(proyectoRef, {colaboradores: []});
-        }
-  
-        console.log(`Colaborador ${cambio.colaboradorId} actualizado en la base de datos`);
       }
-  
-      setCambios([]);
-      alert("Cambios guardados correctamente");
+
+      // Elimina el proyecto del campo proyecto del colaborador
+      const colaboradoresConProyecto = colaboradores.filter(colaborador => colaborador.proyecto === colaboradorNombre);
+      for (const colaborador of colaboradoresConProyecto) {
+        await updateDoc(doc(db, 'colaboradores', colaborador.id), { proyecto: 'Sin asignar' });
+      }
     } catch (error) {
-      console.error("Error al guardar los cambios:", error);
-      alert("Error al guardar los cambios. Consulta la consola para más detalles.");
+      console.error('Error al eliminar colaborador de proyecto:', error);
     }
+  };
+
+  const handleSeleccionProyecto = (colaboradorId, proyectoNombre) => {
+    setProyectosSeleccionados({
+      ...proyectosSeleccionados,
+      [colaboradorId]: proyectoNombre
+    });
   };
 
   return (
     <div>
-      <h1>Asignación</h1>
+      <h2>Tabla de Colaboradores</h2>
       <table>
         <thead>
           <tr>
-            <th>Colaborador</th>
+            <th>Nombre</th>
             <th>Proyecto</th>
-            <th>Opciones</th>
+            <th>Asignar</th>
           </tr>
         </thead>
         <tbody>
           {colaboradores.map(colaborador => (
             <tr key={colaborador.id}>
               <td>{colaborador.nombre}</td>
+              <td>{colaborador.proyecto}</td>
               <td>
-                {colaborador.proyecto ? colaborador.proyecto : "Sin asignar"}
-              </td>
-              <td>
-                <select
-                  value={cambios.find(cambio => cambio.colaboradorId === colaborador.id)?.proyectoId || ""}
-                  onChange={(e) => handleChange(colaborador.id, e.target.value)}>
-                  <option value="">Seleccionar proyecto</option>
-                  <option value="eliminar">Eliminar del Proyecto</option>
+                <select value={proyectosSeleccionados[colaborador.id]} onChange={e => handleSeleccionProyecto(colaborador.id, e.target.value)}>
+                  <option value="">Seleccionar Proyecto</option>
                   {proyectos.map(proyecto => (
-                    <option key={proyecto.id} value={proyecto.id}>{proyecto.nombreProyecto}</option>
+                    <option key={proyecto.id} value={proyecto.nombreProyecto}>
+                      {proyecto.nombreProyecto}
+                    </option>
                   ))}
+                  {colaborador.proyecto && (
+                    <option value="Eliminar">Eliminar</option>
+                  )}
                 </select>
+                <button onClick={() => handleAsignarProyecto(colaborador.id, colaborador.nombre)}>
+                  Asignar
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      <button onClick={guardarCambios}>Guardar Cambios</button>
-
-      <Link to="/gestionColaboradores">
-        <button>Salir</button>
-      </Link>
     </div>
   );
 }
 
-export default Asignacion;
+export default ColaboradoresTabla;
