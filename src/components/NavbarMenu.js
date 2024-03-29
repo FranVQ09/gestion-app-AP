@@ -6,7 +6,7 @@ const NavbarMenu = () => {
     <div className='menuPrincipal'>
         <Link to="/gestionColaboradores">Gesitón de Colaboradores</Link>
         <Link to="/gestionProyectos">Gestión de Proyectos</Link>
-        <Link to="/evaluacion">Evaluación</Link>
+        <Link to="/evaluaciones">Evaluación</Link>
         <Link to="/">Salir</Link>
     </div>
   );

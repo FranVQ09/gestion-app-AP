@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-function InformeGeneral() {
+function Foros() {
   return (
     <div>
-      <h1>Informe General</h1>
+      <h1>Foros</h1>
       <div>
         <Link to="/evaluaciones">
         <button>
@@ -16,4 +16,4 @@ function InformeGeneral() {
   )
 }
 
-export default InformeGeneral
+export default Foros

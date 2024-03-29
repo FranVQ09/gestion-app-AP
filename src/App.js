@@ -18,6 +18,8 @@ import Reuniones from './pages/gestion-proyectos/Reuniones';
 /* Import de evaluaciones*/
 import InformeGeneral from './pages/Evaluaciones/InformeGeneral';
 import BurndownChart from './pages/Evaluaciones/BurndownChart';
+import Foros from './pages/Evaluaciones/Foros';
+import Evaluaciones from './pages/Evaluaciones/GestionEvaluaciones';
 
 function App() {
   return (
@@ -41,8 +43,10 @@ function App() {
           <Route path="/reuniones" element={<Reuniones />} />
 
           {/* Rutas de Evaluaciones */}
+          <Route path='/evaluaciones' element={<Evaluaciones />} />
           <Route path="/informeGeneral" element={<InformeGeneral />} />
           <Route path="/burndownChart" element={<BurndownChart />} />
+          <Route path='/foros' element={<Foros />} />
 
         </Routes>
       </Router>
