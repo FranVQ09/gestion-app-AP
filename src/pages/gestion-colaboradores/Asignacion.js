@@ -36,7 +36,7 @@ function ColaboradoresTabla() {
     const proyectoSeleccionado = proyectosSeleccionados[colaboradorId];
     try {
       if (proyectoSeleccionado === 'Eliminar') {
-        await eliminarColaboradorDeProyecto(colaboradorNombre);
+        await eliminarColaboradorDeProyecto(colaboradorNombre, colaboradorId);
       } else {
         // Actualiza el campo proyecto del colaborador
         await updateDoc(doc(db, 'colaboradores', colaboradorId), { proyecto: proyectoSeleccionado });
@@ -53,7 +53,7 @@ function ColaboradoresTabla() {
     }
   };
 
-  const eliminarColaboradorDeProyecto = async (colaboradorNombre) => {
+  const eliminarColaboradorDeProyecto = async (colaboradorNombre, colaboradorId) => {
     try {
       // Elimina al colaborador del array de colaboradores en todos los proyectos
       for (const proyecto of proyectos) {
@@ -64,10 +64,7 @@ function ColaboradoresTabla() {
       }
 
       // Elimina el proyecto del campo proyecto del colaborador
-      const colaboradoresConProyecto = colaboradores.filter(colaborador => colaborador.proyecto === colaboradorNombre);
-      for (const colaborador of colaboradoresConProyecto) {
-        await updateDoc(doc(db, 'colaboradores', colaborador.id), { proyecto: 'Sin asignar' });
-      }
+      await updateDoc(doc(db, 'colaboradores', colaboradorId), { proyecto: 'Sin asignar' });
     } catch (error) {
       console.error('Error al eliminar colaborador de proyecto:', error);
     }
