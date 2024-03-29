@@ -8,7 +8,6 @@ function CrearProyecto() {
     const [nombreProyecto, setNombreProyecto] = useState('');
     const [recursos, setRecursos] = useState('');
     const [presupuesto, setPresupuesto] = useState('');
-    const [colaboradores, setColaboradores] = useState('');
     const [tareas, setTareas] = useState([]);
     const [estadoProyecto, setEstadoProyecto] = useState('');
     const [descripcion, setDescripcion] = useState('');
@@ -72,7 +71,6 @@ function CrearProyecto() {
                 nombreProyecto: nombreProyecto,
                 recursos: recursos,
                 presupuesto: presupuesto,
-                colaboradores: colaboradores ? colaboradores.split(',').map(c => c.trim()) : [],
                 tareas: tareas,
                 estadoProyecto: estadoProyecto,
                 descripcion: descripcion,
@@ -83,7 +81,6 @@ function CrearProyecto() {
             setNombreProyecto('');
             setRecursos('');
             setPresupuesto('');
-            setColaboradores('');
             setTareas([]);
             setEstadoProyecto('');
             setDescripcion('');
@@ -107,7 +104,6 @@ function CrearProyecto() {
                     <input type="text" value={nombreProyecto} onChange={(e) => setNombreProyecto(e.target.value)} placeholder="Nombre del Proyecto" required />
                     <input type="text" value={recursos} onChange={(e) => setRecursos(e.target.value)} placeholder="Recursos" required />
                     <input type="text" value={presupuesto} onChange={(e) => setPresupuesto(e.target.value)} placeholder="Presupuesto" required />
-                    <input type="text" value={colaboradores} onChange={(e) => setColaboradores(e.target.value)} placeholder="Colaboradores (separados por comas)" required />
                     <select value={estadoProyecto} onChange={(e) => setEstadoProyecto(e.target.value)} required>
                         <option value="" disabled>Seleccionar estado del proyecto</option>
                         <option value="En progreso">En progreso</option>
