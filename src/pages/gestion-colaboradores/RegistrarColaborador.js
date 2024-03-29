@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import db from '../../fisebaseConfig/firebaseConfig';
 import { Link } from 'react-router-dom';
-import { collection, addDoc, query, getDocs } from 'firebase/firestore';
+import { collection, addDoc, query, where, getDocs, updateDoc, doc, arrayUnion } from 'firebase/firestore';
 
 function RegistrarColaborador() {
   const [nombre, setNombre] = useState('');
@@ -18,7 +18,7 @@ function RegistrarColaborador() {
 
   useEffect(() => {
     const fetchProyectos = async () => {
-      const proyectosCollection = collection(db, 'proyectos');
+      const proyectosCollection = collection(db, 'proyecto');
       const proyectosSnapshot = await getDocs(proyectosCollection);
       const proyectosData = proyectosSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setProyectos(proyectosData);
@@ -51,6 +51,20 @@ function RegistrarColaborador() {
       estado: estado,
       proyecto: proyecto
     });
+
+    // Obtener referencia al documento del proyecto utilizando el nombre del proyecto
+    const proyectosCollection = collection(db, 'proyecto');
+    const querySnapshot = await getDocs(query(proyectosCollection, where('nombreProyecto', '==', proyecto)));
+    if (!querySnapshot.empty) {
+      const proyectoDoc = querySnapshot.docs[0];
+      const proyectoId = proyectoDoc.id;
+
+      // Actualizar el array colaboradores en el documento del proyecto
+      await updateDoc(doc(db, 'proyecto', proyectoId), {
+        colaboradores: arrayUnion(nombre) 
+      });
+    };
+
     alert('Colaborador registrado correctamente');
     setNombre('');
     setCedula('');
@@ -103,7 +117,7 @@ function RegistrarColaborador() {
               <select id="proyecto" name='proyecto' value={proyecto} onChange={(e) => setProyecto(e.target.value)} required>
                 <option value="" disabled>Seleccionar proyecto</option>
                 {proyectos.map((proyecto) => (
-                  <option key={proyecto.id} value={proyecto.nombre}>{proyecto.nombre}</option>
+                  <option key={proyecto.id} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
                 ))}
               </select>
             </div>
