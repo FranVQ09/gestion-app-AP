@@ -6,7 +6,7 @@ export default function App() {
   return (
     <>
       <View style={styles.container}></View>
-      <WebView source={{ uri: 'https://bucolic-ganache-4cf7a5.netlify.app/' }} style={{ flex: 1 }} />
+      <WebView source={{ uri: 'https://zingy-bubblegum-3b4884.netlify.app' }} style={{ flex: 1 }} />
     </>
   );
 }
