@@ -12,6 +12,7 @@ function CrearProyecto() {
     const [estadoProyecto, setEstadoProyecto] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [fechaInicio, setFechaInicio] = useState(null); // Cambiado a null para iniciar sin fecha seleccionada
+    const [fechaFin, setFechaFin] = useState(null); // Cambiado a null para iniciar sin fecha seleccionada
     const [historial, setHistorial] = useState('');
 
     const proyectosCollection = collection(db, 'proyecto');
@@ -75,6 +76,7 @@ function CrearProyecto() {
                 estadoProyecto: estadoProyecto,
                 descripcion: descripcion,
                 fechaInicio: fechaInicio,
+                fechaFin: fechaFin,
                 historial: historial
             });
             alert('Proyecto registrado correctamente');
@@ -85,6 +87,7 @@ function CrearProyecto() {
             setEstadoProyecto('');
             setDescripcion('');
             setFechaInicio(''); 
+            setFechaFin('');
             setHistorial('');
 
 
@@ -111,6 +114,7 @@ function CrearProyecto() {
                     </select>
                     <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="Descripción" required/>
                     <input type="text" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} placeholder="Fecha de Inicio" required/>
+                    <input type="text" value={fechaFin} onChange={(e) => setFechaFin(e.target.value)} placeholder="Fecha de Fin" required/>
                     <input type="text" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Historial" required/>
                 </div>
                 <div>

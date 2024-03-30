@@ -25,25 +25,30 @@ function ModificarColaborador() {
   }
 
   const searchColaborador = async () => {
-    //Función que busca el colaborador en la base de datos mediante la cedula y toma los datos del colaborador
     const colaboradoresCollection = collection(db, 'colaboradores');
     const q = query(colaboradoresCollection, where('cedula', '==', cedula));
 
-    const querySnapshot = await getDocs(q);
-    if (querySnapshot.size > 0) {
-      const colaboradoresDoc = querySnapshot.docs[0];
-      setColaborador({
-        id: colaboradoresDoc.id,
-        ...colaboradoresDoc.data()
-      });
-      setUsuarioNoEncontrado(false);
-    } else {
-      setUsuarioNoEncontrado(true);
-      setTimeout(() => {
+    try {
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.size > 0) {
+        const colaboradoresDoc = querySnapshot.docs[0];
+        const colaboradorData = colaboradoresDoc.data();
+        setColaborador({
+          id: colaboradoresDoc.id,
+          ...colaboradorData
+        });
+
         setUsuarioNoEncontrado(false);
-      }, 3000);
+      } else {
+        setUsuarioNoEncontrado(true);
+        setTimeout(() => {
+          setUsuarioNoEncontrado(false);
+        }, 3000);
+      }
+    } catch (error) {
+      console.error("Error al buscar colaborador:", error);
     }
-  }
+  };
 
   const updateColaborador = async () => {
     //Función que se encarga de actualizar el colaborador en la base de datos
@@ -56,9 +61,28 @@ function ModificarColaborador() {
         correo: colaborador.correo, 
         telefono: colaborador.telefono, 
         departamento: colaborador.departamento, 
-        estado: colaborador.estado
+        estado: colaborador.estado,
+        proyecto: colaborador.estado === "libre" ? "Sin asignar" : colaborador.proyecto
       };
-      await updateDoc(colaboradorDocRef, newData); //Esto actualiza los datos del colaborador
+      await updateDoc(colaboradorDocRef, newData); 
+
+      if (colaborador.estado === "libre") {
+        const proyectosCollection = collection(db, 'proyecto');
+        const q = query(proyectosCollection, where('colaboradores', 'array-contains', colaborador.nombre));
+
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty){
+          querySnapshot.forEach(async (proyectoDoc) => { // Cambia el nombre de la variable a proyectoDoc
+            const proyectoDocRef = doc(db, "proyecto", proyectoDoc.id); // Utiliza el nombre de la variable actual
+            const proyectoData = proyectoDoc.data(); // Utiliza el nombre de la variable actual
+            const colaboradores = proyectoData.colaboradores.filter(nombre => nombre !== colaborador.nombre);
+
+            await updateDoc(proyectoDocRef, { colaboradores });
+          })
+        }
+      }
+      //Esto actualiza los datos del colaborador
       alert("Colaborador actualizado correctamente.");
       setCedula('');
       setColaborador(null);
@@ -109,6 +133,11 @@ function ModificarColaborador() {
                 <option value="trabajando">Trabajando en un proyecto</option>
                 <option value="libre">Libre</option>
             </select>
+          </label>
+          <br />
+          <label>
+            Nombre del Proyecto:
+            <span>{colaborador.proyecto}</span>
           </label>
           <br />
           <button type="button" onClick={updateColaborador} disabled={!colaborador}>

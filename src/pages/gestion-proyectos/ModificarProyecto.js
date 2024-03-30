@@ -7,7 +7,17 @@ function ModificarProyecto() {
     const [nombreProyecto, setNombreProyecto] = useState('');
     const [proyecto, setProyecto] = useState(null);
     const [proyectoNoEncontrado, setProyectoNoEncontrado] = useState(false);
-    
+    const [colaboradoresProyecto, setColaboradoresProyecto] = useState([]);
+
+    useEffect(() => {
+        const obtenerColaboradoresProyecto = async () => {
+            if (proyecto && proyecto.colaboradores) {
+                setColaboradoresProyecto(proyecto.colaboradores);
+            }
+        };
+
+        obtenerColaboradoresProyecto();
+    }, [proyecto]);
 
     const searchProyecto = async () => {
         const proyectosCollection = collection(db, 'proyecto');
@@ -103,23 +113,20 @@ function ModificarProyecto() {
                                     <p>Nombre de Tarea: {tarea.nombreTarea}</p>
                                     <p>Descripción: {tarea.descripcion}</p>
                                     <p>Estado: {tarea.estado}</p>
-                                    <p>Responsable: {tarea.responsable}</p>
-                                    <p>Fecha de Inicio: {tarea.fechaInicio}</p>
-                                    <p>Fecha de Fin: {tarea.fechaFin}</p>
-                                    <input type="text" placeholder="Nombre de la Tarea" value={tarea.nombreTarea} onChange={(e) => handleModificarTarea(index, e.target.value, tarea.descripcion)} />
-                                    <input type="text" placeholder="Descripción" value={tarea.descripcion} onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, e.target.value)} />
-                                    <input text="text" placeholder="Responsable" value={tarea.responsable} onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, e.target.value)} />
-                                    <input type="number" placeholder="Story Points" value={tarea.storypoints} onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, e.target.value)} />
-                                    <input type="text" placeholder="Fecha de Inicio (dd/mm/yyyy)" value={tarea.fechaInicio} onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, e.target.value)} />
-                                    <input type="text" placeholder="Fecha de Fin (dd/mm/yyyy)" value={tarea.fechaFin} onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, e.target.value)} />
-                                    <select value={tarea.estado} onChange={(e) => handleEstadoChange(index, e.target.value)}>
-                                        <option value="Por Hacer">Por Hacer</option>
-                                        <option value="En Progreso">En Progreso</option>
-                                        <option value="Finalizado">Finalizado</option>
+                                    <div>
+                                    <p>Responsable:</p>
+                                    <select value={tarea.responsable} onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, e.target.value, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)}>
+                                        <option value="">Seleccionar</option>
+                                        {colaboradoresProyecto.map((colaborador, index) => (
+                                            <option key={index} value={colaborador}>{colaborador}</option>
+                                        ))}
                                     </select>
-                                    <button onClick={() => handleEliminarTarea(index)}>Eliminar Tarea</button>
-                                    {index !== proyecto.tareas.length - 1 && <hr />}
+                                    </div>
                                 </div>
+                                <br>
+                                </br>
+                                <button onClick={() => handleEliminarTarea(index)}>Eliminar Tarea</button>
+                                    {index !== proyecto.tareas.length - 1 && <hr />}
                             </div>
                         ))}
                     </ul>

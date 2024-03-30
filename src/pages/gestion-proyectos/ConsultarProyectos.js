@@ -43,7 +43,7 @@ function ConsultarProyectos() {
           <p>{item.descripcion}</p>
           <p>Recursos: {item.recursos}</p>
           <p>Presupuesto: {item.presupuesto}</p>
-          <p>Colaboradores: {item.colaboradores.join(', ')}</p>
+          <p>Colaboradores: {item.colaboradores ? item.colaboradores.join(', ') : 'No hay colaboradores'}</p>
           <p>Estado: {item.estadoProyecto}</p>
           <p>Fecha de inicio: {item.fechaInicio || 'No disponible'}</p>
           <p>Fecha de fin: {item.fechaFin || 'No disponible'}</p>
