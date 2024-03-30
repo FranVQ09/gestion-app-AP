@@ -35,4 +35,21 @@
   to {
     transform: rotate(360deg);
   }
+
 }
+
+@font-face {
+  font-family: 'San Francisco';
+  src: url('./SF-Pro-Display-Regular.otf') format('opentype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #E7E8D1;
+}
+

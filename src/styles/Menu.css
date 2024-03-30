@@ -1,0 +1,97 @@
+/* Este es un comentario de una sola línea */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Color del fondo */
+  body {
+    background: #E7E8D1;
+  }
+  
+  /* Posicion */
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Hace que sea vea a la mitad el texto y luego la caja */
+  .flex-div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  /* Margen entre el texto y la caja*/
+  .name-content {
+    margin-right: 1rem;
+  }
+  
+  /* Font del logo*/
+  .name-content .logo {
+    font-size: 4rem;
+    color: #B85042;
+  }
+  
+  
+  /* Font de la descripcion*/
+  .name-content p {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  
+/* Cajita del login*/
+.navi {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 2rem;
+    width: 530px;
+    height: 300px;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  }
+  
+  /* Botones*/
+  
+  .navi .boton {
+    outline: none;
+    border: none;
+    background: #A7BEAE;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .navi .boton:hover,
+  .navi .boton:focus {
+    background: #7C927C;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .navi .back {
+    outline: none;
+    border: none;
+    background: #B85042;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .navi .back:hover,
+  .navi .back:focus {
+    background: #9A473C;
+    cursor: pointer;
+    outline: none;
+  }

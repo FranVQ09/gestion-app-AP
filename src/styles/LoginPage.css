@@ -1,0 +1,114 @@
+/* Este es un comentario de una sola línea */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Color del fondo */
+body {
+  background: #E7E8D1;
+}
+
+/* Posicion */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Hace que sea vea a la mitad el texto y luego la caja */
+.flex-div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* Margen entre el texto y la caja*/
+.name-content {
+  margin-right: 1rem;
+}
+
+/* Font del logo*/
+.name-content .logo {
+  font-size: 4rem;
+  color: #B85042;
+}
+
+
+/* Font de la descripcion*/
+.name-content p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+/* Cajita del login*/
+form {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  width: 530px;
+  height: 370px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+/* Cajita de los input*/
+form input {
+  outline: none;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+form input:focus {
+  border: 1.8px solid #A7BEAE;
+}
+
+form label {
+  margin-bottom: 0.5rem; /* Ajusta este valor según sea necesario */
+  text-align: left; /* Asegura que los labels se comporten como elementos en línea con ancho */
+}
+
+
+/* Boton login*/
+form .login {
+  outline: none;
+  border: none;
+  background: #A7BEAE;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+form .login:hover,
+form .login:focus {
+  background: #7C927C;
+  cursor: pointer;
+  outline: none;
+}
+/* Boton  crear cuenta*/
+form .create-account {
+  outline: none;
+  border: none;
+  background: #A7BEAE;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  color: #fff;
+}
+
+form .create-account:hover,
+form .create-account:focus {
+  background: #7C927C;
+  cursor: pointer;
+  outline: none;
+}
+

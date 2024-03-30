@@ -80,7 +80,7 @@ function RegistrarColaborador() {
 
   return (
     <div>
-      <h1>Registrar Colaborador</h1>
+      <h1>Registrar saojdasjd</h1>
       <div>
         <form onSubmit={store}>
           <div className='nombreColaborador'>

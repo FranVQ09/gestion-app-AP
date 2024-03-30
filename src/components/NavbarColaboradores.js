@@ -1,17 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/GestionColaboradores.css';
 
 const Navbar = () => {
     return (
-        <nav>
-            <ul>
-                <li><Link to="/registrarColaborador">Registrar Colaborador</Link></li>
-                <li><Link to="/modificarColaborador">Modificar Colaborador</Link></li>
-                <li><Link to="/asignacion">Asignación</Link></li>
-                <li><Link to="/menu">Salir</Link></li>
-            </ul>
-        </nav>
+      <div className='content'>
+        <div className='flex-div'>
+          <div className='name-content'>
+            <h1 className='logo'>Gestión de Colaboradores</h1>
+          </div>
+          <form className="cola"> 
+            <Link className='boton' to="/registrarColaborador">Registrar Colaborador</Link>
+            <Link className='boton' to="/modificarColaborador">Modificar Colaborador</Link>
+            <Link className='boton' to="/asignacion">Asignación</Link>
+            <Link className='back' to="/menu">Regresar</Link>
+          </form>
+        </div>
+      </div>
     );
-}
+  }
 
 export default Navbar;
