@@ -4,40 +4,45 @@ import { collection, query, where, getDocs, doc, updateDoc, deleteDoc, arrayRemo
 import { Link } from 'react-router-dom';
 
 function ModificarProyecto() {
-    const [nombreProyecto, setNombreProyecto] = useState('');
+    const [proyectos, setProyectos] = useState([]);
+    const [proyectoSeleccionado, setProyectoSeleccionado] = useState('');
     const [proyecto, setProyecto] = useState(null);
     const [proyectoNoEncontrado, setProyectoNoEncontrado] = useState(false);
     const [colaboradoresProyecto, setColaboradoresProyecto] = useState([]);
+    const [colaboradorSeleccionado, setColaboradorSeleccionado] = useState('');
 
     useEffect(() => {
-        const obtenerColaboradoresProyecto = async () => {
-            if (proyecto && proyecto.colaboradores) {
-                setColaboradoresProyecto(proyecto.colaboradores);
-            }
+        const obtenerProyectos = async () => {
+            const proyectosCollection = collection(db, 'proyecto');
+            const querySnapshot = await getDocs(proyectosCollection);
+            const proyectosData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setProyectos(proyectosData);
         };
 
-        obtenerColaboradoresProyecto();
+        obtenerProyectos();
+    }, []);
+
+    useEffect(() => {
+        if (proyecto) {
+            setColaboradoresProyecto(proyecto.colaboradores || []);
+        }
     }, [proyecto]);
 
     const searchProyecto = async () => {
-        const proyectosCollection = collection(db, 'proyecto');
-        const q = query(proyectosCollection, where('nombreProyecto', '==', nombreProyecto));
+        if (!proyectoSeleccionado) return;
 
-        const querySnapshot = await getDocs(q);
-        if (querySnapshot.size > 0) {
-            const proyectoDoc = querySnapshot.docs[0];
-            setProyecto({
-                id: proyectoDoc.id,
-                ...proyectoDoc.data()
-            });
+        const proyectoEncontrado = proyectos.find(proyecto => proyecto.nombreProyecto === proyectoSeleccionado);
+        if (proyectoEncontrado) {
+            setProyecto(proyectoEncontrado);
             setProyectoNoEncontrado(false);
         } else {
+            setProyecto(null);
             setProyectoNoEncontrado(true);
             setTimeout(() => {
                 setProyectoNoEncontrado(false);
             }, 3000);
         }
-    }
+    };
 
     const updateProyecto = async () => {
         if (!proyecto) {
@@ -74,12 +79,15 @@ function ModificarProyecto() {
 
     const handleModificarTarea = (index, nuevoNombre, nuevaDescripcion, nuevoResponsable, nuevoStoryPoints, nuevaFechaInicio, nuevaFechaFin) => {
         const nuevasTareas = [...proyecto.tareas];
-        nuevasTareas[index].nombreTarea = nuevoNombre;
-        nuevasTareas[index].descripcion = nuevaDescripcion;
-        nuevasTareas[index].responsable = nuevoResponsable;
-        nuevasTareas[index].storypoints = nuevoStoryPoints;
-        nuevasTareas[index].fechaInicio = nuevaFechaInicio;
-        nuevasTareas[index].fechaFin = nuevaFechaFin;
+        nuevasTareas[index] = {
+            ...nuevasTareas[index],
+            nombreTarea: nuevoNombre,
+            descripcion: nuevaDescripcion,
+            responsable: nuevoResponsable,
+            storypoints: nuevoStoryPoints,
+            fechaInicio: nuevaFechaInicio,
+            fechaFin: nuevaFechaFin
+        };
         setProyecto({ ...proyecto, tareas: nuevasTareas });
     };
 
@@ -97,10 +105,14 @@ function ModificarProyecto() {
     return (
         <div>
             <h1>Modificar Proyecto</h1>
-            <label htmlFor="nombreProyecto">Nombre del Proyecto:</label>
-            <input type="text" id="nombreProyecto" value={nombreProyecto} onChange={(e) => setNombreProyecto(e.target.value)} />
+            <label htmlFor="proyecto">Seleccione un Proyecto:</label>
+            <select id="proyecto" value={proyectoSeleccionado} onChange={(e) => setProyectoSeleccionado(e.target.value)}>
+                <option value="">Seleccione un proyecto</option>
+                {proyectos.map(proyecto => (
+                    <option key={proyecto.id} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
+                ))}
+            </select>
             <button onClick={searchProyecto}>Buscar Proyecto</button>
-
             {proyectoNoEncontrado && <p>No se encontró el proyecto.</p>}
 
             {proyecto && (
@@ -110,23 +122,61 @@ function ModificarProyecto() {
                         {proyecto.tareas.map((tarea, index) => (
                             <div key={index}>
                                 <div>
-                                    <p>Nombre de Tarea: {tarea.nombreTarea}</p>
-                                    <p>Descripción: {tarea.descripcion}</p>
-                                    <p>Estado: {tarea.estado}</p>
+                                    <p>Nombre de Tarea:</p>
+                                    <input 
+                                        type="text" 
+                                        value={tarea.nombreTarea} 
+                                        onChange={(e) => handleModificarTarea(index, e.target.value, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)} 
+                                    />
+                                    <p>Descripción:</p>
+                                    <input 
+                                        type="text" 
+                                        value={tarea.descripcion} 
+                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, e.target.value, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)} 
+                                    />
+                                    <p>Estado:
+                                        <select 
+                                            value={tarea.estado} 
+                                            onChange={(e) => handleEstadoChange(index, e.target.value)}>
+                                            <option value="Por Hacer">Por Hacer</option>
+                                            <option value="En Progreso">En Progreso</option>
+                                            <option value="Completada">Completada</option>
+                                        </select>
+                                    </p>
                                     <div>
-                                    <p>Responsable:</p>
-                                    <select value={tarea.responsable} onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, e.target.value, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)}>
-                                        <option value="">Seleccionar</option>
-                                        {colaboradoresProyecto.map((colaborador, index) => (
-                                            <option key={index} value={colaborador}>{colaborador}</option>
-                                        ))}
-                                    </select>
+                                        <p>Responsable:</p>
+                                        <select 
+                                            value={tarea.responsable} 
+                                            onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, e.target.value, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)} 
+                                        >
+                                            <option value="">Seleccionar</option>
+                                            {colaboradoresProyecto.map((colaborador, index) => (
+                                                <option key={index} value={colaborador}>{colaborador}</option>
+                                            ))}
+                                        </select>
                                     </div>
+                                    <p>Story Points:</p>
+                                    <input 
+                                        type="number" 
+                                        value={tarea.storypoints} 
+                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, e.target.value, tarea.fechaInicio, tarea.fechaFin)} 
+                                    />
+                                    <p>Fecha de Inicio:</p>
+                                    <input 
+                                        type="text" 
+                                        value={tarea.fechaInicio} 
+                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, e.target.value, tarea.fechaFin)} 
+                                    />
+                                    <p>Fecha de Fin:</p>
+                                    <input 
+                                        type="text" 
+                                        value={tarea.fechaFin} 
+                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, e.target.value)} 
+                                    />
                                 </div>
-                                <br>
-                                </br>
+                                <br />
                                 <button onClick={() => handleEliminarTarea(index)}>Eliminar Tarea</button>
-                                    {index !== proyecto.tareas.length - 1 && <hr />}
+                                {index !== proyecto.tareas.length - 1 && <hr />}
                             </div>
                         ))}
                     </ul>

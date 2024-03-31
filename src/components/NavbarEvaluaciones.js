@@ -12,7 +12,8 @@ const NavbarEvaluaciones = () => {
           <form className="eva"> 
             <Link className='boton' to="/informeGeneral">Informe General</Link>
             <Link className='boton' to="/burndownChart">Burndown Chart</Link>
-            <Link className='boton' to="/foros">Foros</Link>
+            <Link className='boton' to="/crearForo">Crear Foro</Link>
+            <Link className='boton' to="/consultarForo">Consultar Foro</Link>
             <Link className='back' to="/menu">Regresar</Link>
           </form>
         </div>

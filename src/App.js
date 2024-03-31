@@ -20,6 +20,7 @@ import InformeGeneral from './pages/Evaluaciones/InformeGeneral';
 import BurndownChart from './pages/Evaluaciones/BurndownChart';
 import Foros from './pages/Evaluaciones/Foros';
 import Evaluaciones from './pages/Evaluaciones/GestionEvaluaciones';
+import ConsultarForo from './pages/Evaluaciones/ConsultarForo';
 
 function App() {
   return (
@@ -46,7 +47,8 @@ function App() {
           <Route path='/evaluaciones' element={<Evaluaciones />} />
           <Route path="/informeGeneral" element={<InformeGeneral />} />
           <Route path="/burndownChart" element={<BurndownChart />} />
-          <Route path='/foros' element={<Foros />} />
+          <Route path='/crearForo' element={<Foros />} />
+          <Route path='/consultarForo' element={<ConsultarForo />} />
 
         </Routes>
       </Router>

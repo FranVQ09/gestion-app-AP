@@ -63,8 +63,8 @@ function BurndownChart() {
     tareas.forEach(tarea => {
       const fechaInicioTarea = new Date(tarea.fechaInicio);
       const fechaFinTarea = new Date(tarea.fechaFin);
-      const storyPoints = tarea.storypoints;
-  
+      const storyPoints = parseInt(tarea.storypoints); 
+      
       let currentDate = new Date(fechaInicioTarea);
       while (currentDate <= fechaFinTarea) {
         const formattedDate = currentDate.toLocaleDateString();
