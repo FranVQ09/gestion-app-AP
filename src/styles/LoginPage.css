@@ -51,7 +51,7 @@ form {
   background: #fff;
   padding: 2rem;
   width: 530px;
-  height: 370px;
+  height: auto;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
 }
@@ -69,8 +69,8 @@ form input:focus {
 }
 
 form label {
-  margin-bottom: 0.5rem; /* Ajusta este valor según sea necesario */
-  text-align: left; /* Asegura que los labels se comporten como elementos en línea con ancho */
+  margin-bottom: 0.5rem; 
+  text-align: left; 
 }
 
 
