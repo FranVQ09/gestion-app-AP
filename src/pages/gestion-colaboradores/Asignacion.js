@@ -15,7 +15,7 @@ function ColaboradoresTabla() {
         id: doc.id,
         nombre: doc.data().nombre,
         proyecto: doc.data().proyecto || 'Sin asignar',
-        estado: doc.data().estado || 'Libre' // Asignar un valor por defecto si no existe
+        estado: doc.data().estado || 'libre' // Asignar un valor por defecto si no existe
       }));
       setColaboradores(colaboradoresData);
     };
@@ -67,8 +67,8 @@ function ColaboradoresTabla() {
           await updateDoc(doc(db, 'proyecto', proyecto.id), { colaboradores: colaboradoresActualizados });
         }
       }
-      // Actualiza el estado del colaborador a "Libre"
-      await updateDoc(doc(db, 'colaboradores', colaboradorId), { estado: 'Libre' });
+      // Actualiza el estado del colaborador a "libre"
+      await updateDoc(doc(db, 'colaboradores', colaboradorId), { estado: 'libre' });
 
       // Elimina el proyecto del campo proyecto del colaborador
       await updateDoc(doc(db, 'colaboradores', colaboradorId), { proyecto: 'Sin asignar' });

@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import db from '../../fisebaseConfig/firebaseConfig';
 import { Link } from 'react-router-dom';
 import { collection, addDoc, query, where, getDocs, updateDoc, doc, arrayUnion } from 'firebase/firestore';
-import '../../styles/RegistrarColaborador.css';
+import '../../styles/RegistrarColaborador.css';  
+
 
 function RegistrarColaborador() {
   const [nombre, setNombre] = useState('');
@@ -54,19 +55,17 @@ function RegistrarColaborador() {
     });
 
     // Obtener referencia al documento del proyecto utilizando el nombre del proyecto
-    if (estado === 'trabajando') {
-      const proyectosCollection = collection(db, 'proyecto');
-      const querySnapshot = await getDocs(query(proyectosCollection, where('nombreProyecto', '==', proyecto)));
-      if (!querySnapshot.empty) {
-        const proyectoDoc = querySnapshot.docs[0];
-        const proyectoId = proyectoDoc.id;
+    const proyectosCollection = collection(db, 'proyecto');
+    const querySnapshot = await getDocs(query(proyectosCollection, where('nombreProyecto', '==', proyecto)));
+    if (!querySnapshot.empty) {
+      const proyectoDoc = querySnapshot.docs[0];
+      const proyectoId = proyectoDoc.id;
 
-        // Actualizar el array colaboradores en el documento del proyecto
-        await updateDoc(doc(db, 'proyecto', proyectoId), {
-          colaboradores: arrayUnion(nombre) 
-        });
-      };
-    }
+      // Actualizar el array colaboradores en el documento del proyecto
+      await updateDoc(doc(db, 'proyecto', proyectoId), {
+        colaboradores: arrayUnion(nombre) 
+      });
+    };
 
     alert('Colaborador registrado correctamente');
     setNombre('');
@@ -82,44 +81,54 @@ function RegistrarColaborador() {
   };
 
   return (
-    <div className="content">
-      <div className="flex-div">
-        <div className="name-content">
-          <h1 className="logo">Registo de Colaboradores</h1>
-        </div>
-        <div>
-          <form className="rcola" onSubmit={store}>
-              <label htmlFor="nombre">Nombre Completo:</label>
-              <input type="text" id="nombre" name="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
-              <label htmlFor="cedula">Cédula:</label>
-              <input type="text" id="cedula" name="cedula" value={cedula} onChange={(e) => setCedula(e.target.value)} required />
-              <label htmlFor="correo">Correo electrónico:</label>
-              <input type="email" id="correo" name="correo" value={correo} onChange={(e) => setCorreo(e.target.value)} required />
-              <label htmlFor="departamento">Departamento:</label>
-              <input type="text" id="departamento" name="departamento" value={departamento} onChange={(e) => setDepartamento(e.target.value)} required />
-              <label htmlFor="telefono">Teléfono:</label>
-              <input type="text" id="telefono" name="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)} required />
-              <label htmlFor="estado">Estado:</label>
-              <select id="estado" name="estado" value={estado} onChange={handleEstadoChange} required>
-                <option value="" disabled>Seleccionar estado</option>
-                <option value="trabajando">Trabajando en un proyecto</option>
-                <option value="libre">Libre</option>
+    <div className='content'>
+        <div className='flex-div'>
+          <div className='name-content'>
+            <h1 className='logo'>Gestión de Colaboradores</h1>
+          </div>
+        <form className='rcola' onSubmit={store}>
+          <div className='nombreColaborador'>
+            <label htmlFor="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
+          </div>
+          <div className='cedulaColaborador'>
+            <label htmlFor="cedula">Cédula:</label>
+            <input type="text" id="cedula" name="cedula" value={cedula} onChange={(e) => setCedula(e.target.value)} required />
+          </div>
+          <div className='correoColaborador'>
+            <label htmlFor="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" value={correo} onChange={(e) => setCorreo(e.target.value)} required />
+          </div>
+          <div className='departamentoColaborador'>
+            <label htmlFor="departamento">Departamento:</label>
+            <input type="text" id="departamento" name="departamento" value={departamento} onChange={(e) => setDepartamento(e.target.value)} required />
+          </div>
+          <div className='telefonoColaborador'>
+            <label htmlFor="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)} required />
+          </div>
+          <div className='estadoColaborador'>
+            <label htmlFor="estado">Estado:</label>
+            <select id="estado" name="estado" value={estado} onChange={handleEstadoChange} required>
+              <option value="" disabled>Seleccionar estado</option>
+              <option value="trabajando">Trabajando en un proyecto</option>
+              <option value="libre">Libre</option>
+            </select>
+          </div>
+          {showProyectosDropdown && (
+            <div className='proyectoColaborador'>
+              <label htmlFor='proyecto'>Nombre de Proyecto:</label>
+              <select id="proyecto" name='proyecto' value={proyecto} onChange={(e) => setProyecto(e.target.value)} required>
+                <option value="" disabled>Seleccionar proyecto</option>
+                {proyectos.map((proyecto) => (
+                  <option key={proyecto.id} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
+                ))}
               </select>
-            {showProyectosDropdown && (
-              <div className='segundoD'>
-                <label htmlFor='proyecto'>Nombre de Proyecto:</label>
-                <select id="proyecto" name='proyecto' value={proyecto} onChange={(e) => setProyecto(e.target.value)} required>
-                  <option value="" disabled>Seleccionar proyecto</option>
-                  {proyectos.map((proyecto) => (
-                    <option key={proyecto.id} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
-                  ))}
-                </select>
-              </div>
-            )}
-            <button className='boton' type='submit'>Registrar Colaborador</button>
-            <Link className='back' to="/gestionColaboradores">Regresar</Link>
-          </form>
-        </div>
+            </div>
+          )}
+          <Link className='boton' type='submit' to="/registrarColaborador">Registrar Colaborador</Link>
+          <Link className='back' to="/gestionColaboradores">Regresar</Link>
+        </form>
       </div>
     </div>
   )

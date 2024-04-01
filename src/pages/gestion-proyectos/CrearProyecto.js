@@ -30,7 +30,6 @@ function CrearProyecto() {
             nombreTarea: '',
             descripcion: '',
             estado: '',
-            responsable: '',
             storypoints: 0,
             fechaInicio: '',
             fechaFin: ''
@@ -129,7 +128,6 @@ function CrearProyecto() {
                                 <option value="Finalizado">Finalizado</option>
                             </select>
                     
-                            <input type="text" value={tarea.responsable} onChange={(e) => actualizarTarea(index, 'responsable', e.target.value)} placeholder="Responsable" required />
                             <input type="number" value={tarea.storypoints} onChange={(e) => actualizarTarea(index, 'storypoints', e.target.value)} placeholder="Story Points" required />
                             <input type="text" value={tarea.fechaInicio} onChange={(e) => actualizarTarea(index, 'fechaInicio', e.target.value)} placeholder="Fecha de Inicio" required />
                             <input type="text" value={tarea.fechaFin} onChange={(e) => actualizarTarea(index, 'fechaFin', e.target.value)} placeholder="Fecha de Fin" required />

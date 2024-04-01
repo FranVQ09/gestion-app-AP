@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import db from '../../fisebaseConfig/firebaseConfig';
-import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, query, getDocs, doc, updateDoc, arrayUnion, where, arrayRemove, getDoc} from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 
 function ModificarColaborador() {
@@ -8,6 +8,10 @@ function ModificarColaborador() {
   const [colaborador, setColaborador] = useState(null);
   const [mostrarFormulario, setMostrarFormulario] = useState(false); 
   const [usuarioNoEncontrado, setUsuarioNoEncontrado] = useState(false);
+  const [estado, setEstado] = useState(""); 
+  const [showProyectosDropdown, setShowProyectosDropdown] = useState(false);
+  const [proyecto, setProyecto] = useState('');
+  const [proyectos, setProyectos] = useState([]);
 
   useEffect(() => {
     // Acciones del formulario
@@ -17,12 +21,42 @@ function ModificarColaborador() {
     }
   }, [cedula]); // Ejecutar este efecto cada vez que cambie la cédula
 
+  // Función para manejar el cambio de estado
+  const handleEstadoChange = (e) => {
+    const selectedEstado = e.target.value;
+    setEstado(selectedEstado); // Actualizar el estado del componente según la opción seleccionada
+    if (selectedEstado === 'Trabajando en proyecto') {
+      loadProyectos(); // Cargar la lista de proyectos
+      setShowProyectosDropdown(true); // Mostrar el dropdown de proyectos
+    } else {
+      setShowProyectosDropdown(false); // Ocultar el dropdown de proyectos
+      setProyecto(''); // Limpiar el proyecto seleccionado
+    }
+  };
+
+  const handleProyectoChange = (e) => {
+    setProyecto(e.target.value); // Actualizar el proyecto seleccionado
+  };
+
+  const loadProyectos = async () => {
+    const proyectosCollection = collection(db, 'proyecto');
+    const querySnapshot = await getDocs(proyectosCollection);
+    const proyectosData = [];
+    querySnapshot.forEach((doc) => {
+      proyectosData.push({
+        id: doc.id,
+        ...doc.data()
+      });
+    });
+    setProyectos(proyectosData);
+  };
+
   const handleSubmit = async (e) => {
     //Función que se encarga de manejar el evento de submit del formulario
     e.preventDefault();
     await searchColaborador();
     setMostrarFormulario(true); 
-  }
+  };
 
   const searchColaborador = async () => {
     const colaboradoresCollection = collection(db, 'colaboradores');
@@ -57,31 +91,46 @@ function ModificarColaborador() {
     }
     try {
       const colaboradorDocRef = doc(db, "colaboradores", colaborador.id);
+      let proyectoNombre = estado === "libre" ? "Sin asignar" : "";
+      if (estado === "Trabajando en proyecto" && proyecto) {
+        const proyectoData = proyectos.find(p => p.id === proyecto);
+        proyectoNombre = proyectoData ? proyectoData.nombreProyecto : "";
+      }
       const newData = {
         correo: colaborador.correo, 
         telefono: colaborador.telefono, 
         departamento: colaborador.departamento, 
-        estado: colaborador.estado,
-        proyecto: colaborador.estado === "libre" ? "Sin asignar" : colaborador.proyecto
+        estado: estado, // Usa el estado actualizado
+        proyecto: proyectoNombre
       };
       await updateDoc(colaboradorDocRef, newData); 
-
-      if (colaborador.estado === "libre") {
-        const proyectosCollection = collection(db, 'proyecto');
-        const q = query(proyectosCollection, where('colaboradores', 'array-contains', colaborador.nombre));
-
-        const querySnapshot = await getDocs(q);
-
-        if (!querySnapshot.empty){
-          querySnapshot.forEach(async (proyectoDoc) => { // Cambia el nombre de la variable a proyectoDoc
-            const proyectoDocRef = doc(db, "proyecto", proyectoDoc.id); // Utiliza el nombre de la variable actual
-            const proyectoData = proyectoDoc.data(); // Utiliza el nombre de la variable actual
-            const colaboradores = proyectoData.colaboradores.filter(nombre => nombre !== colaborador.nombre);
-
-            await updateDoc(proyectoDocRef, { colaboradores });
-          })
+  
+      // Si el estado cambia de Trabajando en proyecto a libre, y el colaborador estaba asociado a un proyecto
+      if (colaborador.estado === "Trabajando en proyecto" && estado === "libre" && colaborador.proyecto !== "Sin asignar") {
+        // Buscar el documento del proyecto por su nombre
+        const proyectosQuery = query(collection(db, "proyecto"), where("nombreProyecto", "==", colaborador.proyecto));
+        const proyectosQuerySnapshot = await getDocs(proyectosQuery);
+        proyectosQuerySnapshot.forEach(async (doc) => {
+          const proyectoDocRef = doc.ref;
+          await updateDoc(proyectoDocRef, {
+            colaboradores: arrayRemove(colaborador.nombre)
+          });
+        });
+      }
+  
+      // Si el estado cambia de cualquier estado a Trabajando en proyecto, y se selecciona un proyecto
+      if (colaborador.estado !== "Trabajando en proyecto" && estado === "Trabajando en proyecto" && proyecto) {
+        const proyectoDocRef = doc(db, "proyecto", proyecto);
+        const proyectoDoc = await getDoc(proyectoDocRef);
+        if (proyectoDoc.exists()) {
+          await updateDoc(proyectoDocRef, {
+            colaboradores: arrayUnion(colaborador.nombre)
+          });
+        } else {
+          console.error("El documento del proyecto no existe:", proyecto);
         }
       }
+  
       //Esto actualiza los datos del colaborador
       alert("Colaborador actualizado correctamente.");
       setCedula('');
@@ -104,11 +153,11 @@ function ModificarColaborador() {
         <br />
         <button type="submit">Buscar</button> 
       </form>
-
+  
       {usuarioNoEncontrado && (
         <p>Usuario no encontrado</p>
       )}
-
+  
       {mostrarFormulario && colaborador && (
         <form>
           <label>
@@ -128,17 +177,26 @@ function ModificarColaborador() {
           <br />
           <label>
             Estado:
-            <select name="estado" value={colaborador.estado} onChange={(e) => setColaborador({ ...colaborador, estado: e.target.value })} disabled={!colaborador}>
+            <select name="estado" value={estado} onChange={handleEstadoChange} disabled={!colaborador}>
                 <option value="" disabled>Seleccionar estado</option>
-                <option value="trabajando">Trabajando en un proyecto</option>
+                <option value="Trabajando en proyecto">Trabajando en un proyecto</option>
                 <option value="libre">Libre</option>
             </select>
           </label>
           <br />
-          <label>
-            Nombre del Proyecto:
-            <span>{colaborador.proyecto}</span>
-          </label>
+          <div>
+            {showProyectosDropdown && (
+              <div className='proyectoModificarColaborador'>
+                <label htmlFor='proyecto' name='proyecto'>Nombre Proyecto: </label>
+                <select id='proyecto' name='proyecto' value={proyecto} onChange={handleProyectoChange} required>
+                  <option value="" disabled>Seleccionar proyecto</option>
+                  {proyectos.map((proyecto) => (
+                    <option key={proyecto.id} value={proyecto.id}>{proyecto.nombreProyecto}</option>
+                  ))}
+                </select>
+              </div>  
+            )}
+          </div>
           <br />
           <button type="button" onClick={updateColaborador} disabled={!colaborador}>
             Actualizar
