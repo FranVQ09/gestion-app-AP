@@ -7,7 +7,7 @@ function LoginPage() {
     <div className="content">
       <div className="flex-div">
         <div className="name-content">
-          <h1 className="logo">Iniciar Sesión</h1>
+          <h1 className="logo">QUE VIVA LA PEPA</h1>
           <p>Confianza y tecnología para el CIC</p>
         </div>
         <form method="POST" action="/login">

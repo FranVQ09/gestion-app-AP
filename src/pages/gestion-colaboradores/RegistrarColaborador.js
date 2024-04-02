@@ -84,39 +84,27 @@ function RegistrarColaborador() {
     <div className='content'>
         <div className='flex-div'>
           <div className='name-content'>
-            <h1 className='logo'>Gestión de Colaboradores</h1>
+            <h1 className='logo'>Registro de Colaborador</h1>
           </div>
         <form className='rcola' onSubmit={store}>
-          <div className='nombreColaborador'>
             <label htmlFor="nombre">Nombre Completo:</label>
             <input type="text" id="nombre" name="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
-          </div>
-          <div className='cedulaColaborador'>
             <label htmlFor="cedula">Cédula:</label>
             <input type="text" id="cedula" name="cedula" value={cedula} onChange={(e) => setCedula(e.target.value)} required />
-          </div>
-          <div className='correoColaborador'>
             <label htmlFor="correo">Correo Electrónico:</label>
             <input type="email" id="correo" name="correo" value={correo} onChange={(e) => setCorreo(e.target.value)} required />
-          </div>
-          <div className='departamentoColaborador'>
             <label htmlFor="departamento">Departamento:</label>
             <input type="text" id="departamento" name="departamento" value={departamento} onChange={(e) => setDepartamento(e.target.value)} required />
-          </div>
-          <div className='telefonoColaborador'>
             <label htmlFor="telefono">Teléfono:</label>
             <input type="text" id="telefono" name="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)} required />
-          </div>
-          <div className='estadoColaborador'>
             <label htmlFor="estado">Estado:</label>
             <select id="estado" name="estado" value={estado} onChange={handleEstadoChange} required>
               <option value="" disabled>Seleccionar estado</option>
               <option value="trabajando">Trabajando en un proyecto</option>
               <option value="libre">Libre</option>
             </select>
-          </div>
           {showProyectosDropdown && (
-            <div className='proyectoColaborador'>
+            <div className='segundoD'>
               <label htmlFor='proyecto'>Nombre de Proyecto:</label>
               <select id="proyecto" name='proyecto' value={proyecto} onChange={(e) => setProyecto(e.target.value)} required>
                 <option value="" disabled>Seleccionar proyecto</option>
@@ -126,7 +114,7 @@ function RegistrarColaborador() {
               </select>
             </div>
           )}
-          <Link className='boton' type='submit' to="/registrarColaborador">Registrar Colaborador</Link>
+          <Link className='boton' type='submit' to="/registrarColaborador">Registrar colaborador</Link>
           <Link className='back' to="/gestionColaboradores">Regresar</Link>
         </form>
       </div>

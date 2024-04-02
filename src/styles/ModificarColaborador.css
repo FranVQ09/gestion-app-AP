@@ -27,54 +27,53 @@
   
   /* Margen entre el texto y la caja*/
   .name-content {
-    margin-right: 5rem;
+    margin-right: -1rem;
   }
   
   /* Font del logo*/
   .name-content .logo {
     font-size: 4rem;
     color: #B85042;
+    margin-left: -5rem;
   }
 
   
 /* Cajita del login*/
-.rcola {
+.mcola {
     display: flex;
     flex-direction: column;
     background: #fff;
     padding: 2rem;
-    max-width: 530px;
-    height: 700px;
+    width: 500px;
+    height: auto;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: -1rem;
+    margin-right: 2rem;
   }
   
 
   /* Botones*/
   
-  .rcola .boton {
+  .mcola .boton {
     outline: none;
     border: none;
     background: #A7BEAE;
     padding: 0.8rem 1rem;
     border-radius: 0.4rem;
     font-size: 1.1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     color: #fff;
     text-decoration: none;
   }
   
-  .rcola .boton:hover,
-  .rcola .boton:focus {
+  .mcola .boton:hover,
+  .mcola .boton:focus {
     background: #7C927C;
     cursor: pointer;
     outline: none;
   }
   
-  .rcola .back {
+  .mcola .back {
     outline: none;
     border: none;
     background: #A9A9A9;
@@ -86,39 +85,29 @@
     text-decoration: none;
   }
   
-  .rcola .back:hover,
-  .rcola .back:focus {
+  .mcola .back:hover,
+  .mcola .back:focus {
     background: #808080;
     cursor: pointer;
     outline: none;
   }
 
 
-/* Cajita de los input*/
-.rcola input {
-  outline: none;
-  padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-}
+  .mcola label {
+    text-align: left;
+  }
 
-.rcola input:focus {
-  border: 1.8px solid #A7BEAE;
-}
+  /* Cajita de los input*/
+  .mcola input {
+    outline: none;
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    margin-bottom: -0.1rem;
+  }
+  
+  .mcola input:focus {
+    border: 1.8px solid #A7BEAE;
+  }
+  
 
-.rcola label {
-  margin-bottom: 0.5rem;
-  text-align: left;
-}
-
-.rcola .segundoD {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
-  margin-bottom: 1rem; 
-}
-
-.rcola .segundoD label {
-  margin-top: 1rem;
-  text-align: left; 
-}

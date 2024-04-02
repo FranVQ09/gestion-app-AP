@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css'; // Importar los estilos de react-datepicker
 import db from '../../fisebaseConfig/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
+import '../../styles/CrearProyecto.css';  
+
 
 function CrearProyecto() {
     const [nombreProyecto, setNombreProyecto] = useState('');
@@ -89,7 +91,6 @@ function CrearProyecto() {
             setFechaFin('');
             setHistorial('');
 
-
             console.log('Proyecto registrado correctamente');
 
         } catch (error) {
@@ -98,51 +99,52 @@ function CrearProyecto() {
     };
 
     return (
-        <div>
-            <h1>Crear Proyecto</h1>
-            {}
-            <form onSubmit={storeProyect}>
-                <div>
-                    <input type="text" value={nombreProyecto} onChange={(e) => setNombreProyecto(e.target.value)} placeholder="Nombre del Proyecto" required />
-                    <input type="text" value={recursos} onChange={(e) => setRecursos(e.target.value)} placeholder="Recursos" required />
-                    <input type="text" value={presupuesto} onChange={(e) => setPresupuesto(e.target.value)} placeholder="Presupuesto" required />
-                    <select value={estadoProyecto} onChange={(e) => setEstadoProyecto(e.target.value)} required>
-                        <option value="" disabled>Seleccionar estado del proyecto</option>
-                        <option value="En progreso">En progreso</option>
-                        <option value="Finalizado">Finalizado</option>
-                    </select>
-                    <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="Descripción" required/>
-                    <input type="text" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} placeholder="Fecha de Inicio" required/>
-                    <input type="text" value={fechaFin} onChange={(e) => setFechaFin(e.target.value)} placeholder="Fecha de Fin" required/>
-                    <input type="text" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Historial" required/>
+        <div className='content'>
+            <div className='flex-div'>
+                <div className='name-content'>
+                    <h1 className='logo'>Crear Proyecto</h1>
                 </div>
-                <div>
-                    <h2>Tareas:</h2>
-                    {tareas.map((tarea, index) => (
-                        <div key={index}>
-                            <input type="text" value={tarea.nombreTarea} onChange={(e) => actualizarTarea(index, 'nombreTarea', e.target.value)} placeholder="Nombre de la Tarea" required />
-                            
-                            <select value={tarea.estado} onChange={(e) => actualizarTarea(index, 'estado', e.target.value)} required>
-                                <option value="" disabled>Seleccionar estado de la tarea</option>
-                                <option value="En progreso">En progreso</option>
-                                <option value="Finalizado">Finalizado</option>
-                            </select>
-                    
-                            <input type="number" value={tarea.storypoints} onChange={(e) => actualizarTarea(index, 'storypoints', e.target.value)} placeholder="Story Points" required />
-                            <input type="text" value={tarea.fechaInicio} onChange={(e) => actualizarTarea(index, 'fechaInicio', e.target.value)} placeholder="Fecha de Inicio" required />
-                            <input type="text" value={tarea.fechaFin} onChange={(e) => actualizarTarea(index, 'fechaFin', e.target.value)} placeholder="Fecha de Fin" required />
-                        </div>
-                    ))}
-                    <button type="button" onClick={agregarTarea}>Agregar Tarea</button>
-                    <button type="button" onClick={deshacerTarea}>Deshacer</button>
-                </div>
-                <div>
-                    <button type="submit">Guardar Proyecto</button>
-                </div>
-            </form>
-            <Link to="/gestionProyectos">
-            <button>Salir</button>
-            </Link>
+                <form className='cproye' onSubmit={storeProyect}>
+                    <div>
+                        <input type="text" value={nombreProyecto} onChange={(e) => setNombreProyecto(e.target.value)} placeholder="Nombre del Proyecto" required />
+                        <input type="text" value={recursos} onChange={(e) => setRecursos(e.target.value)} placeholder="Recursos" required />
+                        <input type="text" value={presupuesto} onChange={(e) => setPresupuesto(e.target.value)} placeholder="Presupuesto" required />
+                        <select value={estadoProyecto} onChange={(e) => setEstadoProyecto(e.target.value)} required>
+                            <option value="" disabled>Seleccionar estado del proyecto</option>
+                            <option value="En progreso">En progreso</option>
+                            <option value="Finalizado">Finalizado</option>
+                        </select>
+                        <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="Descripción" required/>
+                        <input type="text" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} placeholder="Fecha de Inicio" required/>
+                        <input type="text" value={fechaFin} onChange={(e) => setFechaFin(e.target.value)} placeholder="Fecha de Fin" required/>
+                        <input type="text" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Historial" required/>
+                    </div>
+                    <div>
+                        <h2>Tareas:</h2>
+                        {tareas.map((tarea, index) => (
+                            <div class='scrollbox' key={index}>
+                                <div class='scrollbox-inner'>
+                                    <input type="text" value={tarea.nombreTarea} onChange={(e) => actualizarTarea(index, 'nombreTarea', e.target.value)} placeholder="Nombre de la Tarea" required />
+                                    <select value={tarea.estado} onChange={(e) => actualizarTarea(index, 'estado', e.target.value)} required>
+                                        <option value="" disabled>Seleccionar estado de la tarea</option>
+                                        <option value="En progreso">En progreso</option>
+                                        <option value="Finalizado">Finalizado</option>
+                                    </select>
+                                    <input type="number" value={tarea.storypoints} onChange={(e) => actualizarTarea(index, 'storypoints', e.target.value)} placeholder="Story Points" required />
+                                    <input type="text" value={tarea.fechaInicio} onChange={(e) => actualizarTarea(index, 'fechaInicio', e.target.value)} placeholder="Fecha de Inicio" required />
+                                    <input type="text" value={tarea.fechaFin} onChange={(e) => actualizarTarea(index, 'fechaFin', e.target.value)} placeholder="Fecha de Fin" required />
+                                </div>
+                            </div>
+                        ))}
+                        <button className='back' type="button" onClick={deshacerTarea}>Deshacer</button>
+                        <button className='boton' type="button" onClick={agregarTarea}>Agregar Tarea</button>
+                    </div>
+                </form>
+            </div>
+            <div className='back-container'>
+                <Link className='cpb' type="button" to="/gestionProyectos">Regresar</Link>
+                <button className='cp' type="submit" onClick={storeProyect}>Guardar Proyecto</button>
+            </div>
         </div>
     );
 }

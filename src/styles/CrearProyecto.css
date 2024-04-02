@@ -35,26 +35,36 @@
     font-size: 4rem;
     color: #B85042;
   }
+  ::-webkit-scrollbar{
+    width: 10px;
 
+  }
+
+  ::-webkit-scrollbar-thumb{
+    background: #A7BEAE;
+    border-radius: 10px;
+  }
   
 /* Cajita del login*/
-.rcola {
+.cproye {
     display: flex;
     flex-direction: column;
     background: #fff;
     padding: 2rem;
-    max-width: 530px;
-    height: 700px;
+    max-width: 500px;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     margin-left: auto;
     margin-right: auto;
+    overflow-y: scroll;
+    max-height: 500px;
   }
+
   
 
   /* Botones*/
   
-  .rcola .boton {
+  .cproye .boton {
     outline: none;
     border: none;
     background: #A7BEAE;
@@ -63,18 +73,19 @@
     font-size: 1.1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    margin-left: 1rem;
     color: #fff;
     text-decoration: none;
   }
   
-  .rcola .boton:hover,
-  .rcola .boton:focus {
+  .cproye .boton:hover,
+  .cproye .boton:focus {
     background: #7C927C;
     cursor: pointer;
     outline: none;
   }
   
-  .rcola .back {
+  .cproye .back {
     outline: none;
     border: none;
     background: #A9A9A9;
@@ -84,41 +95,71 @@
     margin-bottom: 1rem;
     color: #fff;
     text-decoration: none;
+
   }
   
-  .rcola .back:hover,
-  .rcola .back:focus {
+  .cp:hover,
+  .cproye .back:focus {
     background: #808080;
     cursor: pointer;
     outline: none;
   }
 
+  .cp {
+    outline: none;
+    border: none;
+    background: #A7BEAE;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: -10rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .cp:hover,
+  .cp:focus {
+    background: #7C927C;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .cpb {
+    outline: none;
+    border: none;
+    background: #A9A9A9;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    color: #fff;
+    text-decoration: none;
+
+  }
+  
+  .cpb:hover,
+  .cpb:focus {
+    background: #808080;
+    cursor: pointer;
+    outline: none;
+  }
 
 /* Cajita de los input*/
-.rcola input {
+.cproye input {
   outline: none;
   padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
   font-size: 1.1rem;
 }
 
-.rcola input:focus {
+.cproye input:focus {
   border: 1.8px solid #A7BEAE;
 }
 
-.rcola label {
+.cproye label {
   margin-bottom: 0.5rem;
   text-align: left;
-}
-
-.rcola .segundoD {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
-  margin-bottom: 1rem; 
-}
-
-.rcola .segundoD label {
-  margin-top: 1rem;
-  text-align: left; 
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import db from '../../fisebaseConfig/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
+import '../../styles/Reuniones.css';  
 
 
 function Reuniones() {
@@ -40,10 +41,13 @@ function Reuniones() {
 
 
   return (
-    <div>
-      <h1>Reuniones</h1>
+    <div className='content'>
+        <div className='flex-div'>
+          <div className='name-content'>
+            <h1 className='logo'>Crear Reunión</h1>
+          </div>
         <div>
-            <form onSubmit={storeReuniones}>
+            <form className='reu' onSubmit={storeReuniones}>
                 <label htmlFor='tema'>Tema: </label>
                 <input type='text' value={tema} id='tema' name='tema' onChange={(e) => setTema(e.target.value)} required></input>
                 <label htmlFor='fecha'>Fecha: </label>
@@ -53,14 +57,13 @@ function Reuniones() {
                 <label htmlFor='colaboradores'>Colaboradores: </label>
                 <input type="text" value={colaboradores} onChange={(e) => setColaboradores(e.target.value)} placeholder="Colaboradores (separados por comas)" required />
                 <div>
-                    <button type='submit'>Crear Reunión</button>
+                    <button className='boton' type='submit'>Crear Reunión</button>
+                    <Link className='back' type="button" to="/gestionProyectos">Regresar</Link>
                 </div>
             </form>
             <div>{mensaje}</div>
         </div>
-        <Link to="/gestionProyectos">
-            <button>Salir</button>
-        </Link>
+    </div>
     </div>
   )
 }

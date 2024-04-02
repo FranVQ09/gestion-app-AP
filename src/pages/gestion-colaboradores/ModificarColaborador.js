@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import db from '../../fisebaseConfig/firebaseConfig';
 import { collection, query, getDocs, doc, updateDoc, arrayUnion, where, arrayRemove, getDoc} from 'firebase/firestore';
 import { Link } from 'react-router-dom';
+import '../../styles/ModificarColaborador.css';  
+
 
 function ModificarColaborador() {
   const [cedula, setCedula] = useState('');
@@ -143,15 +145,20 @@ function ModificarColaborador() {
   };
 
   return (
-    <div>
-      <h1>Modificar Colaborador</h1>
-      <form onSubmit={handleSubmit}>
+    <div className='content'>
+    <div className='flex-div'>
+      <div className='name-content'>
+        <h1 className='logo'>Modificación de Colaborador</h1>
+      </div>
+      <form className='mcola' onSubmit={handleSubmit}>
         <label>
           Cédula:
           <input type="text" value={cedula} onChange={(e) => setCedula(e.target.value)} />
         </label>
         <br />
-        <button type="submit">Buscar</button> 
+        <button className='boton' type="submit">Buscar</button> 
+        <br/> 
+        <Link className='back' to="/gestionColaboradores">Regresar</Link>
       </form>
   
       {usuarioNoEncontrado && (
@@ -159,7 +166,7 @@ function ModificarColaborador() {
       )}
   
       {mostrarFormulario && colaborador && (
-        <form>
+        <form className='mcola'>
           <label>
             Correo:
             <input type="email" name="correo" value={colaborador.correo} onChange={(e) => setColaborador({ ...colaborador, correo: e.target.value })} disabled={!colaborador} />
@@ -198,15 +205,12 @@ function ModificarColaborador() {
             )}
           </div>
           <br />
-          <button type="button" onClick={updateColaborador} disabled={!colaborador}>
-            Actualizar
+          <button className='boton' type="button" onClick={updateColaborador} disabled={!colaborador}>Actualizar
           </button>
         </form>
       )}
-      <Link to="/gestionColaboradores">
-        <button>Salir</button>
-      </Link>
     </div>
+  </div>
   );
 }
 

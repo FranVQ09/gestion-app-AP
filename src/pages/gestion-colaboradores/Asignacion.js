@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, getDocs, updateDoc, doc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import db from '../../fisebaseConfig/firebaseConfig';
+import '../../styles/Asignacion.css';
 
 function ColaboradoresTabla() {
   const [colaboradores, setColaboradores] = useState([]);
@@ -85,44 +86,48 @@ function ColaboradoresTabla() {
   };
 
   return (
-    <div>
-      <h2>Tabla de Colaboradores</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Proyecto</th>
-            <th>Asignar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {colaboradores.map(colaborador => (
-            <tr key={colaborador.id}>
-              <td>{colaborador.nombre}</td>
-              <td>{colaborador.proyecto}</td>
-              <td>
-                <select value={proyectosSeleccionados[colaborador.id]} onChange={e => handleSeleccionProyecto(colaborador.id, e.target.value)}>
-                  <option value="">Seleccionar Proyecto</option>
-                  {proyectos.map(proyecto => (
-                    <option key={proyecto.id} value={proyecto.nombreProyecto}>
-                      {proyecto.nombreProyecto}
-                    </option>
-                  ))}
-                  {colaborador.proyecto && (
-                    <option value="Eliminar">Eliminar</option>
-                  )}
-                </select>
-                <button onClick={() => handleAsignarProyecto(colaborador.id, colaborador.nombre)}>
-                  Asignar
-                </button>
-              </td>
+    <div className='content'>
+      <div className='flex-div'>
+        <div className='name-content'>
+          <h1 className='logo'>Crear Reunión</h1>
+        </div>
+        <table className="content-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Proyecto</th>
+              <th>Asignar</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <Link to="/gestionColaboradores">
-      <button>Salir</button>
-      </Link>
+          </thead>
+          <tbody>
+            {colaboradores.map(colaborador => (
+              <tr key={colaborador.id}>
+                <td>{colaborador.nombre}</td>
+                <td>{colaborador.proyecto}</td>
+                <td>
+                  <select value={proyectosSeleccionados[colaborador.id] || ''} onChange={e => handleSeleccionProyecto(colaborador.id, e.target.value)}>
+                    <option value="">Seleccionar Proyecto</option>
+                    {proyectos.map(proyecto => (
+                      <option key={proyecto.id} value={proyecto.nombreProyecto}>
+                        {proyecto.nombreProyecto}
+                      </option>
+                    ))}
+                    {colaborador.proyecto && (
+                      <option value="Eliminar">Eliminar</option>
+                    )}
+                  </select>
+                  <button className='asiboton' onClick={() => handleAsignarProyecto(colaborador.id, colaborador.nombre)}>
+                    Asignar
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className='back-container'>
+        <Link className='back' to="/gestionColaboradores">Regresar</Link>
+      </div>
     </div>
   );
 }

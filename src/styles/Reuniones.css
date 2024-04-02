@@ -38,13 +38,13 @@
 
   
 /* Cajita del login*/
-.rcola {
+.reu {
     display: flex;
     flex-direction: column;
     background: #fff;
     padding: 2rem;
     max-width: 530px;
-    height: 700px;
+    height: auto;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     margin-left: auto;
@@ -54,7 +54,7 @@
 
   /* Botones*/
   
-  .rcola .boton {
+  .reu .boton {
     outline: none;
     border: none;
     background: #A7BEAE;
@@ -67,14 +67,14 @@
     text-decoration: none;
   }
   
-  .rcola .boton:hover,
-  .rcola .boton:focus {
+  .reu .boton:hover,
+  .reu .boton:focus {
     background: #7C927C;
     cursor: pointer;
     outline: none;
   }
   
-  .rcola .back {
+  .reu .back {
     outline: none;
     border: none;
     background: #A9A9A9;
@@ -86,8 +86,8 @@
     text-decoration: none;
   }
   
-  .rcola .back:hover,
-  .rcola .back:focus {
+  .reu .back:hover,
+  .reu .back:focus {
     background: #808080;
     cursor: pointer;
     outline: none;
@@ -95,30 +95,30 @@
 
 
 /* Cajita de los input*/
-.rcola input {
+.reu input {
   outline: none;
   padding: 0.8rem 1rem;
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
 
-.rcola input:focus {
+.reu input:focus {
   border: 1.8px solid #A7BEAE;
 }
 
-.rcola label {
+.reu label {
   margin-bottom: 0.5rem;
   text-align: left;
 }
 
-.rcola .segundoD {
+.reu .segundoD {
   display: flex;
   flex-direction: column;
   align-items: flex-start; 
   margin-bottom: 1rem; 
 }
 
-.rcola .segundoD label {
+.reu .segundoD label {
   margin-top: 1rem;
   text-align: left; 
 }
