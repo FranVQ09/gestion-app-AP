@@ -120,10 +120,11 @@ function CrearProyecto() {
                         <input type="text" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Historial" required/>
                     </div>
                     <div>
-                        <h2>Tareas:</h2>
+                        
                         {tareas.map((tarea, index) => (
                             <div class='scrollbox' key={index}>
                                 <div class='scrollbox-inner'>
+                                <h2>Tareas:</h2>
                                     <input type="text" value={tarea.nombreTarea} onChange={(e) => actualizarTarea(index, 'nombreTarea', e.target.value)} placeholder="Nombre de la Tarea" required />
                                     <select value={tarea.estado} onChange={(e) => actualizarTarea(index, 'estado', e.target.value)} required>
                                         <option value="" disabled>Seleccionar estado de la tarea</option>
