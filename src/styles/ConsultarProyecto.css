@@ -1,171 +1,167 @@
 /* Este es un comentario de una sola línea */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Color del fondo */
-  body {
-    background: #E7E8D1;
-  }
-  
-  /* Posicion */
-  .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  /* Hace que sea vea a la mitad el texto y luego la caja */
-  .flex-div {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  
-  /* Margen entre el texto y la caja*/
-  .name-content {
-    margin-right: 1rem;
-  }
-  
-  /* Font del logo*/
-  .name-content .logo {
-    font-size: 4rem;
-    color: #B85042;
-  }
-  
-  
-  /* Font de la descripcion*/
-  .name-content p {
-    font-size: 1.3rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-  }
-  
-  ::-webkit-scrollbar{
-    width: 10px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  }
+/* Color del fondo */
+body {
+  background: #E7E8D1;
+}
 
-  ::-webkit-scrollbar-thumb{
-    background: #A7BEAE;
-    border-radius: 10px;
-  }
-  
+/* Posicion */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Hace que sea vea a la mitad el texto y luego la caja */
+.flex-div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* Margen entre el texto y la caja*/
+.name-content {
+  margin-right: 1rem;
+}
+
+/* Font del logo*/
+.name-content .logo {
+  font-size: 4rem;
+  color: #B85042;
+}
+::-webkit-scrollbar{
+  width: 10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+  background: #A7BEAE;
+  border-radius: 10px;
+}
 
 /* Cajita del login*/
-.cola {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    padding: 2rem;
-    width: 530px;
-    height: 300px;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-  }
-  
-  /* Botones*/
-  
-  .asiboton {
-    outline: none;
-    border: none;
-    background: #A7BEAE;
-    padding: 0.3rem 1rem;
-    border-radius: 0.4rem;
-    font-size: 0.75rem;
-    margin-top: 0.5rem;
-    color: #fff;
-    text-decoration: none;
-    margin-left: left;
-  }
-  
-  .asiboton:hover,
-  .asiboton:focus {
-    background: #7C927C;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  .back-container .back {
-    outline: none;
-    border: none;
-    background: #A9A9A9;
-    padding: 0.8rem 1rem;
-    border-radius: 0.4rem;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: #fff;
-    text-decoration: none;
-    margin-left: auto;
-    margin-right: 3rem;
-  }
-  
-  .back-container .back:hover,
-  .back-container .back:focus {
-    background: #808080;
-    cursor: pointer;
-    outline: none;
-  }
-
-  .cola .table{
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    padding: 2rem;
-    width: 530px;
-    height: 300px;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-  }
-
-
-/* Estilo de la tabla */
-.content-table {
-  border-collapse: collapse;
-  margin: 25px auto;
-  font-size: 0.9em;
-  min-width: 400px;
-  border-radius: 5px 5px 0 0;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+.consuproye {
   display: flex;
   flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  width: 600px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 2rem;
   overflow-y: scroll;
   max-height: 500px;
-  text-align: center;
-  display: table-header-group;
-  
 }
 
-.content-table thead tr {
-  background-color: #A7BEAE;
-  color: #ffffff;
-  font-weight: bold;
-  text-align: center;
+
+
+/* Botones*/
+
+.consuproye .boton {
+  outline: none;
+  border: none;
+  background: #A7BEAE;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  color: #fff;
+  text-decoration: none;
 }
 
-.content-table th,
-.content-table td {
-  padding: 12px 15px;
+.consuproye .boton:hover,
+.consuproye .boton:focus {
+  background: #7C927C;
+  cursor: pointer;
+  outline: none;
 }
 
-.content-table tbody tr {
-  border-bottom: 1px solid #dddddd;
+.consuproye .back {
+  outline: none;
+  border: none;
+  background: #A9A9A9;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-decoration: none;
+
 }
 
-.content-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
+.cp:hover,
+.consuproye .back:focus {
+  background: #808080;
+  cursor: pointer;
+  outline: none;
 }
 
-.content-table tbody tr:last-of-type {
-  border-bottom: 2px solid #A7BEAE;
+.cp {
+  outline: none;
+  border: none;
+  background: #A7BEAE;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: -10rem;
+  color: #fff;
+  text-decoration: none;
 }
 
-.content-table tbody tr.active-row {
-  font-weight: bold;
-  color: #A7BEAE;
+.cp:hover,
+.cp:focus {
+  background: #7C927C;
+  cursor: pointer;
+  outline: none;
+}
+
+.cpb2 {
+  outline: none;
+  border: none;
+  background: #A9A9A9;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-top: 10000rem;
+  margin-left: 1rem;
+  color: #fff;
+  text-decoration: none;
+
+}
+
+.cpb2:hover,
+.cpb2:focus {
+  background: #808080;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Cajita de los input*/
+.consuproye input {
+outline: none;
+padding: 0.8rem 1rem;
+margin-top: 1rem;
+font-size: 1.1rem;
+}
+
+.consuproye input:focus {
+border: 1.8px solid #A7BEAE;
+}
+
+.consuproye label {
+margin-bottom: 0.5rem;
+text-align: left;
 }

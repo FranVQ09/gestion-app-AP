@@ -7,8 +7,8 @@ function LoginPage() {
     <div className="content">
       <div className="flex-div">
         <div className="name-content">
-          <h1 className="logo">QUE VIVA LA PEPA</h1>
-          <p>Confianza y tecnología para el CIC</p>
+          <h1 className="logo">CIC</h1>
+          <p>Ingeniería en Computación del Tecnológico de Costa Rica</p>
         </div>
         <form method="POST" action="/login">
           <label htmlFor="correo">Correo electrónico:</label>
