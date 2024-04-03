@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { doc, collection, onSnapshot, updateDoc, arrayUnion } from 'firebase/firestore';
 import db from '../../fisebaseConfig/firebaseConfig';
+import '../../styles/ConsultarForo.css';
+
 
 function ConsultarForo() {
   const [foros, setForos] = useState([]);
@@ -49,46 +51,54 @@ function ConsultarForo() {
   };
 
   return (
-    <div>
-      <h1>Consultar Foro</h1>
-      <div>
-        <label htmlFor="foroSelect">Selecciona un foro:</label>
-        <select id="foroSelect" value={selectedForo} onChange={handleForoChange}>
-          <option value="">Selecciona un foro</option>
-          {foros.map(foro => (
-            <option key={foro.id} value={foro.id}>{foro.nombreForo}</option>
-          ))}
-        </select>
-      </div>
-      {selectedForo && (
-        <div>
-          <h2>Mensajes del foro</h2>
-          <ul style={{ listStyleType: 'none', padding: 0 }}>
-            {mensajes.map((mensaje, index) => (
-              <React.Fragment key={index}>
-                <li>{mensaje}</li>
-                {index < mensajes.length - 1 && <hr />} {/* Agregamos la línea divisora solo si no es el último mensaje */}
-              </React.Fragment>
+    <div className='content'>
+      <div className='flex-div'>
+        <div className='name-content'>
+          <h1 className='logo'>Consultar Foro</h1>
+        </div>
+        <form className='consuforo'>
+          <label htmlFor="foroSelect">Selecciona un foro:</label>
+          <select id="foroSelect" value={selectedForo} onChange={handleForoChange}>
+            <option value="">Selecciona un foro</option>
+            {foros.map(foro => (
+              <option key={foro.id} value={foro.id}>{foro.nombreForo}</option>
             ))}
-          </ul>
-          {!mostrarCajaTexto && (
-            <button onClick={handleMostrarCajaTexto}>Agregar mensaje</button>
-          )}
-          {mostrarCajaTexto && (
+          </select>
+          {selectedForo && (
             <div>
-              <textarea type="text" value={nuevoMensaje} onChange={(e) => setNuevoMensaje(e.target.value)} />
-              <button onClick={handleEnviarMensaje}>Enviar</button>
+              <h2>Mensajes del foro</h2>
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
+                {mensajes.map((mensaje, index) => (
+                  <React.Fragment key={index}>
+                    <li>{mensaje}</li>
+                    {index < mensajes.length - 1 && <hr />} {/* Agregamos la línea divisora solo si no es el último mensaje */}
+                  </React.Fragment>
+                ))}
+              </ul>
+              {!mostrarCajaTexto && (
+                <React.Fragment>
+                  <Link className='back' to="/evaluaciones">Regresar</Link>
+                  <button className='boton' onClick={handleMostrarCajaTexto}>Agregar mensaje</button>
+                </React.Fragment>
+              )}
+              {mostrarCajaTexto && (
+                <div>
+                  <textarea type="text" value={nuevoMensaje} onChange={(e) => setNuevoMensaje(e.target.value)} />
+                  
+                  <button className='boton' onClick={handleEnviarMensaje}>Enviar</button>
+                  <Link className='back' to="/evaluaciones">Regresar</Link>
+                </div>
+              )}
             </div>
           )}
-        </div>
-      )}
-      <div>
-        <Link to="/evaluaciones">
-        <button>Regresar</button>
-        </Link>
+        </form>
       </div>
     </div>
   );
+  
+  
+
+  
 }
 
 export default ConsultarForo;

@@ -1,163 +1,167 @@
 /* Este es un comentario de una sola línea */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Color del fondo */
-  body {
-    background: #E7E8D1;
-  }
-  
-  /* Posicion */
-  .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  /* Hace que sea vea a la mitad el texto y luego la caja */
-  .flex-div {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  
-  /* Margen entre el texto y la caja*/
-  .name-content {
-    margin-right: 5rem;
-  }
-  
-  /* Font del logo*/
-  .name-content .logo {
-    font-size: 4rem;
-    color: #B85042;
-  }
-  ::-webkit-scrollbar{
-    width: 10px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  }
+/* Color del fondo */
+body {
+  background: #E7E8D1;
+}
 
-  ::-webkit-scrollbar-thumb{
-    background: #A7BEAE;
-    border-radius: 10px;
-  }
-  
+/* Posicion */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Hace que sea vea a la mitad el texto y luego la caja */
+.flex-div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* Margen entre el texto y la caja*/
+.name-content {
+  margin-right: 1rem;
+}
+
+/* Font del logo*/
+.name-content .logo {
+  font-size: 4rem;
+  color: #B85042;
+}
+::-webkit-scrollbar{
+  width: 10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+  background: #A7BEAE;
+  border-radius: 10px;
+}
+
 /* Cajita del login*/
-.cproye {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    padding: 2rem;
-    max-width: 500px;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    margin-left: auto;
-    margin-right: auto;
-    overflow-y: scroll;
-    max-height: 500px;
-  }
+.consuproye {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  width: 600px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  overflow-y: scroll;
+  max-height: 500px;
+}
 
-  
 
-  /* Botones*/
-  
-  .cproye .boton {
-    outline: none;
-    border: none;
-    background: #A7BEAE;
-    padding: 0.8rem 1rem;
-    border-radius: 0.4rem;
-    font-size: 1.1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 1rem;
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .cproye .boton:hover,
-  .cproye .boton:focus {
-    background: #7C927C;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  .cproye .back {
-    outline: none;
-    border: none;
-    background: #A9A9A9;
-    padding: 0.8rem 1rem;
-    border-radius: 0.4rem;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: #fff;
-    text-decoration: none;
 
-  }
-  
-  .cp:hover,
-  .cproye .back:focus {
-    background: #808080;
-    cursor: pointer;
-    outline: none;
-  }
+/* Botones*/
 
-  .cp {
-    outline: none;
-    border: none;
-    background: #A7BEAE;
-    padding: 0.8rem 1rem;
-    border-radius: 0.4rem;
-    font-size: 1.1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .cp:hover,
-  .cp:focus {
-    background: #7C927C;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  .cpb {
-    outline: none;
-    border: none;
-    background: #A9A9A9;
-    padding: 0.8rem 1rem;
-    border-radius: 0.4rem;
-    font-size: 1.1rem;
-    margin-top: 2rem;
-    color: #fff;
-    text-decoration: none;
+.consuproye .boton {
+  outline: none;
+  border: none;
+  background: #A7BEAE;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  color: #fff;
+  text-decoration: none;
+}
 
-  }
-  
-  .cpb:hover,
-  .cpb:focus {
-    background: #808080;
-    cursor: pointer;
-    outline: none;
-  }
+.consuproye .boton:hover,
+.consuproye .boton:focus {
+  background: #7C927C;
+  cursor: pointer;
+  outline: none;
+}
+
+.consuproye .back {
+  outline: none;
+  border: none;
+  background: #A9A9A9;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-decoration: none;
+
+}
+
+.cp:hover,
+.consuproye .back:focus {
+  background: #808080;
+  cursor: pointer;
+  outline: none;
+}
+
+.cp {
+  outline: none;
+  border: none;
+  background: #A7BEAE;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: -10rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.cp:hover,
+.cp:focus {
+  background: #7C927C;
+  cursor: pointer;
+  outline: none;
+}
+
+.cpb2 {
+  outline: none;
+  border: none;
+  background: #A9A9A9;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-top: 10000rem;
+  margin-left: 1rem;
+  color: #fff;
+  text-decoration: none;
+
+}
+
+.cpb2:hover,
+.cpb2:focus {
+  background: #808080;
+  cursor: pointer;
+  outline: none;
+}
 
 /* Cajita de los input*/
-.cproye input {
-  outline: none;
-  padding: 0.8rem 1rem;
-  margin-top: 1rem;
-  font-size: 1.1rem;
+.consuproye input {
+outline: none;
+padding: 0.8rem 1rem;
+margin-top: 1rem;
+font-size: 1.1rem;
 }
 
-.cproye input:focus {
-  border: 1.8px solid #A7BEAE;
+.consuproye input:focus {
+border: 1.8px solid #A7BEAE;
 }
 
-.cproye label {
-  margin-bottom: 0.5rem;
-  text-align: left;
+.consuproye label {
+margin-bottom: 0.5rem;
+text-align: left;
 }

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import db from '../../fisebaseConfig/firebaseConfig';
 import Chart from 'chart.js/auto';
 import { collection, query, getDocs, where } from 'firebase/firestore';
+import '../../styles/InformeGeneral.css';  
+
 
 function InformeGeneral() {
   const [proyectos, setProyectos] = useState([]);
@@ -111,25 +113,27 @@ function InformeGeneral() {
   };
 
   return (
-    <div>
-      <h1>Informe General</h1>
-      <div>
-        {/* Dropdown para seleccionar el proyecto */}
-        <select value={selectedProyecto} onChange={handleProyectoChange}>
-          <option value="">Selecciona un proyecto</option>
-          {proyectos.map(proyecto => (
-            <option key={proyecto.nombreProyecto} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
-          ))}
-        </select>
-        <Link to="/evaluaciones">
-          <button>
-            Salir
-          </button>
-        </Link>
+    <div className='content'>
+      <div className='flex-div'>
+        <div className='name-content'>
+          <h1 className='logo'>Informe General</h1>
+        </div>
+        <form className='cproye'>
+          {/* Dropdown para seleccionar el proyecto */}
+          <select value={selectedProyecto} onChange={handleProyectoChange}>
+            <option value="">Selecciona un proyecto</option>
+            {proyectos.map(proyecto => (
+              <option key={proyecto.nombreProyecto} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
+            ))}
+          </select>
+          <canvas id="myChart" width="300" height="300"></canvas>
+          <Link className='cpb' type="button" to="/evaluaciones">Regresar</Link>
+
+        </form>
       </div>
-      <canvas id="myChart" width="300" height="300"></canvas>
     </div>
   )
+  
 }
 
 export default InformeGeneral;

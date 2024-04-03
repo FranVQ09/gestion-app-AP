@@ -1,0 +1,124 @@
+/* Este es un comentario de una sola línea */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Color del fondo */
+  body {
+    background: #E7E8D1;
+  }
+  
+  /* Posicion */
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Hace que sea vea a la mitad el texto y luego la caja */
+  .flex-div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  /* Margen entre el texto y la caja*/
+  .name-content {
+    margin-right: 5rem;
+  }
+  
+  /* Font del logo*/
+  .name-content .logo {
+    font-size: 4rem;
+    color: #B85042;
+  }
+
+  
+/* Cajita del login*/
+.reu {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 2rem;
+    max-width: 530px;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+
+  /* Botones*/
+  
+  .reu .boton {
+    outline: none;
+    border: none;
+    background: #A7BEAE;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .reu .boton:hover,
+  .reu .boton:focus {
+    background: #7C927C;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .reu .back {
+    outline: none;
+    border: none;
+    background: #A9A9A9;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .reu .back:hover,
+  .reu .back:focus {
+    background: #808080;
+    cursor: pointer;
+    outline: none;
+  }
+
+
+/* Cajita de los input*/
+.reu input {
+  outline: none;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.reu input:focus {
+  border: 1.8px solid #A7BEAE;
+}
+
+.reu label {
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.reu .segundoD {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  margin-bottom: 1rem; 
+}
+
+.reu .segundoD label {
+  margin-top: 1rem;
+  text-align: left; 
+}

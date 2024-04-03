@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import db from '../../fisebaseConfig/firebaseConfig';
-import { collection, query, where, getDocs, doc, updateDoc, deleteDoc, arrayRemove } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
+import '../../styles/ModificarProyecto.css';
 
 function ModificarProyecto() {
     const [proyectos, setProyectos] = useState([]);
@@ -9,7 +10,6 @@ function ModificarProyecto() {
     const [proyecto, setProyecto] = useState(null);
     const [proyectoNoEncontrado, setProyectoNoEncontrado] = useState(false);
     const [colaboradoresProyecto, setColaboradoresProyecto] = useState([]);
-    const [colaboradorSeleccionado, setColaboradorSeleccionado] = useState('');
 
     useEffect(() => {
         const obtenerProyectos = async () => {
@@ -54,8 +54,8 @@ function ModificarProyecto() {
                 tareas: proyecto.tareas
             };
             await updateDoc(proyectoDocRef, newData);
-            alert("Se actualizó el proyecto!");
-            console.log("Se actualizó el proyecto!");
+            alert("¡Se actualizó el proyecto!");
+            console.log("¡Se actualizó el proyecto!");
         } catch (error) {
             console.error("Error, no se actualizó: ", error);
         }
@@ -73,7 +73,7 @@ function ModificarProyecto() {
         };
         setProyecto({
             ...proyecto,
-            tareas: [...proyecto.tareas, nuevaTarea]
+            tareas: [...(proyecto.tareas || []), nuevaTarea]
         });
     };
 
@@ -103,91 +103,96 @@ function ModificarProyecto() {
     };
 
     return (
-        <div>
-            <h1>Modificar Proyecto</h1>
-            <label htmlFor="proyecto">Seleccione un Proyecto:</label>
-            <select id="proyecto" value={proyectoSeleccionado} onChange={(e) => setProyectoSeleccionado(e.target.value)}>
-                <option value="">Seleccione un proyecto</option>
-                {proyectos.map(proyecto => (
-                    <option key={proyecto.id} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
-                ))}
-            </select>
-            <button onClick={searchProyecto}>Buscar Proyecto</button>
-            {proyectoNoEncontrado && <p>No se encontró el proyecto.</p>}
-
-            {proyecto && (
-                <>
-                    <h2>Tareas del Proyecto:</h2>
-                    <ul>
-                        {proyecto.tareas.map((tarea, index) => (
-                            <div key={index}>
-                                <div>
-                                    <p>Nombre de Tarea:</p>
-                                    <input 
-                                        type="text" 
-                                        value={tarea.nombreTarea} 
-                                        onChange={(e) => handleModificarTarea(index, e.target.value, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)} 
-                                    />
-                                    <p>Descripción:</p>
-                                    <input 
-                                        type="text" 
-                                        value={tarea.descripcion} 
-                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, e.target.value, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)} 
-                                    />
-                                    <p>Estado:
-                                        <select 
-                                            value={tarea.estado} 
-                                            onChange={(e) => handleEstadoChange(index, e.target.value)}>
-                                            <option value="Por Hacer">Por Hacer</option>
-                                            <option value="En Progreso">En Progreso</option>
-                                            <option value="Completada">Completada</option>
-                                        </select>
-                                    </p>
-                                    <div>
-                                        <p>Responsable:</p>
-                                        <select 
-                                            value={tarea.responsable} 
-                                            onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, e.target.value, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)} 
-                                        >
-                                            <option value="">Seleccionar</option>
-                                            {colaboradoresProyecto.map((colaborador, index) => (
-                                                <option key={index} value={colaborador}>{colaborador}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <p>Story Points:</p>
-                                    <input 
-                                        type="number" 
-                                        value={tarea.storypoints} 
-                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, e.target.value, tarea.fechaInicio, tarea.fechaFin)} 
-                                    />
-                                    <p>Fecha de Inicio:</p>
-                                    <input 
-                                        type="text" 
-                                        value={tarea.fechaInicio} 
-                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, e.target.value, tarea.fechaFin)} 
-                                    />
-                                    <p>Fecha de Fin:</p>
-                                    <input 
-                                        type="text" 
-                                        value={tarea.fechaFin} 
-                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, e.target.value)} 
-                                    />
-                                </div>
-                                <br />
-                                <button onClick={() => handleEliminarTarea(index)}>Eliminar Tarea</button>
-                                {index !== proyecto.tareas.length - 1 && <hr />}
-                            </div>
+        <div className='content'>
+            <div className='flex-div'>
+                <div className='name-content'>
+                    <h1 className='logo'>Modificación de Proyecto</h1>
+                </div>
+                <form className='mproye'>
+                    <label htmlFor="proyecto">Seleccione un Proyecto:</label>
+                    <select id="proyecto" value={proyectoSeleccionado} onChange={(e) => setProyectoSeleccionado(e.target.value)}>
+                        <option value="">Seleccione un proyecto</option>
+                        {proyectos.map(proyecto => (
+                            <option key={proyecto.id} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
                         ))}
-                    </ul>
-                    <button onClick={agregarTarea}>Agregar Tarea</button>
-                    <button onClick={updateProyecto}>Guardar Cambios</button>
-                </>
-            )}
+                    </select>
+                    <button className='boton' type="button" onClick={searchProyecto}>Buscar Proyecto</button>
+                    <Link className='back' to="/gestionProyectos">Regresar</Link>
+                </form>
+                {proyectoNoEncontrado && <p>No se encontró el proyecto.</p>}
 
-            <Link to="/gestionProyectos">
-                <button>Salir</button>
-            </Link>
+                {proyecto && (
+                    <form className='mproye2'>
+                        <div className='scrollbox'>
+                            <div className='scrollbox-inner'>
+                                <ul>
+                                    {proyecto.tareas.map((tarea, index) => (
+                                        <div key={index}>
+                                            <div>
+                                                <label htmlFor="nombredelatarea">Nombre de la Tarea:</label>
+                                                <input
+                                                    type="text"
+                                                    value={tarea.nombreTarea}
+                                                    onChange={(e) => handleModificarTarea(index, e.target.value, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)}
+                                                />
+                                                <label htmlFor="descripcion">Descripción:</label>
+                                                <input
+                                                    type="text"
+                                                    value={tarea.descripcion}
+                                                    onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, e.target.value, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)}
+                                                />
+                                                <label htmlFor="estado">Estado:</label>
+                                                <select
+                                                    value={tarea.estado}
+                                                    onChange={(e) => handleEstadoChange(index, e.target.value)}>
+                                                    <option value="Por Hacer">Por Hacer</option>
+                                                    <option value="En Progreso">En Progreso</option>
+                                                    <option value="Completada">Completada</option>
+                                                </select>
+                                                <div>
+                                                    <label htmlFor="responsable">Responsable:</label>
+                                                    <select
+                                                        value={tarea.responsable}
+                                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, e.target.value, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)}
+                                                    >
+                                                        <option value="">Seleccionar</option>
+                                                        {colaboradoresProyecto.map((colaborador, index) => (
+                                                            <option key={index} value={colaborador}>{colaborador}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                                <label htmlFor="storypoints">Story Points:</label>
+                                                <input
+                                                    type="number"
+                                                    value={tarea.storypoints}
+                                                    onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, e.target.value, tarea.fechaInicio, tarea.fechaFin)}
+                                                />
+                                                <label htmlFor="storypoints">Fecha de Inicio:</label>
+                                                <input
+                                                    type="text"
+                                                    value={tarea.fechaInicio}
+                                                    onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, e.target.value, tarea.fechaFin)}
+                                                />
+                                                <label htmlFor="storypoints">Fecha de Fin:</label>
+                                                <input
+                                                    type="text"
+                                                    value={tarea.fechaFin}
+                                                    onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, e.target.value)}
+                                                />
+                                            </div>
+                                            <br />
+                                            <button className='back' onClick={() => handleEliminarTarea(index)}>Eliminar Tarea</button>
+                                            <button className='boton' onClick={agregarTarea}>Agregar Tarea</button>
+                                            {index !== proyecto.tareas.length - 1 && <hr />}
+                                        </div>
+                                    ))}
+                                </ul>
+                            </div>
+                            <button className='boton' type="button" onClick={updateProyecto}>Guardar Cambios</button>
+                        </div>
+                    </form>
+                )}
+            </div>
         </div>
     )
 }
