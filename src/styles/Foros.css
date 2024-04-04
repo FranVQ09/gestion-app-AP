@@ -39,16 +39,16 @@
   
 /* Cajita del login*/
 .forum {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    padding: 2rem;
-    max-width: auto;
-    height: auto;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  width: 400px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  margin-left: 3rem;
+  margin-right: auto;
+  max-height: 350px;
   }
   
 
@@ -98,8 +98,10 @@
 .forum input {
   outline: none;
   padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
   font-size: 1.1rem;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: -0.51rem;
 }
 
 .forum input:focus {
@@ -107,6 +109,8 @@
 }
 
 .forum label {
-  margin-bottom: 0.5rem;
   text-align: left;
+  width: 100%;
+  display: inline-block; 
+  margin-bottom: 0.5rem;
 }

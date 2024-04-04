@@ -40,19 +40,45 @@
   
 /* Cajita del login*/
 .mcola {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  max-width: 500px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  margin-left: -2rem;
+  margin-right: auto;
+  max-height: 350px;
+  }
+
+  .mcola2 {
     display: flex;
     flex-direction: column;
     background: #fff;
     padding: 2rem;
-    width: 500px;
-    height: auto;
+    max-width: 250px;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    margin-left: -1rem;
-    margin-right: 2rem;
-  }
+    margin-left: 3rem;
+    margin-right: auto;
+    max-height: 350px;
+    text-align: center;
+    }
   
 
+    .mcola3 {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      padding: 2rem;
+      max-width: 500px;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+      margin-left: 3rem;
+      margin-right: auto;
+      max-height: 700px;
+      }
   /* Botones*/
   
   .mcola .boton {
@@ -64,6 +90,13 @@
     font-size: 1.1rem;
     color: #fff;
     text-decoration: none;
+  }
+
+  .mcola2 label {
+    text-align: center;
+    width: 100%;
+    display: inline-block; 
+    margin-bottom: 0.5rem;
   }
   
   .mcola .boton:hover,
@@ -95,6 +128,9 @@
 
   .mcola label {
     text-align: left;
+    width: 100%;
+    display: inline-block; 
+    margin-bottom: 0.5rem;
   }
 
   /* Cajita de los input*/
@@ -102,8 +138,9 @@
     outline: none;
     padding: 0.8rem 1rem;
     font-size: 1.1rem;
-    margin-top: 0.5rem;
-    margin-bottom: -0.1rem;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: -0.51rem;
   }
   
   .mcola input:focus {
@@ -111,3 +148,61 @@
   }
   
 
+  .mcola3 .boton {
+    outline: none;
+    border: none;
+    background: #A7BEAE;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .mcola3 .boton:hover,
+  .mcola3 .boton:focus {
+    background: #7C927C;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .mcola3 .back {
+    outline: none;
+    border: none;
+    background: #A9A9A9;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .mcola3 .back:hover,
+  .mcola3 .back:focus {
+    background: #808080;
+    cursor: pointer;
+    outline: none;
+  }
+
+
+  .mcola3 label {
+    text-align: left;
+    width: 100%;
+    display: inline-block; 
+    margin-bottom: 0.5rem;
+  }
+
+  /* Cajita de los input*/
+  .mcola3 input {
+    outline: none;
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: -0.51rem;
+  }
+  
+  .mcola3 input:focus {
+    border: 1.8px solid #A7BEAE;
+  }

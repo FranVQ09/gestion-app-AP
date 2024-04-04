@@ -77,8 +77,8 @@ function ConsultarForo() {
               </ul>
               {!mostrarCajaTexto && (
                 <React.Fragment>
-                  <Link className='back' to="/evaluaciones">Regresar</Link>
                   <button className='boton' onClick={handleMostrarCajaTexto}>Agregar mensaje</button>
+                  <Link className='back' to="/evaluaciones">Regresar</Link>
                 </React.Fragment>
               )}
               {mostrarCajaTexto && (

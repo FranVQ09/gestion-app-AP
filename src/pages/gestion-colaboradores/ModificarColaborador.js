@@ -162,11 +162,15 @@ function ModificarColaborador() {
       </form>
   
       {usuarioNoEncontrado && (
-        <p>Usuario no encontrado</p>
+        <form className='mcola2'>
+        <label>
+          No se encontró un colaborador con la cédula ingresada.
+        </label>
+        </form>
       )}
   
       {mostrarFormulario && colaborador && (
-        <form className='mcola'>
+        <form className='mcola3'>
           <label>
             Correo:
             <input type="email" name="correo" value={colaborador.correo} onChange={(e) => setColaborador({ ...colaborador, correo: e.target.value })} disabled={!colaborador} />

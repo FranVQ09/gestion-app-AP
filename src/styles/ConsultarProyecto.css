@@ -51,14 +51,13 @@ body {
   flex-direction: column;
   background: #fff;
   padding: 2rem;
-  width: 600px;
+  max-width: 500px;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 2rem;
   overflow-y: scroll;
-  max-height: 500px;
+  max-height: 700px;
 }
 
 
@@ -86,82 +85,39 @@ body {
   outline: none;
 }
 
-.consuproye .back {
+.consuproye .consuback {
   outline: none;
   border: none;
   background: #A9A9A9;
   padding: 0.8rem 1rem;
   border-radius: 0.4rem;
   font-size: 1.1rem;
-  margin-bottom: 1rem;
   color: #fff;
   text-decoration: none;
+  width: 100%;
+  display: inline-block;
 
 }
 
-.cp:hover,
-.consuproye .back:focus {
+
+.consuproye .consuback:hover,
+.consuproye .consuback:focus {
   background: #808080;
   cursor: pointer;
   outline: none;
-}
-
-.cp {
-  outline: none;
-  border: none;
-  background: #A7BEAE;
-  padding: 0.8rem 1rem;
-  border-radius: 0.4rem;
-  font-size: 1.1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  margin-left: 1rem;
-  margin-right: -10rem;
-  color: #fff;
-  text-decoration: none;
-}
-
-.cp:hover,
-.cp:focus {
-  background: #7C927C;
-  cursor: pointer;
-  outline: none;
-}
-
-.cpb2 {
-  outline: none;
-  border: none;
-  background: #A9A9A9;
-  padding: 0.8rem 1rem;
-  border-radius: 0.4rem;
-  font-size: 1.1rem;
-  margin-top: 10000rem;
-  margin-left: 1rem;
-  color: #fff;
-  text-decoration: none;
-
-}
-
-.cpb2:hover,
-.cpb2:focus {
-  background: #808080;
-  cursor: pointer;
-  outline: none;
-}
-
-/* Cajita de los input*/
-.consuproye input {
-outline: none;
-padding: 0.8rem 1rem;
-margin-top: 1rem;
-font-size: 1.1rem;
-}
-
-.consuproye input:focus {
-border: 1.8px solid #A7BEAE;
 }
 
 .consuproye label {
 margin-bottom: 0.5rem;
 text-align: left;
+}
+
+
+.consuproye .logo {
+  font-size: 1.2rem;
+  color: #B85042;
+}
+.consuproye .logo2 {
+  font-size: 0.8rem;
+  color: #B85042;
 }

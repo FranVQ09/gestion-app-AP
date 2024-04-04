@@ -48,7 +48,7 @@ function ConsultarProyectos() {
         <form className='consuproye' onSubmit={storeProyect}>
           {proyectoItems.map((item) => (
             <div key={item.id}>
-              <h3>Nombre del Proyecto: {item.nombreProyecto}</h3>
+              <h3>Nombre del Proyecto: <span class='logo'>{item.nombreProyecto}</span></h3>
               <p>Descripción: {item.descripcion}</p>
               <p>Recursos: {item.recursos}</p>
               <p>Presupuesto: {item.presupuesto}</p>
@@ -62,7 +62,7 @@ function ConsultarProyectos() {
               <ul>
                 {item.tareas.map((tarea, index) => (
                   <div key={index}>
-                    <h5>Nombre de la Tarea: {tarea.nombreTarea}</h5>
+                    <h5>Nombre de la Tarea: <span class='logo2'>{tarea.nombreTarea}</span></h5>
                     <p>Descripción de la Tarea: {tarea.descripcion}</p>
                     <p>Estado: {tarea.estado}</p>
                     <p>Fecha de inicio: {tarea.fechaInicio || 'No disponible'}</p>
@@ -74,14 +74,15 @@ function ConsultarProyectos() {
                 ))}
               </ul>
               <hr /> {/* Línea divisoria entre proyectos */}
+              <br/>
             </div>
+            
           ))}
-        </form>
-        
-      </div>
-      <div className='back-container'>
-                <Link className='cpb2' type="button" to="/gestionProyectos">Regresar</Link>
+          <div>
+            <Link className='consuback' type="button" to="/gestionProyectos">Regresar</Link>
           </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -106,18 +106,27 @@ function CrearProyecto() {
                 </div>
                 <form className='cproye' onSubmit={storeProyect}>
                     <div>
-                        <input type="text" value={nombreProyecto} onChange={(e) => setNombreProyecto(e.target.value)} placeholder="Nombre del Proyecto" required />
-                        <input type="text" value={recursos} onChange={(e) => setRecursos(e.target.value)} placeholder="Recursos" required />
-                        <input type="text" value={presupuesto} onChange={(e) => setPresupuesto(e.target.value)} placeholder="Presupuesto" required />
-                        <select value={estadoProyecto} onChange={(e) => setEstadoProyecto(e.target.value)} required>
-                            <option value="" disabled>Seleccionar estado del proyecto</option>
-                            <option value="En progreso">En progreso</option>
-                            <option value="Finalizado">Finalizado</option>
-                        </select>
-                        <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="Descripción" required/>
-                        <input type="text" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} placeholder="Fecha de Inicio" required/>
-                        <input type="text" value={fechaFin} onChange={(e) => setFechaFin(e.target.value)} placeholder="Fecha de Fin" required/>
-                        <input type="text" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Historial" required/>
+                    <label htmlFor="nombreProyecto">Nombre del Proyecto:</label>
+                    <input type="text" id="nombreProyecto" name="nombreProyecto" value={nombreProyecto} onChange={(e) => setNombreProyecto(e.target.value)} placeholder="Nombre del Proyecto" required />
+                    <label htmlFor="recursos">Recursos:</label>
+                    <input type="text" id="recursos" name="recursos" value={recursos} onChange={(e) => setRecursos(e.target.value)} placeholder="Recursos" required />
+                    <label htmlFor="presupuesto">Presupuesto:</label>
+                    <input type="text" id="presupuesto" name="presupuesto" value={presupuesto} onChange={(e) => setPresupuesto(e.target.value)} placeholder="Presupuesto" required />
+                    <label htmlFor="estadoProyecto">Estado del Proyecto:</label>
+                    <select id="estadoProyecto" name="estadoProyecto" value={estadoProyecto} onChange={(e) => setEstadoProyecto(e.target.value)} required>
+                        <option value="" disabled>Seleccionar estado del proyecto</option>
+                        <option value="En progreso">En progreso</option>
+                        <option value="Finalizado">Finalizado</option>
+                    </select>
+                    <label htmlFor="descripcion">Descripción:</label>
+                    <input type="text" id="descripcion" name="descripcion" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="Descripción" required/>
+                    <label htmlFor="fechaInicio">Fecha de Inicio:</label>
+                    <input type="text" id="fechaInicio" name="fechaInicio" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} placeholder="Fecha de Inicio" required/>
+                    <label htmlFor="fechaFin">Fecha de Fin:</label>
+                    <input type="text" id="fechaFin" name="fechaFin" value={fechaFin} onChange={(e) => setFechaFin(e.target.value)} placeholder="Fecha de Fin" required/>
+                    <label htmlFor="historial">Historial:</label>
+                    <input type="text" id="historial" name="historial" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Historial" required/>
+
                     </div>
                     <div>
                         
@@ -137,14 +146,12 @@ function CrearProyecto() {
                                 </div>
                             </div>
                         ))}
-                        <button className='back' type="button" onClick={deshacerTarea}>Deshacer</button>
                         <button className='boton' type="button" onClick={agregarTarea}>Agregar Tarea</button>
+                        <button className='back' type="button" onClick={deshacerTarea}>Deshacer</button>
+                        <button className='boton' type="submit" onClick={storeProyect}>Guardar Proyecto</button>
+                        <Link className='back' type="button" to="/gestionProyectos">Regresar</Link>
                     </div>
                 </form>
-            </div>
-            <div className='back-container'>
-                <Link className='cpb' type="button" to="/gestionProyectos">Regresar</Link>
-                <button className='cp' type="submit" onClick={storeProyect}>Guardar Proyecto</button>
             </div>
         </div>
     );

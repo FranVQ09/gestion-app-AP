@@ -118,7 +118,7 @@ function InformeGeneral() {
         <div className='name-content'>
           <h1 className='logo'>Informe General</h1>
         </div>
-        <form className='cproye'>
+        <form className='info'>
           {/* Dropdown para seleccionar el proyecto */}
           <select value={selectedProyecto} onChange={handleProyectoChange}>
             <option value="">Selecciona un proyecto</option>
@@ -127,7 +127,7 @@ function InformeGeneral() {
             ))}
           </select>
           <canvas id="myChart" width="300" height="300"></canvas>
-          <Link className='cpb' type="button" to="/evaluaciones">Regresar</Link>
+          <Link className='back' type="button" to="/evaluaciones">Regresar</Link>
 
         </form>
       </div>

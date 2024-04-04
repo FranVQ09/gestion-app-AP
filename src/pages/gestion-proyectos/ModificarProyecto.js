@@ -181,8 +181,8 @@ function ModificarProyecto() {
                                                 />
                                             </div>
                                             <br />
-                                            <button className='back' onClick={() => handleEliminarTarea(index)}>Eliminar Tarea</button>
                                             <button className='boton' onClick={agregarTarea}>Agregar Tarea</button>
+                                            <button className='back' onClick={() => handleEliminarTarea(index)}>Eliminar Tarea</button>
                                             {index !== proyecto.tareas.length - 1 && <hr />}
                                         </div>
                                     ))}

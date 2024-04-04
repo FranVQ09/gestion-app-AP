@@ -38,23 +38,23 @@
 
   
 /* Cajita del login*/
-.reu {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    padding: 2rem;
-    max-width: 530px;
-    height: auto;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    margin-left: auto;
-    margin-right: auto;
+.info {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  max-width: 500px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  margin-left: 3rem;
+  margin-right: auto;
+  max-height: 700px;
   }
   
 
   /* Botones*/
   
-  .reu .boton {
+  .info .boton {
     outline: none;
     border: none;
     background: #A7BEAE;
@@ -67,27 +67,30 @@
     text-decoration: none;
   }
   
-  .reu .boton:hover,
-  .reu .boton:focus {
+  .info .boton:hover,
+  .info .boton:focus {
     background: #7C927C;
     cursor: pointer;
     outline: none;
   }
   
-  .reu .back {
+  .info .back {
     outline: none;
     border: none;
     background: #A9A9A9;
     padding: 0.8rem 1rem;
     border-radius: 0.4rem;
     font-size: 1.1rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     color: #fff;
     text-decoration: none;
+    width: 100%;
+    display: inline-block;
+  
   }
   
-  .reu .back:hover,
-  .reu .back:focus {
+  .info .back:hover,
+  .info .back:focus {
     background: #808080;
     cursor: pointer;
     outline: none;
@@ -95,30 +98,30 @@
 
 
 /* Cajita de los input*/
-.reu input {
+.info input {
   outline: none;
   padding: 0.8rem 1rem;
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
 
-.reu input:focus {
+.info input:focus {
   border: 1.8px solid #A7BEAE;
 }
 
-.reu label {
+.info label {
   margin-bottom: 0.5rem;
   text-align: left;
 }
 
-.reu .segundoD {
+.info .segundoD {
   display: flex;
   flex-direction: column;
   align-items: flex-start; 
   margin-bottom: 1rem; 
 }
 
-.reu .segundoD label {
+.info .segundoD label {
   margin-top: 1rem;
   text-align: left; 
 }

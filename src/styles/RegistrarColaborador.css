@@ -39,16 +39,17 @@
   
 /* Cajita del login*/
 .rcola {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    padding: 2rem;
-    max-width: 530px;
-    height: 700px;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  max-width: 500px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  margin-left: auto;
+  margin-right: auto;
+  overflow-y: scroll;
+  max-height: 700px;
   }
   
 
@@ -61,7 +62,6 @@
     padding: 0.8rem 1rem;
     border-radius: 0.4rem;
     font-size: 1.1rem;
-    margin-top: 1rem;
     margin-bottom: 1rem;
     color: #fff;
     text-decoration: none;
@@ -98,8 +98,10 @@
 .rcola input {
   outline: none;
   padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
   font-size: 1.1rem;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 1rem;
 }
 
 .rcola input:focus {
@@ -107,8 +109,10 @@
 }
 
 .rcola label {
-  margin-bottom: 0.5rem;
   text-align: left;
+  width: 100%;
+  display: inline-block; 
+  margin-bottom: 0.5rem;
 }
 
 .rcola .segundoD {
@@ -119,6 +123,16 @@
 }
 
 .rcola .segundoD label {
-  margin-top: 1rem;
-  text-align: left; 
+  text-align: left;
+  width: 100%;
+  display: inline-block; 
+  margin-bottom: 0.5rem;
+}
+
+.rcola select {
+  outline: none;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 1rem;
 }
