@@ -133,7 +133,8 @@ function CrearProyecto() {
                         {tareas.map((tarea, index) => (
                             <div class='scrollbox' key={index}>
                                 <div class='scrollbox-inner'>
-                                <h2>Tareas:</h2>
+                                <h2>Tarea nº{index + 1}: </h2>
+                                <br/>
                                     <input type="text" value={tarea.nombreTarea} onChange={(e) => actualizarTarea(index, 'nombreTarea', e.target.value)} placeholder="Nombre de la Tarea" required />
                                     <select value={tarea.estado} onChange={(e) => actualizarTarea(index, 'estado', e.target.value)} required>
                                         <option value="" disabled>Seleccionar estado de la tarea</option>
@@ -144,12 +145,20 @@ function CrearProyecto() {
                                     <input type="text" value={tarea.fechaInicio} onChange={(e) => actualizarTarea(index, 'fechaInicio', e.target.value)} placeholder="Fecha de Inicio" required />
                                     <input type="text" value={tarea.fechaFin} onChange={(e) => actualizarTarea(index, 'fechaFin', e.target.value)} placeholder="Fecha de Fin" required />
                                 </div>
+                                <button className='cpback' type="button" onClick={deshacerTarea}>Deshacer</button>
+                                {index !== tareas.length - 1 && <><hr/><br/></>}
                             </div>
                         ))}
-                        <button className='boton' type="button" onClick={agregarTarea}>Agregar Tarea</button>
-                        <button className='back' type="button" onClick={deshacerTarea}>Deshacer</button>
-                        <button className='boton' type="submit" onClick={storeProyect}>Guardar Proyecto</button>
-                        <Link className='back' type="button" to="/gestionProyectos">Regresar</Link>
+                        <button className='cpboton' type="button" onClick={agregarTarea}>Agregar Tarea</button>
+                        <br/>
+                        <br/>
+                        <hr/>
+                        <br/>
+                        <br/>
+                        <button className='cpboton' type="submit" onClick={storeProyect}>Guardar Proyecto</button>
+                        <br />
+                        <br />
+                        <Link className='cpback2' type="button" to="/gestionProyectos">Regresar</Link>
                     </div>
                 </form>
             </div>

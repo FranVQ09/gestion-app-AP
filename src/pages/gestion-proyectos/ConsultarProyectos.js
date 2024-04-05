@@ -59,21 +59,28 @@ function ConsultarProyectos() {
               <p>Historial: {item.historial}</p>
               <br></br>
               <h4>Tareas:</h4>
-              <ul>
-                {item.tareas.map((tarea, index) => (
-                  <div key={index}>
-                    <h5>Nombre de la Tarea: <span class='logo2'>{tarea.nombreTarea}</span></h5>
-                    <p>Descripción de la Tarea: {tarea.descripcion}</p>
-                    <p>Estado: {tarea.estado}</p>
-                    <p>Fecha de inicio: {tarea.fechaInicio || 'No disponible'}</p>
-                    <p>Fecha de fin: {tarea.fechaFin || 'No disponible'}</p>
-                    <p>Responsable: {tarea.responsable}</p>
-                    <p>Storypoints: {tarea.storypoints}</p>
-                    <br></br>
-                  </div>
-                ))}
-              </ul>
-              <hr /> {/* Línea divisoria entre proyectos */}
+              {item.tareas.length > 0 ? (
+                <ul>
+                  {item.tareas.map((tarea, index) => (
+                    <div key={index}>
+                      <h5>Nombre de la tarea nº{index + 1}: <span class='logo2'>{tarea.nombreTarea}</span></h5>
+                      <p>Descripción de la Tarea: {tarea.descripcion}</p>
+                      <p>Estado: {tarea.estado}</p>
+                      <p>Fecha de inicio: {tarea.fechaInicio || 'No disponible'}</p>
+                      <p>Fecha de fin: {tarea.fechaFin || 'No disponible'}</p>
+                      <p>Responsable: {tarea.responsable}</p>
+                      <p>Storypoints: {tarea.storypoints}</p>
+                      <br></br>
+                    </div>
+                  ))}
+                </ul>
+) : (
+  <>
+      <p>Sin tareas</p>
+      <br/>
+  </>
+)}
+              <hr />
               <br/>
             </div>
             

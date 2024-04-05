@@ -141,11 +141,11 @@ border: 1.8px solid #A7BEAE;
   padding: 0.8rem 1rem;
   border-radius: 0.4rem;
   font-size: 1.1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  margin-left: 1rem;
+  margin-top: -1rem;
   color: #fff;
   text-decoration: none;
+  width: 100%;
+  display: inline-block;
 }
 
 .cpboton:hover,
@@ -162,11 +162,11 @@ border: 1.8px solid #A7BEAE;
   padding: 0.8rem 1rem;
   border-radius: 0.4rem;
   font-size: 1.1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: #fff;
   text-decoration: none;
-  margin-left: 10rem;
-
+  width: 100%;
+  display: inline-block;
 }
 
 .cpback:hover,
@@ -174,4 +174,35 @@ border: 1.8px solid #A7BEAE;
   background: #808080;
   cursor: pointer;
   outline: none;
+}
+
+.cpback2 {
+  outline: none;
+  border: none;
+  background: #A9A9A9;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  display: inline-block;
+
+}
+
+.cpback2:hover,
+.cpback2:focus {
+  background: #808080;
+  cursor: pointer;
+  outline: none;
+}
+
+.cproye .logo {
+  font-size: 1.2rem;
+  color: #B85042;
+}
+.cproyelogo {
+  font-size: 1.2rem;
+  color: #B85042;
 }

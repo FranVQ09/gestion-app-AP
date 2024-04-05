@@ -129,6 +129,8 @@ function ModificarProyecto() {
                                     {proyecto.tareas.map((tarea, index) => (
                                         <div key={index}>
                                             <div>
+                                            <h2>Tarea nº{index + 1}: </h2>
+                                            <br/>
                                                 <label htmlFor="nombredelatarea">Nombre de la Tarea:</label>
                                                 <input
                                                     type="text"
@@ -180,14 +182,19 @@ function ModificarProyecto() {
                                                     onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, e.target.value)}
                                                 />
                                             </div>
-                                            <br />
-                                            <button className='boton' onClick={agregarTarea}>Agregar Tarea</button>
                                             <button className='back' onClick={() => handleEliminarTarea(index)}>Eliminar Tarea</button>
-                                            {index !== proyecto.tareas.length - 1 && <hr />}
+                                            <br />
+                                            {index !== proyecto.tareas.length - 1 && <hr /> }
+                                            <br />
                                         </div>
                                     ))}
                                 </ul>
                             </div>
+                            <button className='boton' type="button" onClick={agregarTarea}>Agregar Tarea</button>
+                            <br />
+                            <hr />
+                            <br />
+                            <br />
                             <button className='boton' type="button" onClick={updateProyecto}>Guardar Cambios</button>
                         </div>
                     </form>

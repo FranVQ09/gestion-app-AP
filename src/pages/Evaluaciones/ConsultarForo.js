@@ -78,7 +78,6 @@ function ConsultarForo() {
               {!mostrarCajaTexto && (
                 <React.Fragment>
                   <button className='boton' onClick={handleMostrarCajaTexto}>Agregar mensaje</button>
-                  <Link className='back' to="/evaluaciones">Regresar</Link>
                 </React.Fragment>
               )}
               {mostrarCajaTexto && (
@@ -86,11 +85,13 @@ function ConsultarForo() {
                   <textarea type="text" value={nuevoMensaje} onChange={(e) => setNuevoMensaje(e.target.value)} />
                   
                   <button className='boton' onClick={handleEnviarMensaje}>Enviar</button>
-                  <Link className='back' to="/evaluaciones">Regresar</Link>
                 </div>
               )}
+              
             </div>
           )}
+          <br />
+                            <Link className='back' to="/evaluaciones">Regresar</Link>
         </form>
       </div>
     </div>
