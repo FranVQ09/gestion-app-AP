@@ -10,7 +10,7 @@ function ModificarProyecto() {
     const [proyecto, setProyecto] = useState(null);
     const [proyectoNoEncontrado, setProyectoNoEncontrado] = useState(false);
     const [colaboradoresProyecto, setColaboradoresProyecto] = useState([]);
-    const [nuevoNombreTarea, setNuevoNombreTarea] = useState(''); // Estado para el nombre de la nueva tarea
+    const [nuevoNombreTarea, setNuevoNombreTarea] = useState('');
 
     useEffect(() => {
         const obtenerProyectos = async () => {
@@ -53,7 +53,7 @@ function ModificarProyecto() {
             const proyectoDocRef = doc(db, "proyecto", proyecto.id);
             const newData = {
                 tareas: proyecto.tareas,
-                historial: proyecto.historial // Se mantiene el historial actualizado en el proyecto
+                historial: proyecto.historial
             };
             await updateDoc(proyectoDocRef, newData);
             alert("¡Se actualizó el proyecto!");
@@ -79,27 +79,24 @@ function ModificarProyecto() {
             fechaFin: ''
         };
 
-        // Crear el mensaje para el historial
         const tareaAgregada = `Se agregó: ${nuevoNombreTarea}`;
-
-        // Crear el nuevo historial que incluye el mensaje de la tarea agregada
         const nuevoHistorial = [...(proyecto.historial || []), tareaAgregada];
 
-        // Actualizar el estado del proyecto con la nueva tarea y el historial actualizado
         setProyecto(prevProyecto => ({
             ...prevProyecto,
             tareas: [...(prevProyecto.tareas || []), nuevaTarea],
             historial: nuevoHistorial
         }));
 
-        // Limpiar el estado del nombre de la tarea
         setNuevoNombreTarea('');
     };
 
     const handleModificarTarea = (index, nuevoNombre, nuevaDescripcion, nuevoResponsable, nuevoStoryPoints, nuevaFechaInicio, nuevaFechaFin) => {
         const nuevasTareas = [...proyecto.tareas];
+        const tareaModificada = nuevasTareas[index];
+
         nuevasTareas[index] = {
-            ...nuevasTareas[index],
+            ...tareaModificada,
             nombreTarea: nuevoNombre,
             descripcion: nuevaDescripcion,
             responsable: nuevoResponsable,
@@ -107,7 +104,14 @@ function ModificarProyecto() {
             fechaInicio: nuevaFechaInicio,
             fechaFin: nuevaFechaFin
         };
-        setProyecto({ ...proyecto, tareas: nuevasTareas });
+
+        const tareaModificadaMensaje = `Se modificó: ${nuevoNombre}`;
+
+        setProyecto(prevProyecto => ({
+            ...prevProyecto,
+            tareas: nuevasTareas,
+            historial: [...prevProyecto.historial, tareaModificadaMensaje]
+        }));
     };
 
     const handleEstadoChange = (index, nuevoEstado) => {
@@ -117,17 +121,11 @@ function ModificarProyecto() {
     };
 
     const handleEliminarTarea = (index) => {
-        // Obtener el nombre de la tarea que se va a eliminar
         const nombreTareaEliminada = proyecto.tareas[index].nombreTarea;
-        
-        // Filtrar las tareas para eliminar la tarea en el índice dado
         const nuevasTareas = proyecto.tareas.filter((_, i) => i !== index);
-        
-        // Actualizar el historial con el mensaje de la tarea eliminada
         const tareaEliminadaMensaje = `Se eliminó: ${nombreTareaEliminada}`;
         const nuevoHistorial = [...(proyecto.historial || []), tareaEliminadaMensaje];
         
-        // Actualizar el estado del proyecto con las tareas actualizadas y el nuevo historial
         setProyecto({ ...proyecto, tareas: nuevasTareas, historial: nuevoHistorial });
     };
 
@@ -139,7 +137,7 @@ function ModificarProyecto() {
                 </div>
                 <form className='mproye'>
                     <label htmlFor="proyecto">Seleccione un Proyecto:</label>
-                    <select id="proyecto" className='laselecta' value={proyectoSeleccionado} onChange={(e) => setProyectoSeleccionado(e.target.value)}>
+                    <select className='laselecta' id="proyecto" value={proyectoSeleccionado} onChange={(e) => setProyectoSeleccionado(e.target.value)}>
                         <option value="">Seleccione un proyecto</option>
                         {proyectos.map(proyecto => (
                             <option key={proyecto.id} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
@@ -158,59 +156,67 @@ function ModificarProyecto() {
                                     {proyecto.tareas.map((tarea, index) => (
                                         <div key={index}>
                                             <div>
-                                            <h2>Tarea nº{index + 1}: </h2>
-                                            <br/>
-                                                <label htmlFor="nombredelatarea">Nombre de la tarea:</label>
+                                                <h2>Tarea nº{index + 1}: </h2>
+                                                <br/>
+                                                <label htmlFor={`nombreTarea-${index}`}>Nombre de la Tarea:</label>
                                                 <input
                                                     type="text"
                                                     value={tarea.nombreTarea}
-                                                    onChange={(e) => handleModificarTarea(index, e.target.value, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)} placeholder="Tarea Horizon"
+                                                    onChange={(e) => handleModificarTarea(index, e.target.value, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)}
+                                                    id={`nombreTarea-${index}`}
                                                 />
-                                                <label htmlFor="descripcion">Descripción:</label>
+                                                <label htmlFor={`descripcion-${index}`}>Descripción:</label>
                                                 <input
                                                     type="text"
                                                     value={tarea.descripcion}
-                                                    onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, e.target.value, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)} placeholder="Desarrolo de la interfaz de usuario..."
+                                                    onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, e.target.value, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)}
+                                                    id={`descripcion-${index}`}
                                                 />
-                                                <label htmlFor="estado">Estado:</label>
+                                                <label htmlFor={`estado-${index}`}>Estado:</label>
                                                 <select
-                                                    value={tarea.estado}
                                                     className='laselecta'
-                                                    onChange={(e) => handleEstadoChange(index, e.target.value)}> 
+                                                    value={tarea.estado}
+                                                    onChange={(e) => handleEstadoChange(index, e.target.value)}
+                                                    id={`estado-${index}`}
+                                                >
                                                     <option value="Por Hacer">Por Hacer</option>
                                                     <option value="En Progreso">En Progreso</option>
                                                     <option value="Completada">Completada</option>
                                                 </select>
                                                 <div>
-                                                    <label htmlFor="responsable">Responsable:</label>
+                                                    <label htmlFor={`responsable-${index}`}>Responsable:</label>
                                                     <select
-                                                        value={tarea.responsable}
                                                         className='laselecta'
-                                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, e.target.value, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)} 
+                                                        value={tarea.responsable}
+                                                        onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, e.target.value, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)}
+                                                        id={`responsable-${index}`}
                                                     >
-                                                        <option value="">Seleccione un responsable</option>
+                                                        <option value="">Seleccionar</option>
                                                         {colaboradoresProyecto.map((colaborador, index) => (
                                                             <option key={index} value={colaborador}>{colaborador}</option>
                                                         ))}
                                                     </select>
                                                 </div>
-                                                <label htmlFor="storypoints">Story Points:</label>
+                                                <label htmlFor={`storypoints-${index}`}>Story Points:</label>
                                                 <input
                                                     type="number"
                                                     value={tarea.storypoints}
                                                     onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, e.target.value, tarea.fechaInicio, tarea.fechaFin)}
+                                                    id={`storypoints-${index}`}
                                                 />
-                                                <label htmlFor="fechaInicio">Fecha de Inicio:</label>
+                                                <label htmlFor={`fechaInicio-${index}`}>Fecha de Inicio:</label>
                                                 <input
                                                     type="text"
                                                     value={tarea.fechaInicio}
-                                                    onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, e.target.value, tarea.fechaFin)} placeholder="01/01/24"
+                                                    onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, e.target.value, tarea.fechaFin)}
+                                                    id={`fechaInicio-${index}`}
                                                 />
-                                                <label htmlFor="fechaFin">Fecha de Fin:</label>
+                                                <label htmlFor={`fechaFin-${index}`}>Fecha de Fin:</label>
                                                 <input
                                                     type="text"
                                                     value={tarea.fechaFin}
-                                                    onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, e.target.value)} placeholder="31/12/24"
+                                                    onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, e.target.value)}
+                                                    id={`fechaFin-${index}`}
                                                 />
                                             </div>
                                             <button className='back' onClick={() => handleEliminarTarea(index)}>Eliminar Tarea</button>
@@ -221,6 +227,12 @@ function ModificarProyecto() {
                                     ))}
                                 </ul>
                             </div>
+                            <input
+                                type="text"
+                                placeholder="Nombre de la Tarea"
+                                value={nuevoNombreTarea}
+                                onChange={(e) => setNuevoNombreTarea(e.target.value)}
+                            />
                             <button className='boton' type="button" onClick={agregarTarea}>Agregar Tarea</button>
                             <br />
                             <hr />
