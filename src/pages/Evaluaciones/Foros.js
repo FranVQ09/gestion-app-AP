@@ -41,6 +41,7 @@ function Foros() {
                 type='text'
                 value={nombreForo}
                 onChange={handleInputChange}
+                placeholder='Foro Odyssey'
               />
             </label>
             <button className='boton' type='submit'>Crear Foro</button>

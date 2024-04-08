@@ -153,7 +153,7 @@ function ModificarColaborador() {
       <form className='mcola' onSubmit={handleSubmit}>
         <label>
           Cédula:
-          <input type="text" value={cedula} onChange={(e) => setCedula(e.target.value)} />
+          <input type="text" placeholder="123456789" value={cedula} onChange={(e) => setCedula(e.target.value)} />
         </label>
         <br />
         <button className='boton' type="submit">Buscar</button> 

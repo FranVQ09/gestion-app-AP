@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { doc, collection, onSnapshot, updateDoc, arrayUnion } from 'firebase/firestore';
 import db from '../../fisebaseConfig/firebaseConfig';
-import '../../styles/ConsultarForo.css';
+import '../../styles/ConsultarForo.css';  
 
 
 function ConsultarForo() {
@@ -34,21 +34,25 @@ function ConsultarForo() {
     setMostrarCajaTexto(true);
   };
 
-  const handleEnviarMensaje = async () => {
-    if (nuevoMensaje.trim() === '') return;
+  const handleEnviarMensaje = async (event) => {
+    event.preventDefault(); // Evitar el comportamiento predeterminado del formulario
   
+    if (nuevoMensaje.trim() === '') return;
+    
     const foroDocRef = doc(db, 'foros', selectedForo);
     await updateDoc(foroDocRef, {
       mensaje: arrayUnion(nuevoMensaje.trim())
     });
-  
+    
     window.alert('Mensaje enviado');
     setNuevoMensaje('');
     setMostrarCajaTexto(false);
-  
+    
     // Actualizar el estado de los mensajes después de agregar el nuevo mensaje
     setMensajes(prevMensajes => [...prevMensajes, nuevoMensaje.trim()]);
   };
+
+  
 
   return (
     <div className='content'>
@@ -56,44 +60,42 @@ function ConsultarForo() {
         <div className='name-content'>
           <h1 className='logo'>Consultar Foro</h1>
         </div>
-        <form className='consuforo'>
-          <label htmlFor="foroSelect">Selecciona un foro:</label>
-          <select id="foroSelect" value={selectedForo} onChange={handleForoChange}>
-            <option value="">Selecciona un foro</option>
-            {foros.map(foro => (
-              <option key={foro.id} value={foro.id}>{foro.nombreForo}</option>
-            ))}
-          </select>
+        <form className='consuforo' onSubmit={handleEnviarMensaje}>
+        <label htmlFor="foroSelect">Selecciona un foro:</label>
+        <select id="foroSelect"  value={selectedForo} onChange={handleForoChange}>
+          <option value="">Selecciona un foro</option>
+          {foros.map(foro => (
+            <option key={foro.id} value={foro.id}>{foro.nombreForo}</option>
+          ))}
+        </select>
           {selectedForo && (
+        <div>
+          <br />
+          <h2>Mensajes del foro: {mensajes.length}</h2>
+          <br />
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            {mensajes.map((mensaje, index) => (
+              <React.Fragment key={index}>
+                <li>{mensaje}</li>
+                 <hr />
+                <br/>
+              </React.Fragment>
+            ))}
+          </ul>
+          {!mostrarCajaTexto && (
+            <button className='boton' onClick={handleMostrarCajaTexto}>Agregar mensaje</button>
+          )}
+          {mostrarCajaTexto && (
             <div>
-              <h2>Mensajes del foro</h2>
-              <ul style={{ listStyleType: 'none', padding: 0 }}>
-                {mensajes.map((mensaje, index) => (
-                  <React.Fragment key={index}>
-                    <li>{mensaje}</li>
-                    {index < mensajes.length - 1 && <hr />} {/* Agregamos la línea divisora solo si no es el último mensaje */}
-                  </React.Fragment>
-                ))}
-              </ul>
-              {!mostrarCajaTexto && (
-                <React.Fragment>
-                  <button className='boton' onClick={handleMostrarCajaTexto}>Agregar mensaje</button>
-                </React.Fragment>
-              )}
-              {mostrarCajaTexto && (
-                <div>
-                  <textarea type="text" value={nuevoMensaje} onChange={(e) => setNuevoMensaje(e.target.value)} />
-                  
-                  <button className='boton' onClick={handleEnviarMensaje}>Enviar</button>
-                </div>
-              )}
-              
+              <textarea className="cajita" type="text" value={nuevoMensaje} onChange={(e) => setNuevoMensaje(e.target.value)} placeholder='¡Hola a todos!'/>
+              <button className='boton' onClick={handleEnviarMensaje}>Enviar</button>
             </div>
           )}
-          <br />
-                            <Link className='back' to="/evaluaciones">Regresar</Link>
+            </div>
+          )}
+          <br /><Link className='back' to="/evaluaciones">Regresar</Link>
         </form>
-      </div>
+        </div>
     </div>
   );
   

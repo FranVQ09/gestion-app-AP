@@ -87,16 +87,16 @@ function RegistrarColaborador() {
             <h1 className='logo'>Registro de Colaborador</h1>
           </div>
         <form className='rcola' onSubmit={store}>
-            <label htmlFor="nombre">Nombre Completo:</label>
-            <input type="text" id="nombre" name="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
+            <label htmlFor="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="John Doe" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
             <label htmlFor="cedula">Cédula:</label>
-            <input type="text" id="cedula" name="cedula" value={cedula} onChange={(e) => setCedula(e.target.value)} required />
+            <input type="text" id="cedula" name="cedula" placeholder="123456789" value={cedula} onChange={(e) => setCedula(e.target.value)} required />
             <label htmlFor="correo">Correo Electrónico:</label>
-            <input type="email" id="correo" name="correo" value={correo} onChange={(e) => setCorreo(e.target.value)} required />
+            <input type="email" id="correo" name="correo" placeholder="john.doe@estudiantec.cr" value={correo} onChange={(e) => setCorreo(e.target.value)} required />
             <label htmlFor="departamento">Departamento:</label>
-            <input type="text" id="departamento" name="departamento" value={departamento} onChange={(e) => setDepartamento(e.target.value)} required />
+            <input type="text" id="departamento" name="departamento" placeholder="Financiero contable" value={departamento} onChange={(e) => setDepartamento(e.target.value)} required />
             <label htmlFor="telefono">Teléfono:</label>
-            <input type="text" id="telefono" name="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)} required />
+            <input type="text" id="telefono" name="telefono" placeholder="81234567" value={telefono} onChange={(e) => setTelefono(e.target.value)} required />
             <label htmlFor="estado">Estado:</label>
             <select id="estado" name="estado" value={estado} onChange={handleEstadoChange} required>
               <option value="" disabled>Seleccionar estado</option>

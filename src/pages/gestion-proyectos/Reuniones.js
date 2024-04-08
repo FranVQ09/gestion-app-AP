@@ -49,13 +49,13 @@ function Reuniones() {
         <div>
             <form className='reu' onSubmit={storeReuniones}>
                 <label htmlFor='tema'>Tema: </label>
-                <input type='text' value={tema} id='tema' name='tema' onChange={(e) => setTema(e.target.value)} required></input>
+                <input type='text' value={tema} id='tema' name='tema' onChange={(e) => setTema(e.target.value)} placeholder="Tema Genesis" required></input>
                 <label htmlFor='fecha'>Fecha: </label>
-                <input type='text' value={fecha} id='fecha' name='fecha' onChange={(e) => setFecha(e.target.value)} required></input>
+                <input type='text' value={fecha} id='fecha' name='fecha' onChange={(e) => setFecha(e.target.value)} placeholder="01/01/2024" required></input>
                 <label htmlFor='medio'>Medio: </label>
-                <input type='text' value={medio} id='medio' name='medio' onChange={(e) => setMedio(e.target.value)} required></input>
+                <input type='text' value={medio} id='medio' name='medio' onChange={(e) => setMedio(e.target.value)} placeholder="Zoom" required></input>
                 <label htmlFor='colaboradores'>Colaboradores: </label>
-                <input type="text" value={colaboradores} onChange={(e) => setColaboradores(e.target.value)} placeholder="Colaboradores (separados por comas)" required />
+                <input type="text" value={colaboradores} onChange={(e) => setColaboradores(e.target.value)} placeholder="Andrés Abarca, Mell Brenes, Vitor Ta..." required />
                 <div>
                     <button className='boton' type='submit'>Crear Reunión</button>
                     <Link className='back' type="button" to="/gestionProyectos">Regresar</Link>

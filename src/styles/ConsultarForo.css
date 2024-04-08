@@ -146,3 +146,15 @@
     cursor: pointer;
     outline: none;
   }
+
+  .consuforo .cajita {
+    outline: none;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    text-decoration: none;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+  }
