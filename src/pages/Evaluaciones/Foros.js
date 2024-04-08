@@ -16,8 +16,7 @@ function Foros() {
     e.preventDefault();
     try {
       await addDoc(collection(db, 'foros'), {
-        NombreForo: nombreForo,
-        Mensajes: []
+        nombreForo: nombreForo,
       });
       alert('Foro creado correctamente');
       setNombreForo('');

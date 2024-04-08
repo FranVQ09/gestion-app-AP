@@ -123,7 +123,7 @@ function CrearProyecto() {
                     <label htmlFor="fechaFin">Fecha de Fin:</label>
                     <input type="text" id="fechaFin" name="fechaFin" value={fechaFin} onChange={(e) => setFechaFin(e.target.value)} placeholder="31/12/2024" required/>
                     <label htmlFor="historial">Historial:</label>
-                    <input type="text" id="historial" name="historial" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Se incorporó una nueva tarea al Proyecto..." required/>
+                    <input type="text" id="historial" name="historial" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Se incorporó una nueva tarea al Proyecto..." readOnly/>
 
                     </div>
                     <div>
