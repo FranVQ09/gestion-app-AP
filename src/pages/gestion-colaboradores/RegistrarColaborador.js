@@ -40,10 +40,34 @@ function RegistrarColaborador() {
 
   const store = async (e) => {
     e.preventDefault();
-    if (!correo.endsWith('@estudiantec.cr')) {
-      setMensaje('El correo electrónico debe ser de la forma: usuario@estudiantec.cr');
+  
+  
+    // Validar que no haya un colaborador con la misma cédula
+    const cedulaQuery = await getDocs(query(collection(db, 'colaboradores'), where('cedula', '==', cedula)));
+    if (!cedulaQuery.empty) {
+      alert('Ya existe un colaborador con la misma cédula.');
       return;
     }
+
+    const correoQuery = await getDocs(query(collection(db, 'colaboradores'), where('correo', '==', correo)));
+    if (!correoQuery.empty) {
+      alert('Ya existe otro colaborador con el mismo correo.');
+      return;
+    }
+
+    const telefonoQuery = await getDocs(query(collection(db, 'colaboradores'), where('telefono', '==', telefono)));
+    if (!telefonoQuery.empty) {
+      alert('Ya existe otro colaborador con ese número de teléfono');
+      return;
+    }
+  
+    // Validar formato de correo electrónico
+    if (!correo.endsWith('@estudiantec.cr')) {
+      alert('El correo electrónico debe ser de la forma: usuario@estudiantec.cr');
+      return;
+    }
+  
+    // Resto del código para almacenar el colaborador si pasa las validaciones
     await addDoc(collection(db, 'colaboradores'), {
       nombre: nombre,
       cedula: cedula,
@@ -53,20 +77,22 @@ function RegistrarColaborador() {
       estado: estado,
       proyecto: proyecto
     });
-
+  
     // Obtener referencia al documento del proyecto utilizando el nombre del proyecto
-    const proyectosCollection = collection(db, 'proyecto');
-    const querySnapshot = await getDocs(query(proyectosCollection, where('nombreProyecto', '==', proyecto)));
-    if (!querySnapshot.empty) {
-      const proyectoDoc = querySnapshot.docs[0];
-      const proyectoId = proyectoDoc.id;
-
-      // Actualizar el array colaboradores en el documento del proyecto
-      await updateDoc(doc(db, 'proyecto', proyectoId), {
-        colaboradores: arrayUnion(nombre) 
-      });
-    };
-
+    if (estado === 'trabajando') {
+      const proyectosCollection = collection(db, 'proyecto');
+      const querySnapshot = await getDocs(query(proyectosCollection, where('nombreProyecto', '==', proyecto)));
+      if (!querySnapshot.empty) {
+        const proyectoDoc = querySnapshot.docs[0];
+        const proyectoId = proyectoDoc.id;
+  
+        // Actualizar el array colaboradores en el documento del proyecto
+        await updateDoc(doc(db, 'proyecto', proyectoId), {
+          colaboradores: arrayUnion(nombre)
+        });
+      }
+    }
+  
     alert('Colaborador registrado correctamente');
     setNombre('');
     setCedula('');

@@ -20,22 +20,31 @@ function CrearProyecto() {
     const proyectosCollection = collection(db, 'proyecto');
 
     const agregarTarea = () => {
+        // Verificar si hay alguna tarea con todos los campos vacíos
         const nuevaTareaVacia = tareas.some(tarea => Object.values(tarea).every(value => value === ''));
         if (nuevaTareaVacia) {
-            alert('Por favor, complete todos los campos de la nueva tarea antes de agregarla.');
-            return;
+          alert('Por favor, complete todos los campos de la nueva tarea antes de agregarla.');
+          return;
         }
-
+      
+        // Validar el formato de fecha para las nuevas tareas
+        const fechaInvalida = tareas.some(tarea => !/^\d{2}\/\d{2}\/\d{4}$/.test(tarea.fechaInicio) || !/^\d{2}\/\d{2}\/\d{4}$/.test(tarea.fechaFin));
+        if (fechaInvalida) {
+          alert('El formato de las fechas de inicio y fin de la tarea debe ser "dd/mm/aaaa".');
+          return;
+        }
+      
+        // Si no hay ninguna tarea vacía ni fechas inválidas, agregar una nueva tarea vacía al arreglo de tareas
         const nuevaTarea = {
-            nombreTarea: '',
-            descripcion: '',
-            estado: '',
-            storypoints: 0,
-            fechaInicio: '',
-            fechaFin: ''
+          nombreTarea: '',
+          descripcion: '',
+          estado: '',
+          storypoints: 0,
+          fechaInicio: '',
+          fechaFin: ''
         };
         setTareas([...tareas, nuevaTarea]);
-    };
+      };
 
     const deshacerTarea = () => {
         if (tareas.length === 0) {
@@ -58,6 +67,19 @@ function CrearProyecto() {
 
     const storeProyect = async (e) => {
         e.preventDefault();
+
+        const fechaInicioRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+        if (!fechaInicio.match(fechaInicioRegex)) {
+            alert('El formato de la fecha de inicio debe ser "dd/mm/aaaa".');
+            return;
+        }
+
+        const fechaFinRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+        if (!fechaFin.match(fechaFinRegex)) {
+            alert('El formato de la fecha de fin debe ser "dd/mm/aaaa".');
+            return;
+        }
+
         const tareasValidas = tareas.every(tarea => Object.values(tarea).some(value => value !== ''));
         if (!tareasValidas) {
             alert('Por favor, complete todos los campos de las tareas antes de guardar el proyecto.');
@@ -144,9 +166,9 @@ function CrearProyecto() {
                                     <label htmlFor="storypoints">Story points:</label>
                                     <input type="number" value={tarea.storypoints} onChange={(e) => actualizarTarea(index, 'storypoints', e.target.value)} required />
                                     <label htmlFor="fechaInicio">Fecha de Inicio:</label>
-                                    <input type="text" value={tarea.fechaInicio} onChange={(e) => actualizarTarea(index, 'fechaInicio', e.target.value)} placeholder="Fecha de Inicio" required />
+                                    <input type="text" value={tarea.fechaInicio} onChange={(e) => actualizarTarea(index, 'fechaInicio', e.target.value)} placeholder="01/01/2024" required />
                                     <label htmlFor="fechaFin">Fecha de Fin:</label>
-                                    <input type="text" value={tarea.fechaFin} onChange={(e) => actualizarTarea(index, 'fechaFin', e.target.value)} placeholder="Fecha de Fin" required />
+                                    <input type="text" value={tarea.fechaFin} onChange={(e) => actualizarTarea(index, 'fechaFin', e.target.value)} placeholder="31/12/2024" required />
                                 </div>
                                 <button className='cpback' type="button" onClick={deshacerTarea}>Deshacer</button>
                                 {index !== tareas.length - 1 && <><hr/><br/></>}
