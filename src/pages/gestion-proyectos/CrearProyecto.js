@@ -129,9 +129,9 @@ function CrearProyecto() {
                     <label htmlFor="nombreProyecto">Nombre del Proyecto:</label>
                     <input type="text" id="nombreProyecto" name="nombreProyecto" value={nombreProyecto} onChange={(e) => setNombreProyecto(e.target.value)} placeholder="Proyecto Phoenix" required />
                     <label htmlFor="recursos">Recursos:</label>
-                    <input type="text" id="recursos" name="recursos" value={recursos} onChange={(e) => setRecursos(e.target.value)} placeholder="Tres computadoras, una impresora, d..." required />
+                    <input type="text" id="recursos" name="recursos" value={recursos} onChange={(e) => setRecursos(e.target.value)} placeholder="Cuatro computadoras, una impreso..." required />
                     <label htmlFor="presupuesto">Presupuesto:</label>
-                    <input type="text" id="presupuesto" name="presupuesto" value={presupuesto} onChange={(e) => setPresupuesto(e.target.value)} placeholder="5.000.000" required />
+                    <input type="text" id="presupuesto" name="presupuesto" value={presupuesto} onChange={(e) => setPresupuesto(e.target.value)} placeholder="₡ 5.000.000" required />
                     <label htmlFor="estadoProyecto">Estado del Proyecto:</label>
                     <select id="estadoProyecto" className='laselecta' name="estadoProyecto" value={estadoProyecto} onChange={(e) => setEstadoProyecto(e.target.value)} required>
                         <option value="" disabled>Seleccionar estado del proyecto</option>
@@ -139,13 +139,13 @@ function CrearProyecto() {
                         <option value="Finalizado">Finalizado</option>
                     </select>
                     <label htmlFor="descripcion">Descripción:</label>
-                    <input type="text" id="descripcion" name="descripcion" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="El Proyecto Phoenix es una iniciativa que busca iluminar el camino..." required/>
+                    <input type="text" id="descripcion" name="descripcion" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="El Proyecto Phoenix es una iniciati..." required/>
                     <label htmlFor="fechaInicio">Fecha de Inicio:</label>
                     <input type="text" id="fechaInicio" name="fechaInicio" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} placeholder="01/01/2024" required/>
                     <label htmlFor="fechaFin">Fecha de Fin:</label>
                     <input type="text" id="fechaFin" name="fechaFin" value={fechaFin} onChange={(e) => setFechaFin(e.target.value)} placeholder="31/12/2024" required/>
                     <label htmlFor="historial">Historial:</label>
-                    <input type="text" id="historial" name="historial" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Se incorporó una nueva tarea al Proyecto..." readOnly/>
+                    <input type="text" id="historial" name="historial" value={historial} onChange={(e) => setHistorial(e.target.value)} placeholder="Se incorporó una nueva tarea al Pr..." readOnly/>
 
                     </div>
                     <div>

@@ -161,6 +161,7 @@ function ModificarProyecto() {
                                                 <label htmlFor={`nombreTarea-${index}`}>Nombre de la Tarea:</label>
                                                 <input
                                                     type="text"
+                                                    placeholder="Tarea Horizon"
                                                     value={tarea.nombreTarea}
                                                     onChange={(e) => handleModificarTarea(index, e.target.value, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)}
                                                     id={`nombreTarea-${index}`}
@@ -208,6 +209,7 @@ function ModificarProyecto() {
                                                 <input
                                                     type="text"
                                                     value={tarea.fechaInicio}
+                                                    placeholder='01/01/2024'
                                                     onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, e.target.value, tarea.fechaFin)}
                                                     id={`fechaInicio-${index}`}
                                                 />
@@ -215,6 +217,7 @@ function ModificarProyecto() {
                                                 <input
                                                     type="text"
                                                     value={tarea.fechaFin}
+                                                    placeholder='31/12/2024'
                                                     onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, tarea.responsable, tarea.storypoints, tarea.fechaInicio, e.target.value)}
                                                     id={`fechaFin-${index}`}
                                                 />

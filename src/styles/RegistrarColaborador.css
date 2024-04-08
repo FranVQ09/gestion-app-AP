@@ -15,6 +15,7 @@
   margin-right: auto;
   overflow-y: scroll;
   max-height: 700px;
+  position: fixed;
   }
   
 

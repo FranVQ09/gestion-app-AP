@@ -7,13 +7,12 @@
     background: #fff;
     padding: 2rem;
     width: 400px;
-    height: auto;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   ::-webkit-scrollbar{
     width: 10px;
@@ -33,14 +32,13 @@
     width: 400px;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    margin-right: auto;
     max-height: 700px;
     overflow-y: scroll;
-    margin-top: 2rem;
     margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
-    position: relative;
+    margin-top: 20rem;
+    position: fixed;
   }
 
   /* Botones*/
