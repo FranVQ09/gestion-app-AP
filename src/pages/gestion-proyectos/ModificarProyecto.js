@@ -139,7 +139,7 @@ function ModificarProyecto() {
                 </div>
                 <form className='mproye'>
                     <label htmlFor="proyecto">Seleccione un Proyecto:</label>
-                    <select id="proyecto" value={proyectoSeleccionado} onChange={(e) => setProyectoSeleccionado(e.target.value)}>
+                    <select id="proyecto" className='laselecta' value={proyectoSeleccionado} onChange={(e) => setProyectoSeleccionado(e.target.value)}>
                         <option value="">Seleccione un proyecto</option>
                         {proyectos.map(proyecto => (
                             <option key={proyecto.id} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
@@ -175,6 +175,7 @@ function ModificarProyecto() {
                                                 <label htmlFor="estado">Estado:</label>
                                                 <select
                                                     value={tarea.estado}
+                                                    className='laselecta'
                                                     onChange={(e) => handleEstadoChange(index, e.target.value)}> 
                                                     <option value="Por Hacer">Por Hacer</option>
                                                     <option value="En Progreso">En Progreso</option>
@@ -184,6 +185,7 @@ function ModificarProyecto() {
                                                     <label htmlFor="responsable">Responsable:</label>
                                                     <select
                                                         value={tarea.responsable}
+                                                        className='laselecta'
                                                         onChange={(e) => handleModificarTarea(index, tarea.nombreTarea, tarea.descripcion, e.target.value, tarea.storypoints, tarea.fechaInicio, tarea.fechaFin)} 
                                                     >
                                                         <option value="">Seleccione un responsable</option>

@@ -120,12 +120,13 @@ function InformeGeneral() {
         </div>
         <form className='info'>
           {/* Dropdown para seleccionar el proyecto */}
-          <select value={selectedProyecto} onChange={handleProyectoChange}>
+          <select className='laselecta' value={selectedProyecto} onChange={handleProyectoChange}>
             <option value="">Selecciona un proyecto</option>
             {proyectos.map(proyecto => (
               <option key={proyecto.nombreProyecto} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>
             ))}
           </select>
+          <br />
           <canvas id="myChart" width="300" height="300"></canvas>
           <Link className='back' type="button" to="/evaluaciones">Regresar</Link>
 

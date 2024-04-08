@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import db from '../../fisebaseConfig/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import '../../styles/CrearProyecto.css';  
+import { countProyectos } from '../../util';
+
 
 function CrearProyecto() {
     const [nombreProyecto, setNombreProyecto] = useState('');
@@ -109,7 +111,7 @@ function CrearProyecto() {
                     <label htmlFor="presupuesto">Presupuesto:</label>
                     <input type="text" id="presupuesto" name="presupuesto" value={presupuesto} onChange={(e) => setPresupuesto(e.target.value)} placeholder="5.000.000" required />
                     <label htmlFor="estadoProyecto">Estado del Proyecto:</label>
-                    <select id="estadoProyecto" name="estadoProyecto" value={estadoProyecto} onChange={(e) => setEstadoProyecto(e.target.value)} required>
+                    <select id="estadoProyecto" className='laselecta' name="estadoProyecto" value={estadoProyecto} onChange={(e) => setEstadoProyecto(e.target.value)} required>
                         <option value="" disabled>Seleccionar estado del proyecto</option>
                         <option value="En progreso">En progreso</option>
                         <option value="Finalizado">Finalizado</option>
@@ -134,7 +136,7 @@ function CrearProyecto() {
                                 <label htmlFor="nombreTarea">Nombre de la Tarea:</label>
                                     <input type="text" value={tarea.nombreTarea} onChange={(e) => actualizarTarea(index, 'nombreTarea', e.target.value)} placeholder="Tarea Horizon" required />
                                     <label htmlFor="estado">Estado:</label>
-                                    <select value={tarea.estado} onChange={(e) => actualizarTarea(index, 'estado', e.target.value)} required>
+                                    <select className='laselecta' value={tarea.estado} onChange={(e) => actualizarTarea(index, 'estado', e.target.value)} required>
                                         <option value="" disabled>Seleccionar estado de la tarea</option>
                                         <option value="En progreso">En progreso</option>
                                         <option value="Finalizado">Finalizado</option>

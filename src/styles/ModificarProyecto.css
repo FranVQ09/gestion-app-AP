@@ -195,10 +195,11 @@
     border: 1.8px solid #A7BEAE;
   }
   
-  .mproye2 select {
+  .mproye2 .select {
     outline: none;
     padding: 0.8rem 1rem;
     width: 100%;
     display: inline-block;
     margin-bottom: 1rem;
+    text-align: left;
   }

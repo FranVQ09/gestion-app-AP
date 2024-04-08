@@ -89,7 +89,7 @@ function ColaboradoresTabla() {
     <div className='content'>
       <div className='flex-div'>
         <div className='name-content'>
-          <h1 className='logo'>Crear Reunión</h1>
+          <h1 className='logo'>Asignación</h1>
         </div>
         <table className="content-table">
           <thead>
@@ -105,8 +105,8 @@ function ColaboradoresTabla() {
                 <td>{colaborador.nombre}</td>
                 <td>{colaborador.proyecto}</td>
                 <td>
-                  <select value={proyectosSeleccionados[colaborador.id] || ''} onChange={e => handleSeleccionProyecto(colaborador.id, e.target.value)}>
-                    <option value="">Seleccionar Proyecto</option>
+                  <select className='asilaselecta' value={proyectosSeleccionados[colaborador.id] || ''} onChange={e => handleSeleccionProyecto(colaborador.id, e.target.value)}>
+                    <option value="">Proyecto</option>
                     {proyectos.map(proyecto => (
                       <option key={proyecto.id} value={proyecto.nombreProyecto}>
                         {proyecto.nombreProyecto}

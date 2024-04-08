@@ -80,7 +80,10 @@
     color: #fff;
     text-decoration: none;
     margin-left: left;
+    width: 100%;
+    display: inline-block;
   }
+
   
   .asiboton:hover,
   .asiboton:focus {
@@ -100,7 +103,8 @@
     color: #fff;
     text-decoration: none;
     margin-left: auto;
-    margin-right: 3rem;
+    margin-right: 5.5rem;
+    display: inline-block;
   }
   
   .back-container .back:hover,
@@ -168,4 +172,16 @@
 .content-table tbody tr.active-row {
   font-weight: bold;
   color: #A7BEAE;
+}
+
+
+
+.asilaselecta {
+  padding: 0.3rem 1rem;
+  outline: none;
+  font-size: 0.8rem;
+  text-decoration: none;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
 }

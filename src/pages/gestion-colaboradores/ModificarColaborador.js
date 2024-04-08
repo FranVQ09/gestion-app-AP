@@ -188,7 +188,7 @@ function ModificarColaborador() {
           <br />
           <label>
             Estado:
-            <select name="estado" value={estado} onChange={handleEstadoChange} disabled={!colaborador}>
+            <select className='laselecta' name="estado" value={estado} onChange={handleEstadoChange} disabled={!colaborador}>
                 <option value="" disabled>Seleccionar estado</option>
                 <option value="Trabajando en proyecto">Trabajando en un proyecto</option>
                 <option value="libre">Libre</option>
@@ -199,7 +199,7 @@ function ModificarColaborador() {
             {showProyectosDropdown && (
               <div className='proyectoModificarColaborador'>
                 <label htmlFor='proyecto' name='proyecto'>Nombre Proyecto: </label>
-                <select id='proyecto' name='proyecto' value={proyecto} onChange={handleProyectoChange} required>
+                <select className='laselecta' id='proyecto' name='proyecto' value={proyecto} onChange={handleProyectoChange} required>
                   <option value="" disabled>Seleccionar proyecto</option>
                   {proyectos.map((proyecto) => (
                     <option key={proyecto.id} value={proyecto.id}>{proyecto.nombreProyecto}</option>

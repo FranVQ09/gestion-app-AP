@@ -98,7 +98,7 @@ function RegistrarColaborador() {
             <label htmlFor="telefono">Teléfono:</label>
             <input type="text" id="telefono" name="telefono" placeholder="81234567" value={telefono} onChange={(e) => setTelefono(e.target.value)} required />
             <label htmlFor="estado">Estado:</label>
-            <select id="estado" name="estado" value={estado} onChange={handleEstadoChange} required>
+            <select id="estado" className='laselecta' name="estado" value={estado} onChange={handleEstadoChange} required>
               <option value="" disabled>Seleccionar estado</option>
               <option value="trabajando">Trabajando en un proyecto</option>
               <option value="libre">Libre</option>
@@ -106,7 +106,7 @@ function RegistrarColaborador() {
           {showProyectosDropdown && (
             <div className='segundoD'>
               <label htmlFor='proyecto'>Nombre de Proyecto:</label>
-              <select id="proyecto" name='proyecto' value={proyecto} onChange={(e) => setProyecto(e.target.value)} required>
+              <select className='laselecta' id="proyecto" name='proyecto' value={proyecto} onChange={(e) => setProyecto(e.target.value)} required>
                 <option value="" disabled>Seleccionar proyecto</option>
                 {proyectos.map((proyecto) => (
                   <option key={proyecto.id} value={proyecto.nombreProyecto}>{proyecto.nombreProyecto}</option>

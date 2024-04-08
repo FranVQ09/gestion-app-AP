@@ -62,7 +62,7 @@ function ConsultarForo() {
         </div>
         <form className='consuforo' onSubmit={handleEnviarMensaje}>
         <label htmlFor="foroSelect">Selecciona un foro:</label>
-        <select id="foroSelect"  value={selectedForo} onChange={handleForoChange}>
+        <select className='laselecta' id="foroSelect"  value={selectedForo} onChange={handleForoChange}>
           <option value="">Selecciona un foro</option>
           {foros.map(foro => (
             <option key={foro.id} value={foro.id}>{foro.nombreForo}</option>

@@ -4,6 +4,7 @@ import db from '../../fisebaseConfig/firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 import '../../styles/ConsultarProyecto.css'; 
 
+
 function ConsultarProyectos() {
 
   const [proyectoItems, setProyectoItems] = useState([]);
@@ -46,9 +47,15 @@ function ConsultarProyectos() {
           <h1 className='logo'>Consultar Proyecto</h1>
         </div>
         <form className='consuproye' onSubmit={storeProyect}>
-          {proyectoItems.map((item) => (
+        <h2>{proyectoItems.length} Proyectos</h2>
+        <br/>
+        <hr />
+        <br/>
+          {proyectoItems.map((item, index) => (
             <div key={item.id}>
               <h3>Nombre del Proyecto: <span class='logo'>{item.nombreProyecto}</span></h3>
+              <br/>
+              <h5>Proyecto nº{index + 1}:</h5>
               <p>Descripción: {item.descripcion}</p>
               <p>Recursos: {item.recursos}</p>
               <p>Presupuesto: {item.presupuesto}</p>
