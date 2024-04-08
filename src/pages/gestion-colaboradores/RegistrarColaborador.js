@@ -114,7 +114,9 @@ function RegistrarColaborador() {
               </select>
             </div>
           )}
-          <Link className='boton' type='submit' to="/registrarColaborador">Registrar colaborador</Link>
+          <button className="boton" type="submit">
+            Registrar Colaborador
+          </button>
           <Link className='back' to="/gestionColaboradores">Regresar</Link>
         </form>
       </div>

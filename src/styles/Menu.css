@@ -7,7 +7,7 @@
     flex-direction: column;
     background: #fff;
     padding: 2rem;
-    width: 550px;
+    width: 400px;
     height: 300px;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
@@ -22,7 +22,7 @@
     flex-direction: column;
     background: #fff;
     padding: 2rem;
-    width: 550px;
+    width: 400px;
     height: 360px;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
@@ -95,7 +95,7 @@
   .eva2 .back {
     outline: none;
     border: none;
-    background: #B85042;
+    background: #A9A9A9;
     padding: 0.8rem 1rem;
     border-radius: 0.4rem;
     font-size: 1.1rem;
@@ -106,7 +106,7 @@
   
   .eva2 .back:hover,
   .eva2 .back:focus {
-    background: #9A473C;
+    background: #808080;
     cursor: pointer;
     outline: none;
   }

@@ -17,6 +17,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   min-height: 600px;
+  
 }
 
 
@@ -29,6 +30,7 @@ body {
   margin-top: auto;
   margin-left: auto;
   margin-right: auto;
+  width: 400px;
 }
 
 
@@ -41,6 +43,7 @@ body {
   margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
+  width: 400px;
 }
 
 /* Cajita del login*/
@@ -49,7 +52,7 @@ form {
   flex-direction: column;
   background: #fff;
   padding: 2rem;
-  width: 550px;
+  width: 400px;
   height: auto;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);

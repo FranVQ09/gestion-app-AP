@@ -125,6 +125,7 @@ function ColaboradoresTabla() {
           </tbody>
         </table>
       </div>
+      <br/>
       <div className='back-container'>
         <Link className='back' to="/gestionColaboradores">Regresar</Link>
       </div>
