@@ -33,6 +33,7 @@ function InformeGeneral() {
     const progresos = [];
     const fechaActual = new Date();
 
+
     tareas.forEach(tarea => {
       // Convertir las fechas a objetos de fecha
       const fechaInicioArray = tarea.fechaInicio.split('/');
@@ -40,16 +41,27 @@ function InformeGeneral() {
       const fechaFinArray = tarea.fechaFin.split('/');
       const fechaFin = new Date(`${fechaFinArray[2]}-${fechaFinArray[1]}-${fechaFinArray[0]}`);
 
-      // Calcular la duración total de la tarea en días
-      const duracionTotal = (fechaFin - fechaInicio) / (1000 * 60 * 60 * 24);
+      const fechaActual = new Date();
+
+      // Comparar las fechas
+      if (fechaActual > fechaInicio) {
+        console.log("La fecha actual es posterior a la fecha de inicio.");
+        const duracionTotal = (fechaFin - fechaInicio) / (1000 * 60 * 60 * 24);
 
       // Calcular los días transcurridos desde la fecha de inicio
-      const diasTranscurridos = (fechaActual - fechaInicio) / (1000 * 60 * 60 * 24);
+        const diasTranscurridos = (fechaActual - fechaInicio) / (1000 * 60 * 60 * 24);
 
-      // Calcular el progreso como un valor entre 0 y 1
-      const progreso = Math.min(diasTranscurridos / duracionTotal, 1);
+        // Calcular el progreso como un valor entre 0 y 1
+        const progreso = Math.min(diasTranscurridos / duracionTotal, 1);
 
-      progresos.push(progreso);
+        progresos.push(progreso);
+        
+      } else if (fechaActual < fechaInicio) {
+        console.log("La fecha actual es anterior a la fecha de inicio.");
+      } else {
+        console.log("La fecha actual es igual a la fecha de inicio.");
+      }
+
     });
 
     return progresos;

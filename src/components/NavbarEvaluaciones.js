@@ -9,7 +9,7 @@ const NavbarEvaluaciones = () => {
           <div className='name-content'>
             <h1 className='logo'>Evaluaciones</h1>
           </div>
-          <form className="eva"> 
+          <form className="eva2"> 
             <Link className='boton' to="/informeGeneral">Informe General</Link>
             <Link className='boton' to="/burndownChart">Burndown Chart</Link>
             <Link className='boton' to="/crearForo">Crear Foro</Link>
