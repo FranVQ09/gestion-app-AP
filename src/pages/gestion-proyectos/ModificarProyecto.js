@@ -156,6 +156,7 @@ function ModificarProyecto() {
                                     {proyecto.tareas.map((tarea, index) => (
                                         <div key={index}>
                                             <div>
+                                                <br/>
                                                 <h2>Tarea nº{index + 1}: </h2>
                                                 <br/>
                                                 <label htmlFor={`nombreTarea-${index}`}>Nombre de la Tarea:</label>
@@ -225,17 +226,20 @@ function ModificarProyecto() {
                                             <button className='back' onClick={() => handleEliminarTarea(index)}>Eliminar Tarea</button>
                                             <br />
                                             {index !== proyecto.tareas.length - 1 && <hr /> }
-                                            <br />
                                         </div>
                                     ))}
                                 </ul>
                             </div>
+                            <hr />
+                            <br />
                             <input
                                 type="text"
                                 placeholder="Nombre de la Tarea"
                                 value={nuevoNombreTarea}
                                 onChange={(e) => setNuevoNombreTarea(e.target.value)}
                             />
+                            <br />
+                            <br />
                             <button className='boton' type="button" onClick={agregarTarea}>Agregar Tarea</button>
                             <br />
                             <hr />
