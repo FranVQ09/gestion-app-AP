@@ -10,6 +10,7 @@ function RegistrarColaborador() {
   const [nombre, setNombre] = useState('');
   const [cedula, setCedula] = useState('');
   const [correo, setCorreo] = useState('');
+  const [password, setPassword] = useState('');
   const [departamento, setDepartamento] = useState('');
   const [telefono, setTelefono] = useState('');
   const [estado, setEstado] = useState('');
@@ -72,6 +73,7 @@ function RegistrarColaborador() {
       nombre: nombre,
       cedula: cedula,
       correo: correo,
+      contraseña: password,
       departamento: departamento,
       telefono: telefono,
       estado: estado,
@@ -97,6 +99,7 @@ function RegistrarColaborador() {
     setNombre('');
     setCedula('');
     setCorreo('');
+    setPassword('');
     setDepartamento('');
     setTelefono('');
     setEstado('');
@@ -119,6 +122,8 @@ function RegistrarColaborador() {
             <input type="text" id="cedula" name="cedula" placeholder="123456789" value={cedula} onChange={(e) => setCedula(e.target.value)} required />
             <label htmlFor="correo">Correo Electrónico:</label>
             <input type="email" id="correo" name="correo" placeholder="john.doe@estudiantec.cr" value={correo} onChange={(e) => setCorreo(e.target.value)} required />
+            <label htmlFor="password">Contraseña:</label>
+            <input type='password' id='password' name='password' placeholder='********' value={password} onChange={(e) => setPassword(e.target.value)} required></input>
             <label htmlFor="departamento">Departamento:</label>
             <input type="text" id="departamento" name="departamento" placeholder="Financiero contable" value={departamento} onChange={(e) => setDepartamento(e.target.value)} required />
             <label htmlFor="telefono">Teléfono:</label>

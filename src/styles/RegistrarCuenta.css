@@ -1,0 +1,105 @@
+
+  
+/* Cajita del login*/
+.rcola {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 2rem;
+    width: 400px;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: scroll;
+    max-height: 700px;
+    position: fixed;
+    }
+    
+  
+    /* Botones*/
+    
+    .rcola .boton {
+      outline: none;
+      border: none;
+      background: #A7BEAE;
+      padding: 0.8rem 1rem;
+      border-radius: 0.4rem;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    .rcola .boton:hover,
+    .rcola .boton:focus {
+      background: #7C927C;
+      cursor: pointer;
+      outline: none;
+    }
+    
+    .rcola .back {
+      outline: none;
+      border: none;
+      background: #A9A9A9;
+      padding: 0.8rem 1rem;
+      border-radius: 0.4rem;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    .rcola .back:hover,
+    .rcola .back:focus {
+      background: #808080;
+      cursor: pointer;
+      outline: none;
+    }
+  
+  
+  /* Cajita de los input*/
+  .rcola input {
+    outline: none;
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  
+  .rcola input:focus {
+    border: 1.8px solid #A7BEAE;
+  }
+  
+  .rcola label {
+    text-align: left;
+    width: 100%;
+    display: inline-block; 
+    margin-bottom: 0.5rem;
+  }
+  
+  .rcola .segundoD {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    margin-bottom: 1rem; 
+  }
+  
+  .rcola .segundoD label {
+    text-align: left;
+    width: 100%;
+    display: inline-block; 
+    margin-bottom: 0.5rem;
+  }
+  
+  .rcola select {
+    outline: none;
+    padding: 0.8rem 1rem;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  
