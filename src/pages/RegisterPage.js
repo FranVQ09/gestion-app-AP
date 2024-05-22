@@ -74,7 +74,7 @@ function RegisterPage() {
               <div className='name-content'>
                 <h1 className='logo'>Registrar Cuenta</h1>
               </div>
-            <form className='rcola' onSubmit={register}>
+            <form className='regis' onSubmit={register}>
                 <label htmlFor="nombre">Nombre completo:</label>
                 <input type="text" id="nombre" name="nombre" placeholder="John Doe" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
                 <label htmlFor="cedula">Cédula:</label>
