@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import db from '../../fisebaseConfig/firebaseConfig';
-import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, addDoc, query, where } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import '../../styles/ModificarProyecto.css';
+
+
 
 function ModificarProyecto() {
     const [proyectos, setProyectos] = useState([]);
@@ -11,6 +13,8 @@ function ModificarProyecto() {
     const [proyectoNoEncontrado, setProyectoNoEncontrado] = useState(false);
     const [colaboradoresProyecto, setColaboradoresProyecto] = useState([]);
     const [nuevoNombreTarea, setNuevoNombreTarea] = useState('');
+    const [mapeoColaboradores, setMapeoColaboradores] = useState([]);
+    const mailCollection = collection(db, 'mail');
 
     useEffect(() => {
         const obtenerProyectos = async () => {
@@ -29,6 +33,35 @@ function ModificarProyecto() {
         }
     }, [proyecto]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            if (colaboradoresProyecto.length !== 0) {
+                const colaboradoresCollection = collection(db, 'colaboradores');
+                const colaboradoresData = [];
+    
+                
+                for (const nombreColaborador of colaboradoresProyecto) {
+                  
+                    const colaboradorQuery = query(colaboradoresCollection, where('nombre', '==', nombreColaborador));
+                    const querySnapshot = await getDocs(colaboradorQuery);
+                    
+                   
+                    if (!querySnapshot.empty) {
+                        
+                        const colaboradorData = querySnapshot.docs[0].data();
+                        colaboradoresData.push(colaboradorData);
+                    } else {
+                        console.log(`No se encontró el colaborador con el nombre: ${nombreColaborador}`);
+                        
+                    }
+                }
+                setMapeoColaboradores(colaboradoresData);
+            }
+        };
+    
+        fetchData();
+    }, [colaboradoresProyecto]);
+
     const searchProyecto = async () => {
         if (!proyectoSeleccionado) return;
 
@@ -46,6 +79,9 @@ function ModificarProyecto() {
     };
 
     const updateProyecto = async () => {
+
+        const toEmails = mapeoColaboradores.map(colaborador => colaborador.correo);
+
         if (!proyecto) {
             return;
         }
@@ -58,6 +94,16 @@ function ModificarProyecto() {
             await updateDoc(proyectoDocRef, newData);
             alert("¡Se actualizó el proyecto!");
             console.log("¡Se actualizó el proyecto!");
+
+            await addDoc(mailCollection, {
+                to: toEmails,
+                message: {
+                    subject: `Se modificó el proyecto: ${proyectoSeleccionado}`,
+                    text: `Se modificó el proyecto: ${proyectoSeleccionado}`,
+                    html: `<p> Se modificó el proyecto: ${proyectoSeleccionado}</p>`
+                }
+            })
+
         } catch (error) {
             console.error("Error, no se actualizó: ", error);
         }
@@ -105,7 +151,7 @@ function ModificarProyecto() {
             fechaFin: nuevaFechaFin
         };
 
-        const tareaModificadaMensaje = `Se modificó: ${nuevoNombre}`;
+        const tareaModificadaMensaje = ` Se modificó: ${nuevoNombre}`;
 
         setProyecto(prevProyecto => ({
             ...prevProyecto,
@@ -123,7 +169,7 @@ function ModificarProyecto() {
     const handleEliminarTarea = (index) => {
         const nombreTareaEliminada = proyecto.tareas[index].nombreTarea;
         const nuevasTareas = proyecto.tareas.filter((_, i) => i !== index);
-        const tareaEliminadaMensaje = `Se eliminó: ${nombreTareaEliminada}`;
+        const tareaEliminadaMensaje = ` Se eliminó: ${nombreTareaEliminada}`;
         const nuevoHistorial = [...(proyecto.historial || []), tareaEliminadaMensaje];
         
         setProyecto({ ...proyecto, tareas: nuevasTareas, historial: nuevoHistorial });
