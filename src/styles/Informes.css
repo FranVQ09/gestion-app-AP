@@ -1,0 +1,172 @@
+
+  
+/* Cajita del login*/
+.mproye {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 2rem;
+    width: 400px;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  ::-webkit-scrollbar{
+    width: 10px;
+
+  }
+
+  ::-webkit-scrollbar-thumb{
+    background: #A7BEAE;
+    border-radius: 10px;
+  }
+
+  .mproye2 {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 2rem;
+    width: 400px;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    max-height: 700px;
+    overflow-y: scroll;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20rem;
+    position: fixed;
+  }
+
+  /* Botones*/
+  .mproye .boton {
+    outline: none;
+    border: none;
+    background: #A7BEAE;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .mproye .boton:hover,
+  .mproye .boton:focus {
+    background: #7C927C;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .mproye .back {
+    outline: none;
+    border: none;
+    background: #A9A9A9;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .mproye .back:hover,
+  .mproye .back:focus {
+    background: #808080;
+    cursor: pointer;
+    outline: none;
+  }
+
+
+  .mproye label {
+    text-align: left;
+  }
+
+  .mproye input {
+    outline: none;
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    margin-bottom: -0.1rem;
+  }
+  
+  .mproye input:focus {
+    border: 1.8px solid #A7BEAE;
+  }
+  
+
+  .mproye2 .boton {
+    outline: none;
+    border: none;
+    background: #A7BEAE;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    display: inline-block;
+  }
+  
+  .mproye2 .boton:hover,
+  .mproye2 .boton:focus {
+    background: #7C927C;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .mproye2 .back {
+    outline: none;
+    border: none;
+    background: #A9A9A9;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  
+  .mproye2 .back:hover,
+  .mproye2 .back:focus {
+    background: #808080;
+    cursor: pointer;
+    outline: none;
+  }
+
+
+  .mproye2 label {
+    text-align: left;
+    width: 100%;
+    display: inline-block; 
+    margin-bottom: 0.5rem;
+  }
+
+  .mproye2 input {
+    outline: none;
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  
+  .mproye2 input:focus {
+    border: 1.8px solid #A7BEAE;
+  }
+  
+  .mproye2 .select {
+    outline: none;
+    padding: 0.8rem 1rem;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
