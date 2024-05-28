@@ -14,6 +14,7 @@ const NavbarProyectos = () => {
             <Link className='boton' to="/consultarProyecto">Consultar Proyecto</Link>
             <Link className='boton' to="/modificarProyecto">Modificar Proyecto</Link>
             <Link className='boton' to="/reuniones">Crear Reunión</Link>
+            <Link className='boton' to="/informes">Generar Informe</Link>
             <Link className='back' to="/menu">Regresar</Link>
           </form>
         </div>

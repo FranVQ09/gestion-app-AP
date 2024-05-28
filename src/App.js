@@ -15,6 +15,7 @@ import CrearProyecto from "./pages/gestion-proyectos/CrearProyecto";
 import ConsultarProyectos from './pages/gestion-proyectos/ConsultarProyectos';
 import ModificarProyecto from './pages/gestion-proyectos/ModificarProyecto';
 import Reuniones from './pages/gestion-proyectos/Reuniones';
+import Informes from './pages/gestion-proyectos/Informes';
 
 /* Import de evaluaciones*/
 import InformeGeneral from './pages/Evaluaciones/InformeGeneral';
@@ -44,6 +45,7 @@ function App() {
           <Route path="/consultarProyecto" element={<ConsultarProyectos />} />
           <Route path="/modificarProyecto" element={<ModificarProyecto />} />
           <Route path="/reuniones" element={<Reuniones />} />
+          <Route path="/informes" element={<Informes />} />
 
           {/* Rutas de Evaluaciones */}
           <Route path='/evaluaciones' element={<Evaluaciones />} />
