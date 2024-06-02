@@ -45,7 +45,6 @@ function ConsultarForo() {
       setNuevoMensaje('');
       setMostrarCajaTexto(false);
   
-      // Obtener los mensajes actualizados del foro seleccionado
       const foroSnapshot = await getDoc(foroDocRef);
       const foroData = foroSnapshot.data();
       if (foroData) {
@@ -60,12 +59,12 @@ function ConsultarForo() {
     event.preventDefault(); 
 
     try {
-      if(selectedForo.exclusivoPara !== userData.proyecto) {
-        window.alert('No tienes acceso a este foro');
-        return;
-      } else {
+      if(selectedForo.exclusivoPara === userData.proyecto || selectedForo.exclusivoPara === 'publico') {
         setMostrarForo(true);
         setMensajes(selectedForo.mensaje);
+      } else {
+        window.alert('No tienes acceso a este foro');
+        return;
       }
     } catch (error) {
       console.error('Error al buscar foro:', error);
