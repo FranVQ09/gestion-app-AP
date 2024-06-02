@@ -37,9 +37,6 @@ function ConsultarProyectos() {
     getProyectoItems();
   }, []);
 
-  const storeProyect = (e) => {
-    // Agrega aquí la lógica para almacenar el proyecto si es necesario
-  };
 
   return(
     <div className='content'>
@@ -47,7 +44,7 @@ function ConsultarProyectos() {
         <div className='name-content'>
           <h1 className='logo'>Consultar Proyecto</h1>
         </div>
-        <form className='consuproye' onSubmit={storeProyect}>
+        <form className='consuproye'>
         <h2>{proyectoItems.length} Proyectos</h2>
         <br/>
         <hr />
