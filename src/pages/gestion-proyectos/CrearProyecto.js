@@ -13,11 +13,15 @@ function CrearProyecto() {
     const [tareas, setTareas] = useState([]);
     const [estadoProyecto, setEstadoProyecto] = useState('');
     const [descripcion, setDescripcion] = useState('');
-    const [fechaInicio, setFechaInicio] = useState(null);
-    const [fechaFin, setFechaFin] = useState(null);
+    const [fechaInicio, setFechaInicio] = useState('');
+    const [fechaFin, setFechaFin] = useState('');
     const [historial, setHistorial] = useState([]);
 
     const proyectosCollection = collection(db, 'proyecto');
+
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+
+    
 
     const agregarTarea = () => {
         // Verificar si hay alguna tarea con todos los campos vacíos
@@ -90,6 +94,8 @@ function CrearProyecto() {
             const historialActualizado = [...historial, ...nombresTareas];
             await addDoc(proyectosCollection, { 
                 nombreProyecto: nombreProyecto,
+                encargado: userData.nombre,
+                descripcion: descripcion,
                 recursos: recursos,
                 presupuesto: presupuesto,
                 tareas: tareas,
@@ -128,6 +134,8 @@ function CrearProyecto() {
                     <br/>
                     <label htmlFor="nombreProyecto">Nombre del Proyecto:</label>
                     <input type="text" id="nombreProyecto" name="nombreProyecto" value={nombreProyecto} onChange={(e) => setNombreProyecto(e.target.value)} placeholder="Proyecto Phoenix" required />
+                    <label htmlFor="descripcion">Descripción:</label>
+                    <input type="text" id="descripcion" name="descripcion" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="El Proyecto Phoenix es una iniciativa..." required />
                     <label htmlFor="recursos">Recursos:</label>
                     <input type="text" id="recursos" name="recursos" value={recursos} onChange={(e) => setRecursos(e.target.value)} placeholder="Cuatro computadoras, una impreso..." required />
                     <label htmlFor="presupuesto">Presupuesto:</label>
@@ -138,8 +146,6 @@ function CrearProyecto() {
                         <option value="En progreso">En progreso</option>
                         <option value="Finalizado">Finalizado</option>
                     </select>
-                    <label htmlFor="descripcion">Descripción:</label>
-                    <input type="text" id="descripcion" name="descripcion" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="El Proyecto Phoenix es una iniciati..." required/>
                     <label htmlFor="fechaInicio">Fecha de Inicio:</label>
                     <input type="text" id="fechaInicio" name="fechaInicio" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} placeholder="01/01/2024" required/>
                     <label htmlFor="fechaFin">Fecha de Fin:</label>

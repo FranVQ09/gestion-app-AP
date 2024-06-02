@@ -18,6 +18,7 @@ function ConsultarProyectos() {
         const proyectoItem = {
           id: doc.id,
           nombreProyecto: data.nombreProyecto,
+          encargado: data.encargado,
           recursos: data.recursos,
           presupuesto: data.presupuesto,
           colaboradores: data.colaboradores,
@@ -56,6 +57,7 @@ function ConsultarProyectos() {
               <h3>Nombre del Proyecto: <span class='logo'>{item.nombreProyecto}</span></h3>
               <br/>
               <h5>Proyecto nº{index + 1}:</h5>
+              <p>Encargado: {item.encargado}</p>
               <p>Descripción: {item.descripcion}</p>
               <p>Recursos: {item.recursos}</p>
               <p>Presupuesto: {item.presupuesto}</p>
