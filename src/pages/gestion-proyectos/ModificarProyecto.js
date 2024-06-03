@@ -15,6 +15,7 @@ function ModificarProyecto() {
     const [nuevoNombreTarea, setNuevoNombreTarea] = useState('');
     const [mapeoColaboradores, setMapeoColaboradores] = useState([]);
     const mailCollection = collection(db, 'mail');
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
 
     useEffect(() => {
         const obtenerProyectos = async () => {
@@ -99,8 +100,8 @@ function ModificarProyecto() {
                 to: toEmails,
                 message: {
                     subject: `Se modificó el proyecto: ${proyectoSeleccionado}`,
-                    text: `Se modificó el proyecto: ${proyectoSeleccionado}`,
-                    html: `<p> Se modificó el proyecto: ${proyectoSeleccionado}</p>`
+                    text: `Se modificó el proyecto: ${proyectoSeleccionado}, cambio realizado por: ${userData.nombre}`,
+                    html: `<p> Se modificó el proyecto: ${proyectoSeleccionado}, cambio realizado por: ${userData.nombre}. Favor revisar el proyecto </p>`
                 }
             })
 

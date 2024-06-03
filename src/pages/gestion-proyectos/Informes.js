@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import db from '../../fisebaseConfig/firebaseConfig';
-import { collection, getDocs, doc, updateDoc, addDoc, query, where, getDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import '../../styles/Informes.css';
 import { jsPDF } from 'jspdf';
