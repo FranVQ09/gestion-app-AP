@@ -1,7 +1,7 @@
 
   
 /* Cajita del login*/
-.mproye {
+.infoProye {
     display: flex;
     flex-direction: column;
     background: #fff;
@@ -13,6 +13,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    margin-top: 15rem;
   }
   ::-webkit-scrollbar{
     width: 10px;
@@ -24,7 +25,7 @@
     border-radius: 10px;
   }
 
-  .mproye2 {
+  .infoProye2 {
     display: flex;
     flex-direction: column;
     background: #fff;
@@ -42,7 +43,7 @@
   }
 
   /* Botones*/
-  .mproye .boton {
+  .infoProye .boton {
     outline: none;
     border: none;
     background: #A7BEAE;
@@ -55,14 +56,14 @@
     text-decoration: none;
   }
   
-  .mproye .boton:hover,
-  .mproye .boton:focus {
+  .infoProye .boton:hover,
+  .infoProye .boton:focus {
     background: #7C927C;
     cursor: pointer;
     outline: none;
   }
   
-  .mproye .back {
+  .infoProye .back {
     outline: none;
     border: none;
     background: #A9A9A9;
@@ -73,19 +74,19 @@
     text-decoration: none;
   }
   
-  .mproye .back:hover,
-  .mproye .back:focus {
+  .infoProye .back:hover,
+  .infoProye .back:focus {
     background: #808080;
     cursor: pointer;
     outline: none;
   }
 
 
-  .mproye label {
+  .infoProye label {
     text-align: left;
   }
 
-  .mproye input {
+  .infoProye input {
     outline: none;
     padding: 0.8rem 1rem;
     font-size: 1.1rem;
@@ -93,12 +94,12 @@
     margin-bottom: -0.1rem;
   }
   
-  .mproye input:focus {
+  .infoProye input:focus {
     border: 1.8px solid #A7BEAE;
   }
   
 
-  .mproye2 .boton {
+  .infoProye2 .boton {
     outline: none;
     border: none;
     background: #A7BEAE;
@@ -113,14 +114,14 @@
     display: inline-block;
   }
   
-  .mproye2 .boton:hover,
-  .mproye2 .boton:focus {
+  .infoProye2 .boton:hover,
+  .infoProye2 .boton:focus {
     background: #7C927C;
     cursor: pointer;
     outline: none;
   }
   
-  .mproye2 .back {
+  .infoProye2 .back {
     outline: none;
     border: none;
     background: #A9A9A9;
@@ -134,22 +135,22 @@
     margin-bottom: 1rem;
   }
   
-  .mproye2 .back:hover,
-  .mproye2 .back:focus {
+  .infoProye2 .back:hover,
+  .infoProye2 .back:focus {
     background: #808080;
     cursor: pointer;
     outline: none;
   }
 
 
-  .mproye2 label {
+  .infoProye2 label {
     text-align: left;
     width: 100%;
     display: inline-block; 
     margin-bottom: 0.5rem;
   }
 
-  .mproye2 input {
+  .infoProye2 input {
     outline: none;
     padding: 0.8rem 1rem;
     font-size: 1.1rem;
@@ -158,11 +159,11 @@
     margin-bottom: 1rem;
   }
   
-  .mproye2 input:focus {
+  .infoProye2 input:focus {
     border: 1.8px solid #A7BEAE;
   }
   
-  .mproye2 .select {
+  .infoProye2 .select {
     outline: none;
     padding: 0.8rem 1rem;
     width: 100%;

@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GestionColaboradores from "./pages/gestion-colaboradores/GestionColaboradores"
 import RegistrarColaborador from "./pages/gestion-colaboradores/RegistrarColaborador";
 import ModificarColaborador from "./pages/gestion-colaboradores/ModificarColaborador"
+import ReporteColaboradores from "./pages/gestion-colaboradores/ReporteColaboradores"
 
 /* Imports de paginas de proyectos */
 import GestionProyectos from "./pages/gestion-proyectos/GestionProyectos";
@@ -38,6 +39,7 @@ function App() {
           <Route path="/registrarColaborador" element={<RegistrarColaborador />} />
           <Route path="/modificarColaborador" element={<ModificarColaborador />} />
           <Route path="/asignacion" element={<Asignacion />} />
+          <Route path="/reporteColaboradores" element={<ReporteColaboradores />} />
 
           {/* Rutas de Proyectos */}
           <Route path="/gestionProyectos" element={<GestionProyectos />} />

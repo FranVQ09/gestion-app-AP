@@ -13,6 +13,7 @@ const Navbar = () => {
             <Link className='boton' to="/registrarColaborador">Registrar Colaborador</Link>
             <Link className='boton' to="/modificarColaborador">Modificar Colaborador</Link>
             <Link className='boton' to="/asignacion">Asignación</Link>
+            <Link className='boton' to="/reporteColaboradores">Reporte Colaboradores</Link>
             <Link className='back' to="/menu">Regresar</Link>
           </form>
         </div>

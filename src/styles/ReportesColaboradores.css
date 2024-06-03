@@ -1,0 +1,175 @@
+
+  
+/* Cajita del login*/
+.repoColab {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 2rem;
+    width: 400px;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 5rem;
+  }
+  
+::-webkit-scrollbar{
+  width: 10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+  background: #A7BEAE;
+  border-radius: 10px;
+}
+
+.repoColab2 {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  width: 400px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  max-height: 700px;
+  overflow-y: scroll;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20rem;
+  position: fixed;
+}
+
+/* Botones*/
+.repoColab .boton {
+  outline: none;
+  border: none;
+  background: #A7BEAE;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.repoColab .boton:hover,
+.repoColab .boton:focus {
+  background: #7C927C;
+  cursor: pointer;
+  outline: none;
+}
+
+.repoColab .back {
+  outline: none;
+  border: none;
+  background: #A9A9A9;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.repoColab .back:hover,
+.repoColab .back:focus {
+  background: #808080;
+  cursor: pointer;
+  outline: none;
+}
+
+
+.repoColab label {
+  text-align: left;
+}
+
+.repoColab input {
+  outline: none;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  margin-bottom: -0.1rem;
+}
+
+.repoColab input:focus {
+  border: 1.8px solid #A7BEAE;
+}
+
+
+.repoColab2 .boton {
+  outline: none;
+  border: none;
+  background: #A7BEAE;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  display: inline-block;
+}
+
+.repoColab2 .boton:hover,
+.repoColab2 .boton:focus {
+  background: #7C927C;
+  cursor: pointer;
+  outline: none;
+}
+
+.repoColab2 .back {
+  outline: none;
+  border: none;
+  background: #A9A9A9;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.repoColab2 .back:hover,
+.repoColab2 .back:focus {
+  background: #808080;
+  cursor: pointer;
+  outline: none;
+}
+
+
+.repoColab2 label {
+  text-align: left;
+  width: 100%;
+  display: inline-block; 
+  margin-bottom: 0.5rem;
+}
+
+.repoColab2 input {
+  outline: none;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.repoColab2 input:focus {
+  border: 1.8px solid #A7BEAE;
+}
+
+.repoColabSelect .select {
+  padding: 0.8rem 1rem;
+  outline: none;
+  font-size: 0.8rem;
+  text-decoration: none;
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+}

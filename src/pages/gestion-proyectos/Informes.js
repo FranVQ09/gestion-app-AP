@@ -407,7 +407,7 @@ function Informes() {
             <div className='name-content'>
                 <h1 className='logo'>Informes del Proyecto</h1>
             </div>
-            <form className='mproye'>
+            <form className='infoProye'>
                 <label htmlFor="proyecto">Seleccione un Proyecto:</label>
                 <select className='laselecta' id="proyecto" value={proyectoSeleccionado} onChange={(e) => setProyectoSeleccionado(e.target.value)}>
                 <option value="">Seleccione un proyecto</option>
