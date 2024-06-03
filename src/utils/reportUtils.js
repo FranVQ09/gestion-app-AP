@@ -35,6 +35,7 @@ const orderFields = (data, language) => {
         'presupuesto',
         'recursos',
         'historial',
+        'tareas'
     ];
 
     return orderedKeys.map(key => ({

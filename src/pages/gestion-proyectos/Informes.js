@@ -97,14 +97,7 @@ function Informes() {
                     <select className='laselecta' id="idioma" value={idiomaSeleccionado} onChange={(e) => setIdiomaSeleccionado(e.target.value)}>
                         <option value="es">Español</option>
                         <option value="en">English</option>
-                        <option value="zh">中文</option>
-                        <option value="hi">हिंदी</option>
-                        <option value="ar">العربية</option>
-                        <option value="pt">Português</option>
-                        <option value="fr">Français</option>
-                        <option value="ru">Русский</option>
-                        <option value="ja">日本語</option>
-                        <option value="de">Deutsch</option>
+                        <option value="fr">Francés</option>
                     </select>
                     <br></br>
                     <label>Informes proyectos específicos:</label>

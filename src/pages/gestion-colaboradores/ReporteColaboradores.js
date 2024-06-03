@@ -54,14 +54,7 @@ function ReportesColaboradores() {
                     <select className='laselecta' value={language} onChange={(e) => setLanguage(e.target.value)}>
                         <option value="es">Español</option>
                         <option value="en">Inglés</option>
-                        <option value="zh">Chino</option>
-                        <option value="hi">Hindi</option>
-                        <option value="ar">Árabe</option>
-                        <option value="pt">Portugués</option>
                         <option value="fr">Francés</option>
-                        <option value="ru">Ruso</option>
-                        <option value="ja">Japonés</option>
-                        <option value="de">Alemán</option>
                     </select>
                     <br></br>
                     <label>Generar Informe:</label>
