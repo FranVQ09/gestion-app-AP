@@ -31,7 +31,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/registerCuenta" element={<RegisterPage />} />
           <Route path="/menu" element={<Menu />} />
 
           {/* Rutas de Colaboradores */}

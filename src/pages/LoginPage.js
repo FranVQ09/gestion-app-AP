@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, where } from 'firebase/firestore';
 import { getDocs, query } from 'firebase/firestore';
 import db from '../fisebaseConfig/firebaseConfig';
+import { Link } from 'react-router-dom';
 
 
 function LoginPage() {
@@ -53,8 +54,10 @@ function LoginPage() {
           <input type="password" name="password" placeholder="********" required tabIndex="2" title="Debe ingresar su contraseña" onInvalid={(e) => e.target.setCustomValidity('Por favor ingrese su contraseña.')} onInput={(e) => e.target.setCustomValidity('')} value={password} onChange={(e) => setPassword(e.target.value)} />
           <button type="submit" className="login" tabIndex="3">Iniciar sesión</button>
           <hr />
-          <button className="create-account" onClick={() => { window.location.href = '/register'; }} tabIndex="4">Crear cuenta nueva</button>
         </form>
+        <Link to='/registerCuenta'>
+          <button className="create-account" tabIndex="4">Crear cuenta nueva</button>
+        </Link>
       </div>
     </div>
   );
